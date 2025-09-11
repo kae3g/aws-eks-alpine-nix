@@ -2,7 +2,7 @@
 
 {
   # Basic system configuration
-  system.stateVersion = "24.05";
+  system.stateVersion = "24.11";  # Updated to latest stable as of 2025-09-11
   
   # Enable Zsh as default shell
   programs.zsh = {

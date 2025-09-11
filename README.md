@@ -167,10 +167,10 @@ This setup follows industry best practices for secure, cloud-native infrastructu
 - **Read-only filesystem** - Where possible
 
 ### Infrastructure Philosophy
-- **Ephemeral, not eternal** - Everything should be disposable
-- **Cattle, not pets** - Treat infrastructure as replaceable
+- **Ephemeral, not eternal** - Everything should be disposable and replaceable
 - **Immutable deployments** - No manual changes to running systems
 - **Declarative configuration** - Everything defined in code
+- **Disposable infrastructure** - Treat everything as replaceable
 
 ## 💡 Philosophy
 
