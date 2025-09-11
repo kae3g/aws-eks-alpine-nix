@@ -1,0 +1,173 @@
+# Secure Haskell Application Deployment
+# Following industry standards: non-root user, no privilege escalation, ephemeral naming
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: haskell-app-secure
+  labels:
+    app: haskell-app
+    version: v1.0.0
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: haskell-app
+  template:
+    metadata:
+      labels:
+        app: haskell-app
+        version: v1.0.0
+      # Ephemeral naming - Kubernetes will generate unique names
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/port: "3000"
+    spec:
+      # Security context for the pod (industry standard)
+      securityContext:
+        runAsNonRoot: true
+        runAsUser: 1000  # Must match the USER in Dockerfile
+        runAsGroup: 1000
+        fsGroup: 1000
+        seccompProfile:
+          type: RuntimeDefault
+      containers:
+      - name: haskell-app
+        image: nixos-minimal:latest
+        imagePullPolicy: IfNotPresent
+        # Security context for the container (industry standard)
+        securityContext:
+          allowPrivilegeEscalation: false
+          runAsNonRoot: true
+          runAsUser: 1000
+          readOnlyRootFilesystem: true
+          capabilities:
+            drop:
+              - ALL
+        ports:
+        - containerPort: 3000
+          name: http
+          protocol: TCP
+        env:
+        - name: NODE_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: spec.nodeName
+        - name: POD_NAME
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.name
+        - name: POD_NAMESPACE
+          valueFrom:
+            fieldRef:
+              fieldPath: metadata.namespace
+        # Health checks
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 3000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /ready
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 5
+          timeoutSeconds: 3
+          failureThreshold: 3
+        # Resource limits (industry standard)
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "128Mi"
+            cpu: "200m"
+        # Volume mounts for writable directories
+        volumeMounts:
+        - name: tmp
+          mountPath: /tmp
+        - name: var-tmp
+          mountPath: /var/tmp
+      # Ephemeral volumes
+      volumes:
+      - name: tmp
+        emptyDir: {}
+      - name: var-tmp
+        emptyDir: {}
+      # Ephemeral naming - no fixed node selection
+      nodeSelector:
+        kubernetes.io/os: linux
+      # Anti-affinity for high availability
+      affinity:
+        podAntiAffinity:
+          preferredDuringSchedulingIgnoredDuringExecution:
+          - weight: 100
+            podAffinityTerm:
+              labelSelector:
+                matchExpressions:
+                - key: app
+                  operator: In
+                  values:
+                  - haskell-app
+              topologyKey: kubernetes.io/hostname
+      # Restart policy for ephemeral nature
+      restartPolicy: Always
+      # Termination grace period
+      terminationGracePeriodSeconds: 30
+
+---
+# Service for the application
+apiVersion: v1
+kind: Service
+metadata:
+  name: haskell-app-service
+  labels:
+    app: haskell-app
+spec:
+  type: ClusterIP
+  ports:
+  - port: 80
+    targetPort: 3000
+    protocol: TCP
+    name: http
+  selector:
+    app: haskell-app
+
+---
+# Network Policy for security
+apiVersion: networking.k8s.io/v1
+kind: NetworkPolicy
+metadata:
+  name: haskell-app-network-policy
+spec:
+  podSelector:
+    matchLabels:
+      app: haskell-app
+  policyTypes:
+  - Ingress
+  - Egress
+  ingress:
+  - from:
+    - namespaceSelector:
+        matchLabels:
+          name: default
+    ports:
+    - protocol: TCP
+      port: 3000
+  egress:
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 53
+    - protocol: UDP
+      port: 53
+  - to: []
+    ports:
+    - protocol: TCP
+      port: 443
+    - protocol: TCP
+      port: 80

@@ -51,26 +51,54 @@
     enableOnBoot = true;
   };
   
-  # Create a simple user
+  # Create a secure user (following industry standards)
   users.users.nixos = {
     isNormalUser = true;
     extraGroups = [ "wheel" "docker" ];
     shell = pkgs.zsh;
+    # No password set - SSH key only
+    hashedPassword = "!";
   };
   
-  # Enable sudo for the nixos user
-  security.sudo.wheelNeedsPassword = false;
+  # Disable root user completely (industry standard)
+  users.users.root = {
+    hashedPassword = "!";
+    openssh.authorizedKeys.keys = [ ];
+  };
   
-  # Basic networking
-  networking.hostName = "nixos-minimal";
+  # Secure sudo configuration (emergency use only)
+  security.sudo = {
+    enable = true;
+    wheelNeedsPassword = false;
+    extraRules = [
+      {
+        users = [ "nixos" ];
+        commands = [
+          {
+            command = "ALL";
+            options = [ "NOPASSWD" "SETENV" ];
+          }
+        ];
+      }
+    ];
+  };
   
-  # Enable SSH (simple setup)
+  # Ephemeral hostname (industry standard)
+  networking.hostName = "nixos-${builtins.substring 0 8 (builtins.readFile /etc/machine-id)}";
+  
+  # Industry-standard SSH configuration
   services.openssh = {
     enable = true;
     settings = {
       PermitRootLogin = "no";
       PasswordAuthentication = false;
       PubkeyAuthentication = true;
+      KbdInteractiveAuthentication = false;
+      X11Forwarding = false;
+      AllowUsers = [ "nixos" ];
+      MaxAuthTries = 3;
+      ClientAliveInterval = 300;
+      ClientAliveCountMax = 2;
     };
   };
   

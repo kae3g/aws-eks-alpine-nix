@@ -1,4 +1,4 @@
-# Minimal NixOS-based container with Haskell
+# Minimal NixOS-based container with Haskell (Industry Standard Security)
 FROM nixos/nix:2.18.1
 
 # Set working directory
@@ -7,14 +7,27 @@ WORKDIR /app
 # Install essential packages
 RUN nix-env -iA nixpkgs.zsh nixpkgs.ghc nixpkgs.cabal-install nixpkgs.stack nixpkgs.git nixpkgs.curl
 
-# Set zsh as default shell
-RUN echo "exec zsh" > /root/.bashrc
+# Create non-root user and group (industry standard)
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
+
+# Create application directory and set ownership
+RUN chown -R appuser:appgroup /app
 
 # Create a simple Haskell hello world
 RUN echo 'main = putStrLn "Hello from NixOS container! 🚀"' > hello.hs
 
+# Set ownership of the hello world file
+RUN chown appuser:appgroup hello.hs
+
+# Set zsh as default shell for the non-root user
+RUN echo "exec zsh" > /home/appuser/.bashrc
+RUN chown appuser:appgroup /home/appuser/.bashrc
+
+# Switch to non-root user (industry standard)
+USER appuser
+
 # Expose port for development
 EXPOSE 3000
 
-# Default command
+# Default command (non-root)
 CMD ["zsh"]

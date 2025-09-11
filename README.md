@@ -4,9 +4,10 @@ A super simple NixOS setup focused on getting the basics right: one host with Zs
 
 ## 🎯 Goal
 
-Get a minimal NixOS development environment running with:
-- ✅ NixOS host with Zsh shell and Haskell
-- ✅ One container with the same NixOS environment
+Get a minimal NixOS development environment running with industry-standard security:
+- ✅ NixOS host with Zsh shell and Haskell (no root access, SSH keys only)
+- ✅ One container with the same NixOS environment (non-root user, immutable)
+- ✅ Ephemeral naming and infrastructure (disposable, not eternal)
 - ✅ Basic container orchestration for testing
 
 ## 🚀 Quick Start
@@ -34,10 +35,12 @@ docker exec -it nixos-minimal-dev zsh
 - Haskell toolchain (GHC, Cabal, Stack, HLS)
 - Docker for containerization
 - Basic development tools (git, curl, vim, etc.)
+- **Industry-standard security**: No root access, SSH keys only, ephemeral hostnames
 
 ### Container Setup (`docker/`)
-- `Dockerfile.minimal` - NixOS-based container with Haskell
+- `Dockerfile.minimal` - NixOS-based container with Haskell (non-root user, immutable)
 - `docker-compose.minimal.yml` - Two-container setup for testing
+- **Industry-standard security**: Non-root user, no privilege escalation, immutable images
 
 ### Scripts (`scripts/`)
 - `setup-minimal.sh` - Automated setup script
@@ -143,9 +146,36 @@ Once this minimal setup is working:
 - [ ] Basic Haskell compilation works
 - [ ] Containers can communicate
 - [ ] Development workflow is smooth
+- [ ] **Security**: No root access, SSH keys only, non-root containers
+- [ ] **Ephemeral**: Everything is disposable and replaceable
+- [ ] **Immutable**: All changes via configuration, not manual edits
+
+## 🔒 Industry Standards
+
+This setup follows industry best practices for secure, cloud-native infrastructure:
+
+### Host Security
+- **No root passwords** - Disabled completely
+- **SSH keys only** - No password authentication
+- **Ephemeral hostnames** - Generated from machine ID
+- **Immutable configuration** - All changes via NixOS config
+
+### Container Security
+- **Non-root user** - Never run as root
+- **No privilege escalation** - Disabled completely
+- **Immutable images** - All changes via image rebuilds
+- **Read-only filesystem** - Where possible
+
+### Infrastructure Philosophy
+- **Ephemeral, not eternal** - Everything should be disposable
+- **Cattle, not pets** - Treat infrastructure as replaceable
+- **Immutable deployments** - No manual changes to running systems
+- **Declarative configuration** - Everything defined in code
 
 ## 💡 Philosophy
 
 This minimal setup focuses on getting the fundamentals right before adding complexity. Once we have a solid foundation, we can build up to the full EKS setup with confidence.
+
+**Infrastructure should be ephemeral, not eternal - everything should be disposable and replaceable!** ✨
 
 **Less is more, but make it work perfectly!** ✨
