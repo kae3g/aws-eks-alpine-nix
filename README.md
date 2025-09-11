@@ -14,10 +14,10 @@ This guide will walk you through:
 
 ## 🚀 Project Roadmap & Todo List
 
-### Phase 1: Foundation & Infrastructure
+### Phase 1: Foundation & Infrastructure ✅
 - [x] **Set up repository structure** with directories for nixos, kubernetes, haskell-app, and docs
-- [ ] **Create NixOS configuration** for EKS worker AMI with security hardening
-- [ ] **Set up EKS cluster configuration** using eksctl for NixOS nodes
+- [x] **Create NixOS configuration** for EKS worker AMI with security hardening
+- [x] **Set up EKS cluster configuration** using eksctl for NixOS nodes
 - [ ] **Create Terraform configuration** for infrastructure as code
 
 ### Phase 2: Core Services & Security
@@ -32,8 +32,8 @@ This guide will walk you through:
 
 ### Phase 4: Advanced Features
 - [ ] **Create Nix Flake** for reproducible development environment
-- [ ] **Add comprehensive documentation** with step-by-step instructions
-- [ ] **Implement advanced security policies** and hardening
+- [x] **Add comprehensive documentation** with step-by-step instructions
+- [x] **Implement advanced security policies** and hardening
 
 ## ⚙️ Prerequisites
 
@@ -69,6 +69,7 @@ aws-eks-nixos-config/
    ```bash
    git clone git@github.com:kae3g/aws-eks-nixos-config.git
    cd aws-eks-nixos-config
+   git checkout dev  # Use the dev branch with latest features
    ```
 
 2. **Set up your development environment:**
@@ -85,15 +86,58 @@ aws-eks-nixos-config/
    aws configure
    ```
 
-4. **Follow the step-by-step guide** in the `docs/` directory
+4. **Set up AWS prerequisites (automated):**
+   ```bash
+   ./scripts/setup-aws-prerequisites.sh
+   ```
+
+5. **Build your NixOS AMI:**
+   ```bash
+   cd nixos/
+   ./scripts/build-ami.sh
+   ```
+
+6. **Create your EKS cluster:**
+   ```bash
+   # Update AMI ID in cluster config
+   AMI_ID=$(cat /tmp/ami-id.txt)
+   sed -i "s/ami-xxxxxxxxx/$AMI_ID/g" ../kubernetes/eks-cluster.yaml
+   
+   # Create the cluster
+   eksctl create cluster -f ../kubernetes/eks-cluster.yaml
+   ```
+
+7. **Verify your cluster:**
+   ```bash
+   kubectl get nodes
+   kubectl get pods -A
+   ```
+
+## ✨ What's Been Implemented
+
+### 🔒 Security-First NixOS Configuration
+- **Comprehensive Security Hardening**: AppArmor, auditd, firewall rules, and system hardening
+- **Container Runtime**: Containerd with CRI v1 and proper CNI configuration
+- **Kubernetes Integration**: Kubelet service optimized for EKS
+- **AWS Integration**: SSM Agent and CLI tools for seamless AWS connectivity
+
+### 🚀 Automated Setup Scripts
+- **AMI Build Script**: Automated NixOS AMI creation with error handling
+- **AWS Prerequisites**: One-command setup for all required AWS resources
+- **EKS Cluster Config**: Complete eksctl configuration for NixOS worker nodes
+
+### 📚 Comprehensive Documentation
+- **Step-by-step guides** for every component
+- **Security best practices** and hardening techniques
+- **Troubleshooting guides** and debugging tips
+- **Cost optimization** recommendations
 
 ## 📚 Documentation
 
-- [Complete Setup Guide](docs/setup-guide.md) - Detailed step-by-step instructions
-- [NixOS Configuration](docs/nixos-config.md) - Custom NixOS modules and configurations
-- [Kubernetes Manifests](docs/kubernetes.md) - K8s deployment and service configurations
-- [Security Hardening](docs/security.md) - Security policies and best practices
-- [Monitoring Setup](docs/monitoring.md) - Prometheus, Grafana, and logging configuration
+- [AWS Setup Guide](docs/aws-setup-guide.md) - Complete AWS resource setup and configuration
+- [NixOS Configuration](docs/nixos-config.md) - Custom NixOS modules and security hardening
+- [EKS Cluster Setup](kubernetes/eks-cluster.yaml) - eksctl configuration for NixOS nodes
+- [Build Scripts](scripts/) - Automated AMI building and AWS setup
 
 ## 🤝 Contributing
 
