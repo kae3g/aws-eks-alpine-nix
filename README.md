@@ -18,7 +18,7 @@ This guide will walk you through:
 - [x] **Set up repository structure** with directories for nixos, kubernetes, haskell-app, and docs
 - [x] **Create NixOS configuration** for EKS worker AMI with security hardening
 - [x] **Set up EKS cluster configuration** using eksctl for NixOS nodes
-- [ ] **Create Terraform configuration** for infrastructure as code
+- [x] **Create Terraform configuration** for infrastructure as code
 
 ### Phase 2: Core Services & Security
 - [ ] **Set up NGINX Ingress Controller** and cert-manager with Let's Encrypt
@@ -125,6 +125,7 @@ aws-eks-nixos-config/
 - **AMI Build Script**: Automated NixOS AMI creation with error handling
 - **AWS Prerequisites**: One-command setup for all required AWS resources
 - **EKS Cluster Config**: Complete eksctl configuration for NixOS worker nodes
+- **Terraform Infrastructure**: Complete infrastructure as code with VPC, EKS, IAM, and security
 
 ### 📚 Comprehensive Documentation
 - **Step-by-step guides** for every component
@@ -137,6 +138,7 @@ aws-eks-nixos-config/
 - [AWS Setup Guide](docs/aws-setup-guide.md) - Complete AWS resource setup and configuration
 - [NixOS Configuration](docs/nixos-config.md) - Custom NixOS modules and security hardening
 - [EKS Cluster Setup](kubernetes/eks-cluster.yaml) - eksctl configuration for NixOS nodes
+- [Terraform Infrastructure](terraform/README.md) - Complete infrastructure as code configuration
 - [Build Scripts](scripts/) - Automated AMI building and AWS setup
 
 ## 🤝 Contributing

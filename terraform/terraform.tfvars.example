@@ -1,0 +1,82 @@
+# Example Terraform variables file
+# Copy this file to terraform.tfvars and customize the values
+
+# Basic Configuration
+aws_region   = "us-west-2"
+project_name = "nixos-eks"
+environment  = "dev"
+owner        = "nixos-eks-team"
+
+# VPC Configuration
+vpc_cidr = "10.0.0.0/16"
+
+# Subnet Configuration
+private_subnet_cidrs = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+public_subnet_cidrs  = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+
+# EKS Configuration
+eks_cluster_version = "1.28"
+
+# Node Group Configuration
+node_group_instance_types = ["t3.medium", "t3.large"]
+node_group_min_size       = 2
+node_group_max_size       = 10
+node_group_desired_size   = 3
+
+# NixOS AMI Configuration
+# Set this after building your NixOS AMI
+nixos_ami_id = "ami-xxxxxxxxx"
+
+# Key Pair Configuration
+key_pair_name = "eks-nixos-key"
+
+# Security Configuration
+enable_public_access  = true
+enable_private_access = true
+enable_irsa          = true
+enable_encryption     = true
+
+# Logging Configuration
+enable_cluster_logging = true
+cluster_log_types = [
+  "api",
+  "audit", 
+  "authenticator",
+  "controllerManager",
+  "scheduler"
+]
+
+# Add-ons Configuration
+enable_cloudwatch_container_insights = true
+enable_aws_load_balancer_controller  = true
+enable_cluster_autoscaler           = true
+enable_metrics_server               = true
+enable_cert_manager                 = true
+
+# Cert Manager Configuration
+cert_manager_email = "admin@yourdomain.com"
+
+# Domain Configuration (optional)
+domain_name = "yourdomain.com"
+
+# Database Configuration (optional)
+enable_rds                    = false
+rds_instance_class           = "db.t3.micro"
+rds_allocated_storage        = 20
+rds_backup_retention_period  = 7
+
+# Redis Configuration (optional)
+enable_redis    = false
+redis_node_type = "cache.t3.micro"
+
+# S3 Configuration
+enable_s3        = true
+s3_bucket_name   = ""  # Will be auto-generated if empty
+
+# Monitoring Configuration
+enable_monitoring = true
+alarm_email      = "admin@yourdomain.com"
+
+# Cost Optimization
+enable_cost_optimization = true
+spot_instance_percentage = 0  # 0-100, 0 means no spot instances
