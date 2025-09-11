@@ -1,0 +1,34 @@
+version: '3.8'
+
+services:
+  nixos-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.minimal
+    container_name: nixos-minimal-dev
+    volumes:
+      - .:/app
+      - /var/run/docker.sock:/var/run/docker.sock  # For Docker-in-Docker
+    ports:
+      - "3000:3000"
+    environment:
+      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
+    stdin_open: true
+    tty: true
+    command: zsh
+    
+  # Optional: A second container for testing distributed communication
+  nixos-worker:
+    build:
+      context: .
+      dockerfile: Dockerfile.minimal
+    container_name: nixos-minimal-worker
+    volumes:
+      - .:/app
+    ports:
+      - "3001:3000"
+    environment:
+      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
+    stdin_open: true
+    tty: true
+    command: zsh

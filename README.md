@@ -1,160 +1,151 @@
-# NixOS on AWS EKS: A Declarative Kubernetes Stack
+# NixOS Minimal Development Environment
 
-This repository contains a complete, declarative infrastructure setup for running a Haskell application on a Kubernetes cluster built on **NixOS worker nodes**, managed by **AWS EKS**. Everything—from the host OS configuration to the Kubernetes manifests—is defined in code, primarily using the Nix language.
+A super simple NixOS setup focused on getting the basics right: one host with Zsh + Haskell, and one container with the same environment.
 
-## 📋 Overview
+## 🎯 Goal
 
-This guide will walk you through:
+Get a minimal NixOS development environment running with:
+- ✅ NixOS host with Zsh shell and Haskell
+- ✅ One container with the same NixOS environment
+- ✅ Basic container orchestration for testing
 
-1. **Building a custom NixOS AMI** tailored for AWS EKS worker nodes
-2. **Provisioning an EKS cluster** with a managed control plane and NixOS workers
-3. **Setting up core cluster services** (NGINX Ingress, TLS via Let's Encrypt) using Nix-friendly Helm charts
-4. **Deploying a sample Haskell application** using a multi-stage Dockerfile
-5. **Configuring host and network security** declaratively through NixOS and Kubernetes
+## 🚀 Quick Start
 
-## 🚀 Project Roadmap & Todo List
-
-### Phase 1: Foundation & Infrastructure ✅
-- [x] **Set up repository structure** with directories for nixos, kubernetes, haskell-app, and docs
-- [x] **Create NixOS configuration** for EKS worker AMI with security hardening
-- [x] **Set up EKS cluster configuration** using eksctl for NixOS nodes
-- [x] **Create Terraform configuration** for infrastructure as code
-
-### Phase 2: Core Services & Security
-- [ ] **Set up NGINX Ingress Controller** and cert-manager with Let's Encrypt
-- [ ] **Create Kubernetes Network Policies** for security
-- [ ] **Add monitoring and logging** with Prometheus/Grafana and centralized logging
-
-### Phase 3: Application Development
-- [ ] **Create sample Haskell Scotty application** with Dockerfile
-- [ ] **Create Kubernetes deployment manifests** for the Haskell app
-- [ ] **Set up CI/CD pipeline** with GitHub Actions for automated builds and deployments
-
-### Phase 4: Advanced Features
-- [ ] **Create Nix Flake** for reproducible development environment
-- [x] **Add comprehensive documentation** with step-by-step instructions
-- [x] **Implement advanced security policies** and hardening
-
-## ⚙️ Prerequisites
-
-- **AWS Account** with appropriate permissions (EC2, EKS, IAM, VPC)
-- **AWS CLI** configured on your local machine (`aws configure`)
-- **`kubectl`** and **`eksctl`** installed locally
-- **Nix** installed on your local machine (`sh <(curl -L https://nixos.org/nix/install)`)
-- **Docker** for building the application container
-
-## 🏗️ Repository Structure
-
-```
-aws-eks-nixos-config/
-├── nixos/                    # NixOS configurations
-│   ├── modules/             # Custom NixOS modules
-│   └── configs/             # NixOS configuration files
-├── kubernetes/              # Kubernetes manifests
-│   ├── manifests/           # YAML manifests
-│   └── helm/               # Helm chart configurations
-├── haskell-app/            # Sample Haskell application
-│   ├── src/                # Haskell source code
-│   └── app/                # Application configuration
-├── terraform/              # Infrastructure as Code
-├── monitoring/             # Monitoring and logging configs
-├── scripts/                # Utility scripts
-├── docs/                   # Documentation
-└── .github/workflows/      # CI/CD pipelines
+### Option 1: Full NixOS Setup
+```bash
+# Run the setup script
+./scripts/setup-minimal.sh
 ```
 
-## 🔧 Quick Start
+### Option 2: Docker-Only Setup
+```bash
+# Build and run containers
+cd docker/
+docker-compose -f docker-compose.minimal.yml up -d
 
-1. **Clone the repository:**
-   ```bash
-   git clone git@github.com:kae3g/aws-eks-nixos-config.git
-   cd aws-eks-nixos-config
-   git checkout dev  # Use the dev branch with latest features
-   ```
+# Enter the development container
+docker exec -it nixos-minimal-dev zsh
+```
 
-2. **Set up your development environment:**
-   ```bash
-   # Install Nix (if not already installed)
-   sh <(curl -L https://nixos.org/nix/install)
-   
-   # Enter the development shell
-   nix develop
-   ```
+## 📁 What's Included
 
-3. **Configure AWS credentials:**
-   ```bash
-   aws configure
-   ```
+### NixOS Configuration (`nixos/minimal-config.nix`)
+- Zsh as default shell with syntax highlighting and autosuggestions
+- Haskell toolchain (GHC, Cabal, Stack, HLS)
+- Docker for containerization
+- Basic development tools (git, curl, vim, etc.)
 
-4. **Set up AWS prerequisites (automated):**
-   ```bash
-   ./scripts/setup-aws-prerequisites.sh
-   ```
+### Container Setup (`docker/`)
+- `Dockerfile.minimal` - NixOS-based container with Haskell
+- `docker-compose.minimal.yml` - Two-container setup for testing
 
-5. **Build your NixOS AMI:**
-   ```bash
-   cd nixos/
-   ./scripts/build-ami.sh
-   ```
+### Scripts (`scripts/`)
+- `setup-minimal.sh` - Automated setup script
 
-6. **Create your EKS cluster:**
-   ```bash
-   # Update AMI ID in cluster config
-   AMI_ID=$(cat /tmp/ami-id.txt)
-   sed -i "s/ami-xxxxxxxxx/$AMI_ID/g" ../kubernetes/eks-cluster.yaml
-   
-   # Create the cluster
-   eksctl create cluster -f ../kubernetes/eks-cluster.yaml
-   ```
+## 🧪 Testing the Setup
 
-7. **Verify your cluster:**
-   ```bash
-   kubectl get nodes
-   kubectl get pods -A
-   ```
+### Test Haskell
+```bash
+# Create a simple Haskell program
+echo 'main = putStrLn "Hello from NixOS! 🚀"' > hello.hs
 
-## ✨ What's Been Implemented
+# Compile and run
+ghc hello.hs
+./hello
+```
 
-### 🔒 Security-First NixOS Configuration
-- **Comprehensive Security Hardening**: AppArmor, auditd, firewall rules, and system hardening
-- **Container Runtime**: Containerd with CRI v1 and proper CNI configuration
-- **Kubernetes Integration**: Kubelet service optimized for EKS
-- **AWS Integration**: SSM Agent and CLI tools for seamless AWS connectivity
+### Test Container Communication
+```bash
+# Start both containers
+docker-compose -f docker/docker-compose.minimal.yml up -d
 
-### 🚀 Automated Setup Scripts
-- **AMI Build Script**: Automated NixOS AMI creation with error handling
-- **AWS Prerequisites**: One-command setup for all required AWS resources
-- **EKS Cluster Config**: Complete eksctl configuration for NixOS worker nodes
-- **Terraform Infrastructure**: Complete infrastructure as code with VPC, EKS, IAM, and security
+# Test container 1
+docker exec -it nixos-minimal-dev ghc --version
 
-### 📚 Comprehensive Documentation
-- **Step-by-step guides** for every component
-- **Security best practices** and hardening techniques
-- **Troubleshooting guides** and debugging tips
-- **Cost optimization** recommendations
+# Test container 2
+docker exec -it nixos-minimal-worker ghc --version
+```
 
-## 📚 Documentation
+### Test Zsh Features
+```bash
+# Start zsh
+zsh
 
-- [AWS Setup Guide](docs/aws-setup-guide.md) - Complete AWS resource setup and configuration
-- [NixOS Configuration](docs/nixos-config.md) - Custom NixOS modules and security hardening
-- [EKS Cluster Setup](kubernetes/eks-cluster.yaml) - eksctl configuration for NixOS nodes
-- [Terraform Infrastructure](terraform/README.md) - Complete infrastructure as code configuration
-- [Build Scripts](scripts/) - Automated AMI building and AWS setup
+# Test syntax highlighting
+echo "This should be highlighted"
 
-## 🤝 Contributing
+# Test autosuggestions
+# Type 'ghc' and press right arrow to accept suggestion
+```
 
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
+## 🔧 Customization
 
-## 📄 License
+### Add More Packages
+Edit `nixos/minimal-config.nix`:
+```nix
+environment.systemPackages = with pkgs; [
+  # Existing packages...
+  your-package
+];
+```
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+### Modify Container
+Edit `docker/Dockerfile.minimal`:
+```dockerfile
+# Add more packages
+RUN nix-env -iA nixpkgs.your-package
+```
 
-## 🙏 Acknowledgments
+## 🐛 Troubleshooting
 
-- [DeterminateSystems/nixos-eks-ami](https://github.com/DeterminateSystems/nixos-eks-ami) for the NixOS EKS AMI builder
-- The NixOS community for excellent documentation and examples
-- The Kubernetes community for robust container orchestration tools
+### NixOS Issues
+```bash
+# Check configuration
+sudo nixos-rebuild build
+
+# Rollback if needed
+sudo nixos-rebuild switch --rollback
+```
+
+### Docker Issues
+```bash
+# Check Docker status
+sudo systemctl status docker
+
+# Restart Docker
+sudo systemctl restart docker
+```
+
+### Container Issues
+```bash
+# Check container logs
+docker logs nixos-minimal-dev
+
+# Rebuild container
+docker-compose -f docker/docker-compose.minimal.yml build --no-cache
+```
+
+## 📚 Next Steps
+
+Once this minimal setup is working:
+
+1. **Test basic functionality** - Ensure Haskell and Zsh work correctly
+2. **Test container communication** - Verify containers can communicate
+3. **Merge to main** - When everything is solid
+4. **Consult dev-advanced** - Use the advanced branch for inspiration
+5. **Build web application** - Start with a simple Haskell web app
+6. **Add distributed features** - Implement message passing and state sharing
+
+## 🎉 Success Criteria
+
+- [ ] NixOS host boots with Zsh and Haskell
+- [ ] Container runs with same environment
+- [ ] Basic Haskell compilation works
+- [ ] Containers can communicate
+- [ ] Development workflow is smooth
+
+## 💡 Philosophy
+
+This minimal setup focuses on getting the fundamentals right before adding complexity. Once we have a solid foundation, we can build up to the full EKS setup with confidence.
+
+**Less is more, but make it work perfectly!** ✨

@@ -1,0 +1,20 @@
+# Minimal NixOS-based container with Haskell
+FROM nixos/nix:2.18.1
+
+# Set working directory
+WORKDIR /app
+
+# Install essential packages
+RUN nix-env -iA nixpkgs.zsh nixpkgs.ghc nixpkgs.cabal-install nixpkgs.stack nixpkgs.git nixpkgs.curl
+
+# Set zsh as default shell
+RUN echo "exec zsh" > /root/.bashrc
+
+# Create a simple Haskell hello world
+RUN echo 'main = putStrLn "Hello from NixOS container! 🚀"' > hello.hs
+
+# Expose port for development
+EXPOSE 3000
+
+# Default command
+CMD ["zsh"]
