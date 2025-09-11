@@ -13,6 +13,13 @@ Tracking our journey through the AWS EKS NixOS configuration setup.
 
 **Status**: All tools successfully installed and verified!
 
+### Step 1.5: Create SSH Key for Automation ✅
+- [x] Generate ED25519 SSH key with 100 rounds of KDF
+- [x] Set proper permissions (600 for private, 644 for public)
+- [x] Verify key creation and permissions
+
+**Status**: SSH key created successfully for AWS NixOS automation!
+
 ## 🔄 Current Step
 
 **Step 2: Configure AWS CLI**
@@ -32,6 +39,12 @@ Next we need to configure AWS CLI with credentials and default region.
 - Terraform v1.5.7 installed (latest open-source version before BUSL license change)
 - All tools verified and working correctly
 - Mosh was already installed and up-to-date
+
+### Step 1.5 Notes:
+- SSH key created with ED25519 algorithm and 100 rounds of KDF for security
+- No passphrase set for automation compatibility
+- Key fingerprint: SHA256:N0+nXZjpHydCUR6s2/YrBqTlxhmZj3/v912XyWnC4xQ
+- Proper permissions set (600 for private key, 644 for public key)
 
 ---
 
