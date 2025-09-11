@@ -1,0 +1,113 @@
+apiVersion: eksctl.io/v1alpha5
+kind: ClusterConfig
+
+metadata:
+  name: nixos-eks-cluster
+  region: us-west-2
+  version: "1.28"
+
+# VPC Configuration
+vpc:
+  # Use existing VPC (you'll need to create this first)
+  # id: vpc-xxxxxxxxx
+  # Or let eksctl create a new VPC
+  cidr: "10.0.0.0/16"
+  subnets:
+    private:
+      us-west-2a: { cidr: "10.0.0.0/19" }
+      us-west-2b: { cidr: "10.0.32.0/19" }
+      us-west-2c: { cidr: "10.0.64.0/19" }
+    public:
+      us-west-2a: { cidr: "10.0.96.0/19" }
+      us-west-2b: { cidr: "10.0.128.0/19" }
+      us-west-2c: { cidr: "10.0.160.0/19" }
+
+# EKS Control Plane Configuration
+managedNodeGroups:
+  - name: nixos-workers
+    instanceType: t3.medium
+    minSize: 2
+    maxSize: 10
+    desiredCapacity: 3
+    # Use your custom NixOS AMI (you'll need to replace this with actual AMI ID)
+    ami: ami-xxxxxxxxx
+    amiFamily: AmazonLinux2  # This will be overridden by custom AMI
+    ssh:
+      allow: true
+      publicKeyName: eks-nixos-key  # You'll need to create this key pair
+    iam:
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSWorkerNodePolicy
+        - arn:aws:iam::aws:policy/AmazonEKS_CNI_Policy
+        - arn:aws:iam::aws:policy/AmazonEC2ContainerRegistryReadOnly
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+      withAddonPolicies:
+        imageBuilder: true
+        autoScaler: true
+        externalDNS: true
+        certManager: true
+        appMesh: true
+        ebs: true
+        fsx: true
+        efs: true
+        awsLoadBalancerController: true
+    tags:
+      Environment: production
+      Project: nixos-eks
+      NodeType: nixos-worker
+    labels:
+      node-type: nixos
+      os: nixos
+    taints:
+      - key: nixos
+        value: "true"
+        effect: NoSchedule
+
+# Add-ons
+addons:
+  - name: vpc-cni
+    version: latest
+  - name: coredns
+    version: latest
+  - name: kube-proxy
+    version: latest
+  - name: aws-ebs-csi-driver
+    version: latest
+
+# CloudWatch logging
+cloudWatch:
+  clusterLogging:
+    enableTypes: ["*"]
+    logRetentionInDays: 7
+
+# IAM configuration
+iam:
+  withOIDC: true
+  serviceAccounts:
+    - metadata:
+        name: aws-load-balancer-controller
+        namespace: kube-system
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/ElasticLoadBalancingFullAccess
+    - metadata:
+        name: cluster-autoscaler
+        namespace: kube-system
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonEKSClusterAutoscalerPolicy
+    - metadata:
+        name: cert-manager
+        namespace: cert-manager
+      attachPolicyARNs:
+        - arn:aws:iam::aws:policy/AmazonRoute53FullAccess
+
+# Security configuration
+secretsEncryption:
+  keyARN: arn:aws:kms:us-west-2:ACCOUNT_ID:key/KEY_ID  # You'll need to create this KMS key
+
+# Endpoint configuration
+privateCluster:
+  enabled: false
+  additionalEndpointServices:
+    - s3
+    - ecr.dkr
+    - ecr.api
