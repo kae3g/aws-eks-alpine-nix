@@ -1,124 +1,145 @@
-# NixOS on AWS EKS: A Professional Reference for Declarative Infrastructure 💛
+# Sovereign Compute: Declarative Infrastructure for Aerospace Innovation 💙
 
 [![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](https://unlicense.org/)
 [![AWS](https://img.shields.io/badge/AWS-Provider-orange.svg)](https://aws.amazon.com/)
 [![NixOS](https://img.shields.io/badge/NixOS-24.11-blue.svg)](https://nixos.org/)
-[![Professional Reference](https://img.shields.io/badge/Standard-Professional%20Reference-gold.svg)](https://github.com/kae3g/aws-eks-nixos-config)
+[![Aerospace Ready](https://img.shields.io/badge/Platform-Aerospace%20Ready-skyblue.svg)](https://github.com/kae3g/aws-eks-nixos-config)
 
-A comprehensive, professional-grade reference implementation for deploying secure, reproducible Kubernetes clusters on AWS EKS with **NixOS worker nodes**, orchestrated by Terraform. This repository establishes the gold standard for declarative infrastructure documentation, combining theoretical excellence with practical implementation. 💛
+A comprehensive, production-grade reference implementation for deploying sovereign, declarative Kubernetes infrastructure optimized for **aerospace manufacturing and engineering workloads**. This repository establishes the gold standard for **Digital Flight Line Engineering**—where computational infrastructure must be as robust, secure, and precisely engineered as the aircraft it supports. 💙
 
-## Professional Reference Standard 💛
+## Digital Flight Line Engineer Manifesto 💙
 
-This repository represents more than a tutorial—it is a **professional reference standard** for declarative functional container orchestration. Every component is designed to demonstrate not just *how* to build infrastructure, but *why* modern security practices and declarative principles are essential for production systems.
+**"I build and operate resilient, sovereign technology stacks that empower the world's most critical industries. My work lies at the intersection of high-performance compute, declarative infrastructure, and a mission to advance human potential through flight."**
 
-> **For Engineering Teams:** This project establishes a benchmark for infrastructure documentation quality. It teaches modern authentication methods (SSO), security-first design principles, and the importance of comprehensive documentation that explains both implementation and philosophy.
+This repository represents more than infrastructure code—it is a **blueprint for the digital airframe** that powers modern aerospace manufacturing. Every component is designed to meet the uncompromising standards of precision, reliability, and security required in the aerospace industry.
 
-## Purpose & Vision 💛
+> **For Aerospace Engineering Teams:** This project demonstrates the infrastructure foundation required for mission-critical aerospace workloads: CAD/CAE simulation, computational fluid dynamics (CFD), finite element analysis (FEA), and secure intellectual property protection. The declarative approach ensures certifiable consistency from engineer laptops to HPC clusters—a requirement for FAA certification processes.
 
-To provide a **definitive guide** from a single, declarative NixOS instance to a full AWS EKS cluster, where every element—from the host operating system to the application deployment—is defined, versioned, and repeatable. This is not just infrastructure; it's a **philosophy of building systems** that are beautiful, secure, maintainable, and professionally documented.
+## Sovereign Aerospace Innovation 💙
 
-### Professional Standards Achieved
+The future of American aerospace dominance depends not just on aerodynamic prowess, but on **digital sovereignty**—owning and controlling the entire technology stack, from the kernel to the cloud. This ensures maximum efficiency, security, and enables the relentless innovation required to build the world's finest aircraft.
 
-- ✅ **Comprehensive Documentation**: Every step explained with context and rationale
-- ✅ **Security-First Design**: Modern authentication (SSO) and defense-in-depth principles
-- ✅ **Educational Excellence**: Teaching *why* alongside *how* for deeper understanding
-- ✅ **Production Readiness**: Designed to scale from learning to enterprise deployment
-- ✅ **Quality Benchmark**: Sets the standard for infrastructure documentation excellence
+### Aerospace-Grade Standards Achieved
 
-## Core Principles 💛
+- ✅ **Certifiable Consistency**: Infrastructure defined as code ensures identical computational environments from design to production
+- ✅ **Zero-Trust Security**: Minimal attack surface with SSH-only access, protecting sensitive IP and proprietary designs
+- ✅ **HPC/GPU-Ready Architecture**: Foundation designed for computationally intensive CFD, FEA, and AI-driven generative design
+- ✅ **Supply Chain Integration**: Declarative model manages complex software bill of materials (SBOM) for factory robotics
+- ✅ **FAA Compliance Ready**: Reproducible infrastructure that meets aviation industry audit and certification requirements
 
-*   **🔒 Security First:** NixOS nodes configured with root logins disabled, permitting only SSH key access, with firewalls restricting all unnecessary ports. Security is not an afterthought—it's the foundation of professional infrastructure.
-*   **📦 Complete Declarativity:** The entire system state is defined in code: the OS with Nix, the infrastructure with Terraform, and the application with Kubernetes manifests. Nothing is left to chance in professional systems.
-*   **🔄 Reproducibility:** Every deployment is an identical recreation of a defined state, ensuring consistency from development to production. What works once will work always—the hallmark of professional infrastructure.
-*   **🌱 Designed for Growth:** The structure is crafted to begin simply and scale elegantly into a complex, production-ready platform. Professional systems start small and dream big.
-*   **📚 Documentation Excellence:** Every component is thoroughly documented with context, rationale, and educational value. Professional infrastructure requires professional communication.
+## Core Principles 💙
 
-## Repository Structure 💛
+*   **🔒 Security as Foundation:** Aerospace-grade security with root logins disabled, SSH keys only, and comprehensive firewall configuration. Protecting intellectual property and proprietary aircraft designs is paramount.
+*   **📦 Complete Declarativity:** Every system state defined in code ensures certifiable consistency across the entire engineering lifecycle—from CAD design to manufacturing execution.
+*   **🔄 Reproducible Excellence:** Infrastructure that can be destroyed and recreated identically, ensuring consistent performance for critical aerospace simulations and manufacturing processes.
+*   **🌱 Designed for Scale:** Architecture that begins simply and scales to support massive HPC clusters for CFD simulation, FEA analysis, and advanced manufacturing automation.
+*   **📚 Documentation Excellence:** Professional-grade documentation that explains both implementation and aerospace industry rationale, establishing the benchmark for technical communication.
+
+## Repository Structure 💙
 
 ```
 aws-eks-nixos-config/
-├── terraform-minimal/     # ✅ CURRENT FOCUS: Single NixOS node for learning & validation
-│   ├── main.tf           # - Core Terraform resources (VPC, EC2, SG)
-│   ├── variables.tf      # - Configurable parameters
-│   ├── outputs.tf        # - Useful output values (IPs, IDs)
-│   └── terraform.tfvars.example  # - Example configuration
-├── dev-advanced/         # 🚧 NEXT PHASE: Full EKS cluster with NixOS nodes
-├── SETUP-GUIDE.md        # - Professional step-by-step reference guide
-├── PROGRESS.md           # - Engineering logbook and milestone tracking
-└── README.md             # - Professional reference overview 💛
+├── terraform-minimal/     # ✅ CURRENT FOCUS: Aerospace-grade single node for validation
+│   ├── main.tf           # - Core infrastructure (VPC, EC2, Security Groups)
+│   ├── variables.tf      # - Aerospace-specific configuration parameters
+│   ├── outputs.tf        # - Critical outputs for aerospace operations
+│   └── terraform.tfvars.example  # - Example aerospace configuration
+├── dev-advanced/         # 🚧 NEXT PHASE: Full EKS cluster for aerospace workloads
+├── SETUP-GUIDE.md        # - Professional aerospace infrastructure guide
+├── PROGRESS.md           # - Digital Flight Line Engineering logbook
+└── README.md             # - Sovereign Compute manifesto 💙
 ```
 
-## Beginning Your Professional Journey 💛
+## Beginning Your Aerospace Journey 💙
 
-The established path begins with the `terraform-minimal` configuration—a single, secure NixOS instance that serves as both a learning tool and a foundation for professional infrastructure development.
+The established path begins with the `terraform-minimal` configuration—a single, secure instance that serves as both a validation platform and the foundation for aerospace-scale infrastructure development.
 
 1. **Prerequisites:** Ensure you have the [AWS CLI](https://aws.amazon.com/cli/), [Terraform](https://www.terraform.io/), and [Nix](https://nixos.org/) prepared on your system.
-2. **Follow the Professional Guide:** Comprehensive, step-by-step instructions are in the [**SETUP-GUIDE.md**](./SETUP-GUIDE.md).
-3. **Deploy with Confidence:** Navigate to the `terraform-minimal/` directory and execute the deployment commands.
-4. **Track Professional Progress:** Maintain your engineering journey in [**PROGRESS.md**](./PROGRESS.md).
+2. **Follow the Aerospace Guide:** Comprehensive, industry-specific instructions are in the [**SETUP-GUIDE.md**](./SETUP-GUIDE.md).
+3. **Deploy with Precision:** Navigate to the `terraform-minimal/` directory and execute the deployment commands.
+4. **Track Engineering Progress:** Maintain your Digital Flight Line Engineering journey in [**PROGRESS.md**](./PROGRESS.md).
 
-> **Modern Authentication Standard:** This project demonstrates AWS Single Sign-On (SSO) as the professional standard for secure cloud access. SSO provides temporary, secure tokens that expire automatically, establishing the security baseline for enterprise infrastructure.
+> **Aerospace Authentication Standard:** This project demonstrates AWS Single Sign-On (SSO) as the enterprise standard for secure cloud access in aerospace manufacturing. SSO provides temporary, secure tokens that meet the stringent security requirements of aerospace industry compliance frameworks.
 
-## Current Status 💛
+## Current Status 💙
 
 | Phase | Status | Description |
 | :--- | :--- | :--- |
 | **Phase 0: Foundation** | ✅ **Complete** | AWS Account, CLI, Billing, SSH Keys |
-| **Phase 1: Minimal Node** | ✅ **Code Complete** | Single, secure NixOS EC2 instance |
-| **Phase 2: EKS Cluster** | 🚧 **In Progress** | EKS control plane with NixOS node group |
-| **Phase 3: App Deployment** | 📋 **Planned** | Haskell application deployment with CI/CD |
-| **Phase 4: Advanced Patterns** | 📋 **Planned** | Service Mesh, GitOps, Monitoring |
+| **Phase 1: Aerospace Node** | ✅ **Code Complete** | Single, secure infrastructure instance |
+| **Phase 2: Aerospace Cluster** | 🚧 **In Progress** | EKS control plane for aerospace workloads |
+| **Phase 3: Manufacturing Integration** | 📋 **Planned** | CAD/CAE application deployment with CI/CD |
+| **Phase 4: Advanced Aerospace Patterns** | 📋 **Planned** | Service Mesh, GitOps, Manufacturing Automation |
 
-**📋 See the detailed professional project log and next actions in [PROGRESS.md](./PROGRESS.md).** 💛
+**📋 See the detailed Digital Flight Line Engineering log and next actions in [PROGRESS.md](./PROGRESS.md).** 💙
 
-## Professional Standards Demonstrated 💛
+## Aerospace Manufacturing Applications 💙
 
-By engaging with this repository, you'll experience:
+By engaging with this repository, you'll build the foundation for:
 
-- ✅ **NixOS host** with Zsh shell and Haskell (no root access, SSH keys only)
-- ✅ **One container** with the same NixOS environment (non-root user, immutable)
-- ✅ **Ephemeral infrastructure** (disposable, not eternal)
-- ✅ **Persistent connections** with Mosh
-- ✅ **Complete automation** with Terraform
-- ✅ **Industry-standard security** throughout
-- ✅ **Professional documentation** that teaches context and rationale
-- ✅ **Modern authentication** practices (SSO over static credentials)
+- ✅ **CAD/CAE Simulation Infrastructure**: Consistent computational environments for aircraft design
+- ✅ **Computational Fluid Dynamics (CFD)**: GPU-ready architecture for aerodynamic analysis
+- ✅ **Finite Element Analysis (FEA)**: High-performance computing for structural stress testing
+- ✅ **Digital Thread Integration**: Seamless data flow from design to manufacturing to maintenance
+- ✅ **Supply Chain Automation**: Declarative management of factory robotics and assembly systems
+- ✅ **Intellectual Property Protection**: Zero-trust security for proprietary aircraft designs
+- ✅ **FAA Compliance**: Reproducible infrastructure meeting aviation industry standards
+- ✅ **AI-Driven Design**: Platform for generative design and machine learning applications
 
-## Professional Philosophy 💛
+## Aerospace Philosophy 💙
 
-**Infrastructure should be ephemeral, not eternal—everything should be disposable and replaceable!**
+**Technology should be invisible in its reliability and powerful in its capability!**
 
-This project embodies the professional principle that the best systems are those that can be destroyed and recreated at will. We build not for permanence, but for reliability through reproducibility. Every component is designed to be understood, modified, and replaced with confidence—the foundation of professional infrastructure engineering.
+This project embodies the aerospace principle that computational infrastructure must be as precisely engineered as the aircraft it supports. We build not for permanence, but for reliability through reproducibility. Every component is designed to be understood, modified, and replaced with confidence—the foundation of aerospace-grade engineering.
 
-> **Professional Security Philosophy:** We demonstrate modern authentication methods (SSO) that provide temporary credentials instead of long-lived access keys. This establishes the security baseline for professional cloud infrastructure and dramatically reduces the risk of credential leaks.
+> **Aerospace Security Philosophy:** We demonstrate modern authentication methods (SSO) that provide temporary credentials instead of long-lived access keys. This establishes the security baseline for aerospace cloud infrastructure and dramatically reduces the risk of intellectual property compromise.
 
-**Less is more, but make it work perfectly!** ✨
+**Precision is not a feature; it is a requirement for safety and performance!** ✈️
 
-## Professional Reference Value 💛
+## Gulfstream Aerospace Alignment 💙
+
+This repository directly addresses the operational needs of advanced aerospace manufacturing:
+
+### Engineering Simulation Excellence
+- **CAD/CAE Integration**: Reproducible infrastructure for massive HPC clusters supporting aircraft design
+- **CFD & FEA Workloads**: GPU-ready architecture for computationally intensive aerodynamic and structural analysis
+- **AI-Driven Innovation**: Platform for generative design and machine learning applications in aerospace
+
+### Digital Thread & Manufacturing
+- **Seamless Data Flow**: Declarative infrastructure mirrors the aerospace industry's digital thread from design to manufacturing
+- **Supply Chain Integration**: Immutable infrastructure manages complex software controlling automated assembly lines
+- **Quality Assurance**: Consistent environments ensure reproducible results critical for FAA certification
+
+### Operational Excellence
+- **Zero-Trust Security**: Protecting sensitive intellectual property and proprietary aircraft designs
+- **Sustainability**: Efficient infrastructure reduces computational waste in energy-intensive aerospace processes
+- **American Craftsmanship**: Building technological sovereignty where companies control their digital destiny
+
+## Professional Reference Value 💙
 
 This repository serves as a **professional reference standard** for:
 
-- **Infrastructure Documentation Excellence**: Comprehensive guides that explain both implementation and philosophy
-- **Modern Security Practices**: SSO authentication, defense-in-depth, and least-privilege principles
-- **Declarative Infrastructure**: Complete system state defined in code with version control
-- **Educational Engineering**: Teaching *why* alongside *how* for deeper professional understanding
-- **Production Readiness**: Designed to scale from learning to enterprise deployment
+- **Aerospace Infrastructure Excellence**: Comprehensive guides for mission-critical computational environments
+- **Digital Sovereignty**: Modern authentication, defense-in-depth, and least-privilege principles for aerospace
+- **Declarative Manufacturing**: Complete system state defined in code with version control for aerospace compliance
+- **Educational Engineering**: Teaching *why* alongside *how* for deeper aerospace industry understanding
+- **Production Readiness**: Designed to scale from validation to enterprise aerospace deployment
 
-## Contributing to Professional Standards 💛
+## Contributing to Aerospace Excellence 💙
 
-This repository establishes a benchmark for infrastructure documentation quality. Contributions should maintain the high standard of:
+This repository establishes a benchmark for aerospace infrastructure documentation quality. Contributions should maintain the high standard of:
 
-- **Comprehensive Documentation**: Every change documented with context and rationale
-- **Educational Value**: Teaching principles alongside implementation
-- **Security First**: Maintaining modern authentication and security practices
-- **Professional Communication**: Clear, precise, and context-rich explanations
+- **Aerospace Documentation**: Every change documented with industry context and compliance rationale
+- **Educational Value**: Teaching aerospace principles alongside technical implementation
+- **Security First**: Maintaining aerospace-grade authentication and security practices
+- **Professional Communication**: Clear, precise, and aerospace-context explanations
 
-Please open an issue first to discuss any significant changes. The goal is to maintain and elevate the professional reference standard.
+Please open an issue first to discuss any significant changes. The goal is to maintain and elevate the aerospace infrastructure reference standard.
 
-## License 💛
+## License 💙
 
 This project is released into the public domain under The Unlicense - see the [LICENSE](LICENSE) file for details. You are free to use, modify, distribute, and even sell this software for any purpose, commercial or non-commercial, without any restrictions.
 
 ---
 
-*Built with 💛 for the love of declarative infrastructure, professional documentation excellence, and beautiful systems that set the standard for quality engineering communication.*
+*Built with 💙 for the love of declarative infrastructure, aerospace excellence, and the digital airframe that enables human flight.*
