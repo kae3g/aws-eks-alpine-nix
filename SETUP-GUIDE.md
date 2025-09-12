@@ -83,16 +83,26 @@ ls -la ~/.ssh/id_ed25519_aws_nixos*
 ```bash
 # Configure AWS CLI to use IAM Identity Center
 aws configure sso
+```
 
-# Follow prompts:
-# - SSO start URL: https://your-org.awsapps.com/start
-# - SSO region: us-east-1 (or your region)
-# - Account ID: 0595-4915-4267 (your account ID)
-# - Role name: AdministratorAccess
-# - Default region: us-west-2
-# - Default output format: json
+**Follow the prompts carefully:**
 
-# Verify it worked
+1. **SSO session name**: Enter a descriptive name (e.g., `b122m`)
+2. **SSO start URL**: This URL was sent in the email when you created your IAM Identity Center user. It looks like:
+   ```
+   https://d-xxxxxxxxxx.awsapps.com/start/
+   ```
+3. **SSO region**: Enter `us-east-1` (or your preferred region)
+4. **SSO registration scopes**: Press Enter to continue with the default `sso:account:access`
+5. **Browser authorization**: A browser window will automatically open asking to "Allow botocore-client-[session-name] to access your data?" - Click **"Allow access"**
+6. **Account selection**: Select your AWS account (e.g., `059549154267`)
+7. **Role selection**: Select `AdministratorAccess`
+8. **Default client Region**: Enter `us-east-1` (or your preferred default region)
+9. **CLI default output format**: Press Enter to use the default (json)
+10. **Profile name**: Press Enter to use the suggested profile name
+
+**Verify it worked:**
+```bash
 aws sts get-caller-identity
 # Should show your account and role information
 ```
