@@ -1,30 +1,30 @@
-# Minimal NixOS AWS Setup Guide
+# Setup Guide 💛
 
-**Updated for 2025-09-11** - Note: Some versions may need verification as of this date.
+A calm, step-by-step guide to preparing your environment and deploying your first declarative NixOS instance on AWS. This guide will take you from zero to a running, secure NixOS system in the cloud. 💛
 
-## 🎯 Goal
+## Phase 0: Local Preparation 💛
 
-Deploy a minimal NixOS instance on AWS with:
-- NixOS 24.11 (latest stable as of 2025-09-11)
-- Zsh with Home Manager
-- Haskell toolchain
-- Mosh for persistent connections
-- Industry-standard security practices
-- Ephemeral, not eternal infrastructure
+### 1. Install Required Tools
 
-## 📋 Prerequisites
+Please ensure these tools are present on your system. We'll use Homebrew for macOS:
 
-### 1. macOS Setup
 ```bash
-# Install Homebrew if not already installed
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-
-# Install required tools
+# Update Homebrew
 brew update
+
+# Install essential tools
 brew install awscli terraform mosh
+
+# Verify installations
+aws --version
+terraform --version
+mosh --version
 ```
 
-### 2. Generate SSH Key
+### 2. Generate an SSH Key Pair
+
+This key will be your secure means of access to your NixOS instances. We'll use ED25519 for maximum security:
+
 ```bash
 # Create a strong SSH key (no passphrase for automation)
 ssh-keygen -t ed25519 -a 100 -C "aws-nixos" -f ~/.ssh/id_ed25519_aws_nixos
@@ -32,11 +32,15 @@ ssh-keygen -t ed25519 -a 100 -C "aws-nixos" -f ~/.ssh/id_ed25519_aws_nixos
 # Set proper permissions
 chmod 600 ~/.ssh/id_ed25519_aws_nixos
 chmod 644 ~/.ssh/id_ed25519_aws_nixos.pub
+
+# Verify your key
+ls -la ~/.ssh/id_ed25519_aws_nixos*
 ```
 
-### 3. AWS Account Setup
+## Phase 1: AWS Account Setup 💛
 
-#### 3.1 Create AWS Account & Enable IAM Identity Center
+### 1.1 Create AWS Account & Enable IAM Identity Center
+
 1. **Create new AWS account** at https://aws.amazon.com
 2. **Enable IAM Identity Center** with AWS Organizations:
    - Go to IAM Identity Center console
@@ -44,7 +48,8 @@ chmod 644 ~/.ssh/id_ed25519_aws_nixos.pub
    - Note your Organization instance ID (e.g., `7223ed32f18fae8a`)
    - Enable identity-enhanced sessions
 
-#### 3.2 Set Up User & Permissions
+### 1.2 Set Up User & Permissions
+
 1. **Create admin group**:
    - Go to IAM Identity Center → Groups → Create group
    - Name: `admin`
@@ -73,7 +78,8 @@ chmod 644 ~/.ssh/id_ed25519_aws_nixos.pub
    - Register authenticator app for MFA
    - Complete user setup
 
-#### 3.3 Configure AWS CLI
+### 1.3 Configure AWS CLI
+
 ```bash
 # Configure AWS CLI to use IAM Identity Center
 aws configure sso
@@ -86,53 +92,83 @@ aws configure sso
 # - Default region: us-west-2
 # - Default output format: json
 
-# Import your SSH public key to AWS
+# Verify it worked
+aws sts get-caller-identity
+# Should show your account and role information
+```
+
+### 1.4 Import Your SSH Public Key
+
+AWS must be aware of your public key to grant you access:
+
+```bash
 aws ec2 import-key-pair \
   --key-name "nixos-key" \
   --public-key-material "fileb://~/.ssh/id_ed25519_aws_nixos.pub"
 ```
 
-### 4. Set Up Billing Alerts (CRITICAL)
-1. Go to AWS Console → Billing → Billing Preferences
-2. Enable billing alerts
-3. Go to CloudWatch → Alarms → Create billing alarm
-4. Set threshold (e.g., $10) to avoid surprise charges
+### 1.5 Establish a Billing Alert (CRITICAL!)
 
-## 🚀 Deployment
+A simple and important measure for cost awareness:
 
-### 1. Clone and Setup
-```bash
-git clone <your-repo>
-cd aws-eks-nixos-config
-git checkout dev-minimal
-```
+1. In the AWS Console, navigate to **Billing > Billing Preferences** and enable **"Receive Billing Alerts"**.
+2. In **CloudWatch > Alarms**, create a new alarm for the **"Total Estimated Charge"** metric.
+3. Set a threshold that suits your comfort level (e.g., $10).
+4. Provide an email address to receive notifications and confirm the subscription.
 
-### 2. Configure Terraform
+## Phase 2: Deployment 💛
+
+### 2.1 Navigate and Configure
+
+Enter the project directory and establish your variables:
+
 ```bash
 cd terraform-minimal
 cp terraform.tfvars.example terraform.tfvars
-
-# Edit terraform.tfvars with your values
-vim terraform.tfvars
 ```
 
-### 3. Deploy Infrastructure
+Edit the `terraform.tfvars` file to ensure the key name matches what you imported to AWS:
+
+```hcl
+ssh_key_name = "nixos-key"
+```
+
+### 2.2 Pre-Flight Checklist & Troubleshooting 💛
+
+Before running `terraform apply`, run through this checklist. Most errors are caused by missing these steps:
+
+1. **✅ AWS CLI Authenticated:** Run `aws sts get-caller-identity`. Does it return your IAM user info?
+2. **✅ SSH Key Imported:** Run `aws ec2 describe-key-pairs --key-name nixos-key`. Does it return without an error?
+3. **✅ Terraform Variables Set:** Have you copied `terraform.tfvars.example` to `terraform.tfvars` and set the `ssh_key_name` variable?
+4. **✅ Billing Alarm Active:** Did you check your email and confirm the SNS subscription for your billing alarm?
+
+**Common Errors:**
+*   `Error: The key pair 'nixos-key' does not exist`
+    *   **Solution:** You skipped the `aws ec2 import-key-pair` command. Go back to Phase 1.4 and complete it.
+*   `Error: configuring Terraform AWS Provider: unauthorized operation`
+    *   **Solution:** Your AWS CLI credentials are wrong or missing. Run `aws configure sso` again.
+*   `Error: error creating EC2 Instance: The key pair 'nixos-key' does not exist`
+    *   **Solution:** Double-check that you've imported your SSH key with the exact name `nixos-key`.
+
+### 2.3 Initialize and Apply
+
+Execute the Terraform commands to bring your configuration to life:
+
 ```bash
-# Initialize Terraform
 terraform init
-
-# Review the plan
-terraform plan
-
-# Deploy (this will take 5-10 minutes)
-terraform apply
+terraform plan    # Carefully read the output!
+terraform apply    # Type `yes` to confirm
 ```
 
-### 4. Connect to Your Instance
-```bash
-# Get the connection commands
-terraform output
+You will be prompted to confirm the action; type `yes` to proceed.
 
+### 2.4 Connect and Celebrate! 💛
+
+Upon successful completion, Terraform will present the public IP address of your new instance.
+
+Connect to it using SSH or Mosh:
+
+```bash
 # SSH connection
 ssh -i ~/.ssh/id_ed25519_aws_nixos nixos@$(terraform output -raw instance_public_ip)
 
@@ -140,9 +176,12 @@ ssh -i ~/.ssh/id_ed25519_aws_nixos nixos@$(terraform output -raw instance_public
 mosh -ssh="ssh -i ~/.ssh/id_ed25519_aws_nixos" nixos@$(terraform output -raw instance_public_ip)
 ```
 
-## 🧪 Testing
+## Phase 3: Validation 💛
 
-### 1. Verify NixOS
+### 3.1 Verify Your NixOS System
+
+Once connected, verify that everything is working as expected:
+
 ```bash
 # Check NixOS version
 nixos-version
@@ -150,23 +189,18 @@ nixos-version
 # Check Zsh is working
 echo $SHELL
 zsh --version
-```
 
-### 2. Verify Haskell
-```bash
 # Check Haskell installation
 ghc --version
 cabal --version
 stack --version
+
+# Check Mosh
+which mosh
 ```
 
-### 3. Verify Mosh
-```bash
-# Test Mosh connection
-mosh -ssh="ssh -i ~/.ssh/id_ed25519_aws_nixos" nixos@$(terraform output -raw instance_public_ip)
-```
+### 3.2 Test Container Environment
 
-### 4. Test Container
 ```bash
 # Build and run the minimal container
 cd docker/
@@ -174,7 +208,15 @@ docker build -f Dockerfile.minimal -t nixos-minimal .
 docker run --rm -it nixos-minimal ghc --version
 ```
 
-## 🔒 Security Features
+## Phase 4: Completion 💛
+
+When your work is complete, you may dissolve the resources to conclude the session:
+
+```bash
+terraform destroy
+```
+
+## Security Features 💛
 
 ### Host Security
 - ✅ No root password (disabled)
@@ -189,29 +231,7 @@ docker run --rm -it nixos-minimal ghc --version
 - ✅ Immutable images
 - ✅ Minimal attack surface
 
-## 🧹 Cleanup
-
-### Destroy Infrastructure
-```bash
-# Always destroy when done to avoid costs
-terraform destroy
-```
-
-### Verify Cleanup
-```bash
-# Check AWS Console to ensure resources are deleted
-aws ec2 describe-instances --query 'Reservations[*].Instances[*].[InstanceId,State.Name]' --output table
-```
-
-## 📚 Next Steps
-
-1. **Test the minimal setup** - Ensure everything works perfectly
-2. **Merge to main** - When you're confident it's solid
-3. **Consult dev-advanced** - Use the advanced branch for inspiration
-4. **Build web application** - Start with a simple Haskell web app
-5. **Add distributed features** - Implement message passing and state sharing
-
-## 🐛 Troubleshooting
+## Troubleshooting 💛
 
 ### Common Issues
 
@@ -252,21 +272,6 @@ aws ec2 describe-security-groups --group-ids $(terraform output -raw security_gr
 ssh -i ~/.ssh/id_ed25519_aws_nixos nixos@$(terraform output -raw instance_public_ip) "sudo nixos-rebuild dry-run"
 ```
 
-## 💡 Philosophy
+---
 
-**Infrastructure should be ephemeral, not eternal - everything should be disposable and replaceable!**
-
-This minimal setup focuses on getting the fundamentals right before adding complexity. Once we have a solid foundation, we can build up to the full EKS setup with confidence.
-
-**Less is more, but make it work perfectly!** ✨
-
-## ⚠️ Version Notes
-
-**As of 2025-09-11:**
-- NixOS: 24.11 (latest stable)
-- Kubernetes: 1.31+ (latest stable)
-- Haskell GHC: 9.8+ (latest stable)
-- Terraform: 1.6+ (latest stable)
-- AWS Provider: 5.0+ (latest stable)
-
-**Note to future self:** Some versions may need verification as of 2025-09-11. Check official documentation for the most current versions.
+*This guide is designed to be your companion on the journey from zero to a running NixOS system. Take your time, read carefully, and don't hesitate to pause and understand each step. The goal is not just to get it working, but to understand why it works.* 💛
