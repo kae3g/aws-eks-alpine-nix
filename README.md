@@ -20,13 +20,16 @@ If you're ready to jump in:
 # 1. Clone and setup
 git clone https://github.com/kae3g/aws-eks-nixos-config.git
 cd aws-eks-nixos-config
-git checkout dev-minimal
 
 # 2. Follow the complete setup guide
 open SETUP-GUIDE.md
 ```
 
-**Or continue reading for the full tutorial!** ✨
+**📋 For the complete step-by-step setup, see [SETUP-GUIDE.md](./SETUP-GUIDE.md)**
+
+**📊 Track your progress with [PROGRESS.md](./PROGRESS.md)**
+
+**Or continue reading below for the full tutorial overview!** ✨
 
 ## 📚 Complete Tutorial
 
@@ -62,36 +65,19 @@ ls -la ~/.ssh/id_ed25519_aws_nixos*
 
 ### Phase 2: AWS Account Setup (15 minutes)
 
-#### 2.1 Create IAM User & Credentials
-1. **Log into AWS Console:** Go to [https://aws.amazon.com/](https://aws.amazon.com/) and sign in
-2. **Go to IAM Service:** Search for "IAM" in the top search bar
-3. **Create New User:**
-   - Click "Users" → "Create user"
-   - Username: `terraform-minimal-admin`
-   - Select "Access key - Programmatic access"
-   - Click "Next: Permissions"
-4. **Set Permissions:**
-   - Select "Attach policies directly"
-   - Search for `AdministratorAccess` and check it
-   - Click "Next: Tags" → "Next: Review" → "Create user"
-5. **Download Credentials:**
-   - **CRITICAL:** Click "Download .csv file" and save securely
-   - You cannot retrieve the secret key again!
+**📋 Complete AWS Setup Guide:** See [SETUP-GUIDE.md](./SETUP-GUIDE.md) for detailed step-by-step instructions.
 
-#### 2.2 Configure AWS CLI
+#### Quick Summary:
+1. **Create AWS Account** - New account with billing alerts
+2. **Enable IAM Identity Center** - With AWS Organizations
+3. **Create User & Groups** - Admin group with AdministratorAccess
+4. **Configure AWS CLI** - Using IAM Identity Center SSO
+5. **Import SSH Key** - For secure instance access
+
 ```bash
-# Configure your credentials
-aws configure
-
-# Enter the details from your downloaded .csv file:
-# AWS Access Key ID: [paste your access key]
-# AWS Secret Access Key: [paste your secret key]
-# Default region name: us-east-1
-# Default output format: json
-
-# Verify it worked
+# Quick verification
 aws sts get-caller-identity
-# You should see your account number and username
+# Should show your account and role information
 ```
 
 #### 2.3 Set Up Billing Alarm (CRITICAL!)
