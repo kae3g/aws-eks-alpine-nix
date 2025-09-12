@@ -34,11 +34,57 @@ chmod 600 ~/.ssh/id_ed25519_aws_nixos
 chmod 644 ~/.ssh/id_ed25519_aws_nixos.pub
 ```
 
-### 3. AWS Setup
+### 3. AWS Account Setup
+
+#### 3.1 Create AWS Account & Enable IAM Identity Center
+1. **Create new AWS account** at https://aws.amazon.com
+2. **Enable IAM Identity Center** with AWS Organizations:
+   - Go to IAM Identity Center console
+   - Enable with AWS Organizations
+   - Note your Organization instance ID (e.g., `7223ed32f18fae8a`)
+   - Enable identity-enhanced sessions
+
+#### 3.2 Set Up User & Permissions
+1. **Create admin group**:
+   - Go to IAM Identity Center → Groups → Create group
+   - Name: `admin`
+   - Description: `Administrative access group for AWS EKS NixOS development`
+
+2. **Create user**:
+   - Go to IAM Identity Center → Users → Add user
+   - Username: `kae3g` (or your preferred username)
+   - Email: Use your main email address
+   - Add user to `admin` group
+
+3. **Create permission set**:
+   - Go to IAM Identity Center → Permission sets → Create permission set
+   - Name: `AdministratorAccess`
+   - Attach AWS managed policy: `AdministratorAccess`
+
+4. **Assign permissions**:
+   - Go to IAM Identity Center → AWS accounts
+   - Select your management account
+   - Assign users or groups: select `admin` group
+   - Assign permission set: select `AdministratorAccess`
+   - Reprovision the account
+
+5. **Set up MFA**:
+   - User will receive email to set up password
+   - Register authenticator app for MFA
+   - Complete user setup
+
+#### 3.3 Configure AWS CLI
 ```bash
-# Configure AWS CLI
-aws configure
-# Enter your AWS Access Key ID, Secret Access Key, region (us-west-2), and output format (json)
+# Configure AWS CLI to use IAM Identity Center
+aws configure sso
+
+# Follow prompts:
+# - SSO start URL: https://your-org.awsapps.com/start
+# - SSO region: us-east-1 (or your region)
+# - Account ID: 0595-4915-4267 (your account ID)
+# - Role name: AdministratorAccess
+# - Default region: us-west-2
+# - Default output format: json
 
 # Import your SSH public key to AWS
 aws ec2 import-key-pair \

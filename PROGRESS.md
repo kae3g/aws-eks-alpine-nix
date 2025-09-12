@@ -20,22 +20,28 @@ Tracking our journey through the AWS EKS NixOS configuration setup.
 
 **Status**: SSH key created successfully for AWS NixOS automation!
 
+### Step 2: Configure AWS Account & CLI ✅
+- [x] Created new AWS account
+- [x] Enabled IAM Identity Center with AWS Organizations
+- [x] Organization instance created: 7223ed32f18fae8a
+- [x] Enabled identity-enhanced sessions
+- [x] Created 'admin' group in IAM Identity Center
+- [x] Added user 'kae3g' to 'admin' group
+- [x] Created 'AdministratorAccess' permission set
+- [x] Reprovisioned AWS account 'kj3x39 management account' with updated permission set
+- [x] Created user 'kae3g' in IAM Identity Center
+- [x] Registered authenticator app (MFA device) for user 'kae3g'
+
+**Status**: AWS account and IAM Identity Center setup complete, user 'kae3g' configured with admin access and MFA!
+
 ## 🔄 Current Step
 
-**Step 2: Configure AWS Account & CLI (In Progress)**
+**Step 3: Set up Terraform backend**
 
-AWS Account Setup:
-- ✅ Created new AWS account
-- ✅ Enabled IAM Identity Center with AWS Organizations
-- ✅ Organization instance created: 7223ed32f18fae8a
-- ✅ Enabled identity-enhanced sessions
-- 🔄 **Current**: Setting up identity source in IAM Identity Center
-- ⏳ Next: Configure user access to AWS accounts with permission sets
-- ⏳ Next: Configure AWS CLI with credentials
+Next, we will configure the Terraform backend to store our state remotely, typically in an S3 bucket.
 
 ## 📋 Next Steps
 
-- Step 2: Configure AWS CLI
 - Step 3: Set up Terraform backend
 - Step 4: Deploy EKS cluster
 - Step 5: Configure NixOS worker nodes
@@ -53,14 +59,14 @@ AWS Account Setup:
 - Key fingerprint: SHA256:N0+nXZjpHydCUR6s2/YrBqTlxhmZj3/v912XyWnC4xQ
 - Proper permissions set (600 for private key, 644 for public key)
 
-### Step 2 Notes (AWS Account Setup):
-- New AWS account created successfully
-- IAM Identity Center enabled with AWS Organizations
-- Organization instance ID: 7223ed32f18fae8a
+### Step 2 Notes (AWS Account & CLI Setup):
+- New AWS account created successfully (kj3x39 management account)
+- IAM Identity Center enabled with AWS Organizations (instance ID: 7223ed32f18fae8a)
 - Identity-enhanced sessions enabled
-- **Current Challenge**: Need to configure identity source in IAM Identity Center
-  - Options: External identity provider, Active Directory, or IAM Identity Center managed users
-  - Then set up user access to AWS accounts with permission sets
+- 'admin' group created and user 'kae3g' added successfully
+- 'AdministratorAccess' permission set created and applied to management account
+- User 'kae3g' created with MFA (authenticator app) registered successfully
+- **Next**: Configure AWS CLI to use IAM Identity Center credentials
 
 ---
 
