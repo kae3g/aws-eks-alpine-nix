@@ -27,13 +27,28 @@ The foundational code for Phase 1 is complete and awaits its initial deployment.
 
 ## 🧭 Immediate Next Actions
 
-The immediate steps to take are these:
+**The moment of truth has arrived!** We are ready to execute the first deployment and validate our entire setup. This is the most meaningful step—seeing our declarative infrastructure come to life. 💛
 
-- [ ] **Execute Deployment**: Run `terraform apply` for the minimal setup
-- [ ] **Validate Access**: Confirm SSH and Mosh connectivity to the provisioned instance
-- [ ] **Verify Configuration**: Confirm operational status of declared user environment and tools (Zsh, Haskell, Mosh)
-- [ ] **Test Lifecycle**: Run `terraform destroy` followed by `terraform apply` to prove full reproducibility
-- [ ] **Document Results**: Update this progress log with deployment outcomes and any lessons learned
+### Phase 1: Initial Deployment & Validation
+
+- [ ] **Navigate to Terraform Directory**: `cd terraform-minimal`
+- [ ] **Initialize Terraform**: `terraform init` (download AWS provider)
+- [ ] **Review Deployment Plan**: `terraform plan` (critical dry-run check)
+- [ ] **Execute Deployment**: `terraform apply` (create actual resources)
+- [ ] **Connect via SSH**: `ssh -i ~/.ssh/id_ed25519_aws_nixos nixos@$(terraform output -raw instance_public_ip)`
+- [ ] **Verify NixOS Configuration**: Check OS, shell, and declared packages
+- [ ] **Test Mosh Connection**: Validate persistent connection and firewall rules
+- [ ] **Document Results**: Update this progress log with deployment outcomes
+
+### What We're Validating
+
+This first deployment tests our entire foundation:
+1. **Terraform** can authenticate with AWS and orchestrate resources
+2. **NixOS configuration** is syntactically correct and applies without error
+3. **Security settings** are effective (key-based SSH works, password login disabled)
+4. **Tooling choices** (Zsh, Haskell, Mosh) are successfully installed and available
+
+Once complete, we'll have proven our core toolchain is sound—the confident foundation required for the EKS cluster phase.
 
 ## 📋 Future Roadmap Items
 

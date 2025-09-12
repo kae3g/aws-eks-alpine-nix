@@ -152,15 +152,22 @@ Before running `terraform apply`, run through this checklist. Most errors are ca
 
 ### 2.3 Initialize and Apply
 
-Execute the Terraform commands to bring your configuration to life:
+Execute the Terraform commands to bring your configuration to life. This is the moment of truth—seeing your declarative infrastructure take form! 💛
 
 ```bash
+# Initialize Terraform and download the required AWS provider
 terraform init
-terraform plan    # Carefully read the output!
-terraform apply    # Type `yes` to confirm
+
+# Perform a dry-run to see what Terraform will create
+# This is a critical check for any errors before making changes
+terraform plan
+
+# If the plan looks correct and only shows actions to 'add' resources, proceed
+# This command will create the actual resources in your AWS account
+terraform apply
 ```
 
-You will be prompted to confirm the action; type `yes` to proceed.
+You will be prompted to review the planned actions and confirm by typing `yes`. Observe the output carefully—this is your infrastructure being born!
 
 ### 2.4 Connect and Celebrate! 💛
 
@@ -180,24 +187,30 @@ mosh -ssh="ssh -i ~/.ssh/id_ed25519_aws_nixos" nixos@$(terraform output -raw ins
 
 ### 3.1 Verify Your NixOS System
 
-Once connected, verify that everything is working as expected:
+Once connected, verify that everything is working as expected. This validates that your declarative configuration has been applied correctly:
 
 ```bash
+# Confirm the operating system
+cat /etc/os-release
+
 # Check NixOS version
 nixos-version
 
-# Check Zsh is working
+# Check that Zsh is your default shell
 echo $SHELL
 zsh --version
+
+# Verify your declared packages are present
+which ghc
+which mosh
 
 # Check Haskell installation
 ghc --version
 cabal --version
 stack --version
-
-# Check Mosh
-which mosh
 ```
+
+**What to observe:** Each command should return the expected results, confirming that your NixOS configuration has been applied successfully and all declared packages are available.
 
 ### 3.2 Test Container Environment
 
