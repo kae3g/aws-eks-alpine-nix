@@ -1,6 +1,6 @@
 # NixOS on AWS EKS: A Declarative Infrastructure Stack 💛
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![License: Unlicense](https://img.shields.io/badge/License-Unlicense-blue.svg)](https://unlicense.org/)
 [![AWS](https://img.shields.io/badge/AWS-Provider-orange.svg)](https://aws.amazon.com/)
 [![NixOS](https://img.shields.io/badge/NixOS-24.11-blue.svg)](https://nixos.org/)
 
@@ -78,7 +78,7 @@ This is primarily a personal learning project, but suggestions and discussions a
 
 ## License 💛
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is released into the public domain under The Unlicense - see the [LICENSE](LICENSE) file for details. You are free to use, modify, distribute, and even sell this software for any purpose, commercial or non-commercial, without any restrictions.
 
 ---
 
