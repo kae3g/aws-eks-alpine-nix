@@ -1,4 +1,5 @@
 # The Three Breaths - Your Path to Creation 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## Module 0: The First Breath - Creating Your Universe
 

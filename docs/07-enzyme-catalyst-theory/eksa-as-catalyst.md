@@ -1,4 +1,5 @@
 # EKS Anywhere as Catalyst: The Stable Foundation 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 Welcome to the heart of our sovereign infrastructure - EKS Anywhere as the catalyst that enables all our beautiful transformations while remaining stable and unchanging.
 

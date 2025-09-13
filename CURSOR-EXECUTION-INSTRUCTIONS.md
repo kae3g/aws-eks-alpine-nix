@@ -1,4 +1,5 @@
 # Complete Cursor Execution Instructions for EKS Anywhere Enzyme/Catalyst System 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 *Gentle instructions for bringing our sovereign infrastructure vision to life*
 

@@ -1,4 +1,5 @@
 # Terraform Configuration for NixOS EKS Infrastructure
+![Parametric Flower](parametric-flower-compressed.png)
 
 This directory contains the complete Terraform configuration for provisioning AWS infrastructure to support a NixOS-based EKS cluster.
 

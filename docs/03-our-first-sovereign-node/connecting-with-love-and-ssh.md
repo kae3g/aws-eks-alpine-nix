@@ -1,4 +1,5 @@
 # Connecting with Love and SSH: Secure Remote Access 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Gentle Introduction to Secure Connections
 

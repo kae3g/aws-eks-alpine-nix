@@ -1,5 +1,7 @@
 # Contributing to Our Gentle Revolution 💙
 
+![Parametric Flower](parametric-flower-compressed.png)
+
 ## Welcome, Beautiful Soul
 
 Hello, wonderful contributor. Thank you for being here, for caring enough to help make this project better, and for sharing your gifts with our community.

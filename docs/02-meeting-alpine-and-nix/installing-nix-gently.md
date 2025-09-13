@@ -1,4 +1,5 @@
 # Installing Nix Gently: A Step-by-Step Guide 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Gentle Beginning
 

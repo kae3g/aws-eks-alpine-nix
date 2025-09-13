@@ -1,4 +1,5 @@
 # AWS Setup Guide for NixOS EKS Cluster
+![Parametric Flower](parametric-flower-compressed.png)
 
 This guide walks you through setting up the required AWS resources for your NixOS EKS cluster.
 

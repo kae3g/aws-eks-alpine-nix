@@ -1,4 +1,5 @@
 # NixOS Configuration for AWS EKS Worker Nodes
+![Parametric Flower](parametric-flower-compressed.png)
 
 This document describes the NixOS configuration for AWS EKS worker nodes, including security hardening, container runtime setup, and Kubernetes integration.
 

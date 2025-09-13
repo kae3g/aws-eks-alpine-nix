@@ -1,4 +1,5 @@
 # NixOS on AWS EKS: A Declarative Kubernetes Stack
+![Parametric Flower](parametric-flower-compressed.png)
 
 This repository contains a complete, declarative infrastructure setup for running a Haskell application on a Kubernetes cluster built on **NixOS worker nodes**, managed by **AWS EKS**. Everything—from the host OS configuration to the Kubernetes manifests—is defined in code, primarily using the Nix language.
 

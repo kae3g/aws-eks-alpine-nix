@@ -1,4 +1,5 @@
 # Why Alpine Linux: The Beauty of Minimalism 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Gentle Introduction to Alpine
 

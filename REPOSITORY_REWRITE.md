@@ -1,4 +1,5 @@
 # CURSOR REPOSITORY REWRITE PAYLOAD
+![Parametric Flower](parametric-flower-compressed.png)
 # HEAD: Sovereign Identity Strategy + Understandable Reproducible Assembly
 # TAIL: Complete Repository Rewrite with Garden Expression Execution
 # MISSION: b122m faeb Gentle Revolution + URSA + SIEGE

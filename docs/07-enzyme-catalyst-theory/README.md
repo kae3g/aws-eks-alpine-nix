@@ -1,4 +1,5 @@
 # Enzyme vs. Catalyst Theory in Sovereign Infrastructure 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 Welcome to the heart of our Faeb System architecture - the beautiful metaphor of enzymes and catalysts that guides our approach to building sovereign, reproducible infrastructure.
 

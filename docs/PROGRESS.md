@@ -1,5 +1,7 @@
 # A Progress Log of Gentle Growth 💙
 
+![Parametric Flower](parametric-flower-compressed.png)
+
 ## The Purpose of This Space
 
 This document is a quiet place for reflection. It tracks the evolution of your learning journey and, in turn, your own growing understanding. Please feel welcome to add your own notes, your gentle questions, and your observations here. This is your journal as much as it is a log.

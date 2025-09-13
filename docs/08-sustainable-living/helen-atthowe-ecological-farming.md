@@ -1,4 +1,5 @@
 # Helen Atthowe's Ecological Garden: A Gentle Fable 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 *Once upon a time, in a land where the soil whispered secrets and the plants danced with the wind, there lived a wise gardener named Helen Atthowe...*
 

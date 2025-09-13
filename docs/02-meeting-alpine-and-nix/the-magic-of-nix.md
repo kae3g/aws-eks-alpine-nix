@@ -1,4 +1,5 @@
 # The Magic of Nix: Declarative Package Management 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Gentle Introduction to Nix
 

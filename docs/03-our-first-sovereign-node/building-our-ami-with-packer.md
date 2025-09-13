@@ -1,4 +1,5 @@
 # Building Our AMI with Packer: Creating Custom Machine Images ��
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Gentle Introduction to Packer
 

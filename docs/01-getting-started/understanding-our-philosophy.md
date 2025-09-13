@@ -1,4 +1,5 @@
 # Understanding Our Philosophy: The Heart of Declarative Infrastructure ��
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## A Welcome to Our Way of Thinking
 

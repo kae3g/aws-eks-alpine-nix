@@ -1,4 +1,5 @@
 # Module 1: The Sovereign Node - A Gentle Setup Guide 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## Welcome to Your First Module
 

@@ -1,4 +1,5 @@
 # A Progress Log of Gentle Growth 💙
+![Parametric Flower](parametric-flower-compressed.png)
 
 ## The Purpose of This Space
 
