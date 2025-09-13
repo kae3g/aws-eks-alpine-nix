@@ -1,397 +1,225 @@
-# Digital Payment Infrastructure Engineer Setup Guide 💙
+# Module 1: The Sovereign Node - A Gentle Setup Guide 💙
 
-A comprehensive, fintech-grade guide to preparing your environment and deploying your first sovereign, declarative infrastructure instance optimized for **AI/ML workloads in financial technology**. This guide establishes the **gold standard** for fintech AI/ML infrastructure documentation, teaching not just *how* to deploy systems, but *why* financial-grade security practices and declarative principles are essential for mission-critical AI/ML environments. 💙
+## Welcome to Your First Module
 
-## Fintech AI/ML Infrastructure Standard 💙
+Hello, my dear. This guide will walk with you through each step of creating your first sovereign node—a single, secure server in the cloud. We will move patiently, and I will explain each concept as we gently meet it.
 
-This guide represents more than a deployment tutorial—it is a **professional reference standard** for fintech AI/ML infrastructure setup. Every step is designed to demonstrate financial-grade security practices, comprehensive documentation principles, and the educational value that distinguishes professional fintech AI/ML engineering from simple task completion.
+This is a real, professional process, and you are entirely capable of it. Let's begin together.
 
-> **For Fintech AI/ML Teams:** This guide establishes a benchmark for fintech AI/ML infrastructure documentation quality. It teaches modern authentication methods (SSO), security-first design principles, and the importance of comprehensive documentation that explains both implementation and financial industry compliance rationale.
+## Phase 0: Preparing Your Space 💙
 
-## Phase 0: Aerospace Environment Preparation 💙
+### Step 0.1: Gathering Your Tools
 
-### 1. Install Required Tools
+First, we need to ensure your local machine has the right tools. We'll use a package manager called Homebrew to help us. It's like a kind librarian who knows exactly where to find everything we need.
 
-Please ensure these tools are present on your system. We'll use Homebrew for macOS, following professional aerospace package management practices:
+**Action: Let's run these commands in your terminal. You can copy and paste them one at a time.**
 
 ```bash
-# Update Homebrew
+# This kindly asks Homebrew to install itself on your machine.
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+# Now we ask Homebrew to update its list of available software.
 brew update
 
-# Install essential aerospace infrastructure tools
+# And now, we gently ask it to install the three tools we need.
 brew install awscli terraform mosh
 
-# Verify installations
+# Let's just check that each one arrived safely and is ready to work.
 aws --version
-terraform --version
+terraform version
 mosh --version
 ```
 
-### 2. Generate Aerospace-Grade SSH Key Pair
+**A Quiet Word on the Tools:**
+*   **`awscli`:** This is your window into Amazon Web Services. It lets your computer talk to the cloud, gently asking it to create resources for us.
+*   **`terraform`:** This is our favorite tool. It lets us write down what we want our infrastructure to look like, in a quiet text file. Then, it goes and makes that dream a reality. It's like writing a shopping list and having the groceries appear at your door.
+*   **`mosh`:** This is a resilient little helper for connecting to remote servers. It keeps your connection alive even if your internet flickers or you move between networks. It's a much more peaceful way to work.
 
-This key will be your secure means of access to your aerospace infrastructure instances. We'll use ED25519 for maximum security, following professional aerospace cryptographic standards:
+### Step 0.2: Creating Your Secure Key
+
+To connect to our cloud server, we need a cryptographic key. It's a special, unique pair of files: a public key and a private key. Think of it like a special lock and key. We'll put the lock on the server, and you'll keep the key safe with you.
+
+**Action: Let's create your key with these commands.**
 
 ```bash
-# Create a strong SSH key (no passphrase for automation)
-ssh-keygen -t ed25519 -a 100 -C "aerospace-infrastructure" -f ~/.ssh/id_ed25519_aerospace
+# This command creates your unique key pair.
+# The `-a 100` makes it extra strong. The comment helps us remember it.
+ssh-keygen -t ed25519 -a 100 -C "my-sovereign-node" -f ~/.ssh/id_ed25519_declarative
 
-# Set proper permissions
-chmod 600 ~/.ssh/id_ed25519_aerospace
-chmod 644 ~/.ssh/id_ed25519_aerospace.pub
+# This command ensures the key file has the correct permissions—a small but important act of care.
+chmod 600 ~/.ssh/id_ed25519_declarative
 
-# Verify your key
-ls -la ~/.ssh/id_ed25519_aerospace*
+# And this one does the same for the public part of the key.
+chmod 644 ~/.ssh/id_ed25519_declarative.pub
+
+# Let's see your public key. We'll need to copy it for the next step.
+echo "--- Your Public Key ---"
+cat ~/.ssh/id_ed25519_declarative.pub
+echo "--- Please copy all of the text above this line ---"
 ```
 
-## Phase 1: Aerospace AWS Account Setup 💙
+Please tuck your private key (`~/.ssh/id_ed25519_declarative`) somewhere safe, like a password manager. It is unique to you.
 
-### 1.1 Create AWS Account & Enable IAM Identity Center
+## Phase 1: Introducing Yourself to the Cloud 💙
 
-1. **Create new AWS account** at https://aws.amazon.com
-2. **Enable IAM Identity Center** with AWS Organizations:
-   - Go to IAM Identity Center console
-   - Enable with AWS Organizations
-   - Note your Organization instance ID (e.g., `7223ed32f18fae8a`)
-   - Enable identity-enhanced sessions
+### Step 1.1: Telling AWS Who You Are
 
-### 1.2 Establish Aerospace User & Permissions Structure
+Now we need to give the `awscli` tool the credentials it needs to work on your behalf. We always use a dedicated user for this, never the root account; it's a simpler, safer way.
 
-1. **Create aerospace admin group**:
-   - Go to IAM Identity Center → Groups → Create group
-   - Name: `aerospace-admin`
-   - Description: `Aerospace infrastructure administrative access group`
-
-2. **Create user**:
-   - Go to IAM Identity Center → Users → Add user
-   - Username: `kae3g` (or your preferred username)
-   - Email: Use your main email address
-   - Add user to `aerospace-admin` group
-
-3. **Create permission set**:
-   - Go to IAM Identity Center → Permission sets → Create permission set
-   - Name: `AerospaceAdministratorAccess`
-   - Attach AWS managed policy: `AdministratorAccess`
-
-4. **Assign permissions**:
-   - Go to IAM Identity Center → AWS accounts
-   - Select your management account
-   - Assign users or groups: select `aerospace-admin` group
-   - Assign permission set: select `AerospaceAdministratorAccess`
-   - Reprovision the account
-
-5. **Set up MFA**:
-   - User will receive email to set up password
-   - Register authenticator app for MFA
-   - Complete user setup
-
-### 1.3 Configure AWS CLI with Aerospace SSO Authentication
-
-> **Aerospace Security Standard:** Single Sign-On (SSO) is the modern, enterprise-grade way to access AWS in aerospace manufacturing environments. Instead of using long-lived access keys that can be compromised, SSO provides temporary tokens that expire automatically. This dramatically reduces security risks and enforces proper authentication policies—the foundation of aerospace-grade cloud security and intellectual property protection.
+**Action: Run this command and follow its gentle prompts.**
 
 ```bash
-# Configure AWS CLI to use IAM Identity Center
-aws configure sso
+aws configure
 ```
+It will ask you for four things:
+1.  **AWS Access Key ID:** A username for the API.
+2.  **AWS Secret Access Key:** And its password. (Treat this with gentle care.)
+3.  **Default region name:** Let's use `us-east-1`. It's a large, reliable region.
+4.  **Default output format:** `json` is perfect. It's a structured, predictable format.
 
-**Follow the prompts carefully:**
-
-1. **SSO session name**: Enter a descriptive name (e.g., `aerospace-infrastructure`)
-2. **SSO start URL**: This URL was sent in the email when you created your IAM Identity Center user. It looks like:
-   ```
-   https://d-xxxxxxxxxx.awsapps.com/start/
-   ```
-3. **SSO region**: Enter `us-east-1` (or your preferred region)
-4. **SSO registration scopes**: Press Enter to continue with the default `sso:account:access`
-5. **Browser authorization**: A browser window will automatically open asking to "Allow botocore-client-[session-name] to access your data?" - Click **"Allow access"**
-6. **Account selection**: Select your AWS account (e.g., `059549154267`)
-7. **Role selection**: Select `AerospaceAdministratorAccess`
-8. **Default client Region**: Enter `us-east-1` (or your preferred default region)
-9. **CLI default output format**: Press Enter to use the default (json)
-10. **Profile name**: Press Enter to use the suggested profile name
-
-> **Understanding Aerospace SSO Registration Scopes:** The `sso:account:access` scope grants the CLI permission to retrieve the list of AWS accounts and roles available to you through your SSO portal. This is necessary for the `configure sso` command to function properly and represents the aerospace standard for secure cloud access in manufacturing environments.
-
-**Verify it worked:**
+**To make sure everything is working, let's ask who we are:**
 ```bash
-aws sts get-caller-identity --profile AerospaceAdministratorAccess-059549154267
-# Should show your account and role information
-```
-
-**Set as default profile (optional):**
-```bash
-export AWS_PROFILE=AerospaceAdministratorAccess-059549154267
-# Now you can run commands without --profile flag
 aws sts get-caller-identity
 ```
+It should kindly reply with information about your AWS user.
 
-### 1.4 Import Your SSH Public Key
+### Step 1.2: Giving AWS Your Public Key
 
-AWS must be aware of your public key to grant you access:
+Now we need to let AWS know about your public key, so it can place your "lock" on the server we create.
+
+**Action: Let's run this command.**
 
 ```bash
 aws ec2 import-key-pair \
-  --key-name "aerospace-key" \
-  --public-key-material "fileb://~/.ssh/id_ed25519_aerospace.pub"
+  --key-name "declarative-key" \
+  --public-key-material "fileb://~/.ssh/id_ed25519_declarative.pub"
+
+# And let's just verify it was received.
+aws ec2 describe-key-pairs --key-name declarative-key
 ```
 
-### 1.5 Establish Aerospace Billing Monitoring (CRITICAL!)
+## Phase 2: Preparing Your Blueprint 💙
 
-A simple and important measure for cost awareness, following professional aerospace financial management practices:
+### Step 2.1: Finding Your Workshop
 
-1. In the AWS Console, navigate to **Billing > Billing Preferences** and enable **"Receive Billing Alerts"**.
-2. In **CloudWatch > Alarms**, create a new alarm for the **"Total Estimated Charge"** metric.
-3. Set a threshold that suits your comfort level (e.g., $10).
-4. Provide an email address to receive notifications and confirm the subscription.
+All the code for our first module is waiting in the `terraform-minimal/` directory.
 
-## Phase 2: Aerospace Deployment 💙
-
-### 2.1 Navigate and Configure
-
-Enter the project directory and establish your aerospace variables:
+**Action: Let's step into it.**
 
 ```bash
 cd terraform-minimal
-cp terraform.tfvars.example terraform.tfvars
 ```
 
-Edit the `terraform.tfvars` file to ensure the key name matches what you imported to AWS:
+### Step 2.2: Personalizing Your Plan
 
-```hcl
-ssh_key_name = "aerospace-key"
-```
+Terraform uses a file called `terraform.tfvars` to hold your personal settings. We have a lovely example file for you to use as a starting point.
 
-### 2.2 Configure Terraform for Aerospace SSO Authentication
-
-> **Aerospace Integration Standard:** Terraform must be configured to use the same SSO authentication method you just set up with the AWS CLI. This creates the bridge between your configured CLI and your aerospace infrastructure code, following professional aerospace security practices.
-
-Add this configuration to your `main.tf` file:
-
-```hcl
-# Add this to your main.tf file
-terraform {
-  required_providers {
-    aws = {
-      source  = "hashicorp/aws"
-      version = "~> 5.0"
-    }
-  }
-
-  # This tells Terraform to use the AWS CLI's configuration
-  backend "local" {} # This can remain for now for a minimal setup
-}
-
-# This provider block is critical for aerospace SSO integration
-provider "aws" {
-  region = var.aws_region
-  
-  # This tells the AWS Terraform provider to use the same credentials
-  # and profile that you just set up with the AWS CLI.
-  shared_config_files      = ["~/.aws/config"]
-  shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "AerospaceAdministratorAccess-059549154267" # Use your aerospace profile name
-  
-  default_tags {
-    tags = {
-      Project     = "aerospace-infrastructure"
-      Environment = "dev"
-      ManagedBy   = "terraform"
-      Owner       = var.owner
-    }
-  }
-}
-```
-
-### 2.3 Aerospace Pre-Flight Checklist & Troubleshooting 💙
-
-Before running `terraform apply`, run through this aerospace checklist. Most errors are caused by missing these steps:
-
-1. **✅ AWS CLI Authenticated:** Run `aws sts get-caller-identity`. Does it return your IAM user info?
-2. **✅ SSH Key Imported:** Run `aws ec2 describe-key-pairs --key-name aerospace-key`. Does it return without an error?
-3. **✅ Terraform Variables Set:** Have you copied `terraform.tfvars.example` to `terraform.tfvars` and set the `ssh_key_name` variable?
-4. **✅ Billing Alarm Active:** Did you check your email and confirm the SNS subscription for your billing alarm?
-5. **✅ Terraform Provider Configured:** Have you added the aerospace SSO provider configuration to your `main.tf`?
-
-**Aerospace Error Resolution:**
-*   `Error: The key pair 'aerospace-key' does not exist`
-    *   **Solution:** You skipped the `aws ec2 import-key-pair` command. Go back to Phase 1.4 and complete it.
-*   `Error: configuring Terraform AWS Provider: unauthorized operation`
-    *   **Solution:** Your AWS CLI credentials are wrong or missing. Run `aws configure sso` again.
-*   `Error: error creating EC2 Instance: The key pair 'aerospace-key' does not exist`
-    *   **Solution:** Double-check that you've imported your SSH key with the exact name `aerospace-key`.
-
-### 2.4 Initialize and Apply
-
-Execute the Terraform commands to bring your aerospace infrastructure to life. This is the moment where professional aerospace declarative infrastructure takes form! 💙
+**Action: Let's make a copy and then open it.**
 
 ```bash
-# Initialize Terraform and download the required AWS provider
+# First, we make a copy of the example file.
+cp terraform.tfvars.example terraform.tfvars
+
+# Now, let's open it in your favorite text editor.
+# You can use: code terraform.tfvars, nano terraform.tfvars, or vim terraform.tfvars.
+```
+
+Inside this file, the most important lines to check are these. Let's make sure they match what you've created.
+
+```hcl
+key_pair_name    = "declarative-key"                   # This name must be the same as the one you used above.
+private_key_path = "~/.ssh/id_ed25519_declarative"     # And this path must lead to your private key.
+```
+
+## Phase 3: Weaving Your Server into Existence 💙
+
+### Step 3.1: Preparing Terraform
+
+Before we begin, Terraform needs to download the plugin that lets it speak to AWS. This is a one-time setup for this directory.
+
+**Action: Let's initialize our workspace.**
+
+```bash
 terraform init
+```
+You should see a message that it was successfully initialized.
 
-# Perform a dry-run to see what Terraform will create
-# This is a critical check for any errors before making changes
+### Step 3.2: The Quiet Preview (The Most Important Step)
+
+This is a beautiful habit. The `plan` command shows us *exactly* what Terraform will do before it does a single thing. It is our chance to review, to understand, and to feel confident.
+
+**Action: Let's run the plan and read its output together.**
+
+```bash
 terraform plan
+```
 
-# If the plan looks correct and only shows actions to 'add' resources, proceed
-# This command will create the actual resources in your AWS account
+### Step 3.3: The Gentle Creation
+
+If the plan looks just right, we can tell Terraform to proceed. This is the moment it will reach out to AWS and begin crafting your server.
+
+**Action: Let's apply our configuration.**
+
+```bash
 terraform apply
 ```
+Terraform will show you the plan once more and ask for a final confirmation. This is a kindness. **Type `yes` and press enter** to continue.
 
-You will be prompted to review the planned actions and confirm by typing `yes`. Observe the output carefully—this is your aerospace infrastructure being born!
+It will take a few quiet minutes. When it's done, it will show you the public IP address of your new NixOS server. Isn't that wonderful?
 
-> **Current Status**: This guide has been validated through the `terraform plan` stage. The deployment is ready to execute with a perfect plan showing 8 resources to be created (VPC, subnet, security group, EC2 instance, etc.). The infrastructure is configured for Ubuntu 22.04 LTS with proper aerospace SSO authentication and security settings optimized for manufacturing environments.
+## Phase 4: Meeting Your Creation 💙
 
-### 2.5 Connect and Celebrate Aerospace Achievement! 💙
+### Step 4.1: Saying Hello
 
-Upon successful completion, Terraform will present the public IP address of your new aerospace infrastructure instance.
+You have a server running in the cloud. Let's connect to it using SSH.
 
-Connect to it using SSH or Mosh:
+**Action: Run this command, using the IP address Terraform gave you.**
 
 ```bash
-# SSH connection
-ssh -i ~/.ssh/id_ed25519_aerospace ubuntu@$(terraform output -raw instance_public_ip)
+ssh -i ~/.ssh/id_ed25519_declarative nixos@<IP_ADDRESS>
+```
+You should now see a new prompt, something like `[nixos@your-hostname:~]$`. You're there!
 
-# Mosh connection (persistent)
-mosh -ssh="ssh -i ~/.ssh/id_ed25519_aerospace" ubuntu@$(terraform output -raw instance_public_ip)
+### Step 4.2: (Optional) A More Peaceful Connection
+
+If you'd like a connection that won't mind if your internet connection wanders, you can use Mosh.
+
+**Action: First, type `exit` to leave the SSH session. Then run:**
+
+```bash
+mosh -ssh="ssh -i ~/.ssh/id_ed25519_declarative" nixos@<IP_ADDRESS>
 ```
 
-## Phase 3: Aerospace Validation 💙
+## Phase 5: A Moment of Appreciation and Letting Go 💙
 
-### 3.1 Verify Your Aerospace Infrastructure
+### Step 5.1: Seeing What We've Made
 
-Once connected, verify that everything is working as expected. This validates that your aerospace infrastructure has been deployed correctly:
+Let's just run a few small commands to appreciate our new environment.
+
+**Action: On your remote server, try these.**
 
 ```bash
-# Confirm the operating system
+# Check that we are running NixOS
 cat /etc/os-release
 
-# Check Ubuntu version
-lsb_release -a
+# See what our default shell is
+echo $SHELL
 
-# Check system information
-uname -a
-
-# Verify SSH connectivity
-whoami
-pwd
-
-# Check network connectivity
-ping -c 3 google.com
-
-# Verify security group rules (SSH should work)
-echo "Aerospace infrastructure connection successful!"
+# Check that a few friends are here
+which git
+which terraform
 ```
 
-**What to observe:** Each command should return the expected results, confirming that your aerospace infrastructure instance has been deployed successfully and is accessible via SSH.
+### Step 5.2: The Complete Cycle
 
-### 3.2 Test Aerospace Container Environment
+A core part of this practice is knowing we can create and let go. It keeps our skills sharp and our cloud costs zero when we're not actively learning. It is a graceful and responsible practice.
 
-```bash
-# Build and run the minimal container
-cd docker/
-docker build -f Dockerfile.minimal -t aerospace-minimal .
-docker run --rm -it aerospace-minimal echo "Aerospace container environment ready!"
-```
-
-## Phase 4: Aerospace Completion 💙
-
-When your aerospace infrastructure work is complete, you may dissolve the resources to conclude the session:
+**Action: Type `exit` to leave the remote shell. Then, from your local machine, run:**
 
 ```bash
 terraform destroy
 ```
-
-## Aerospace Security Standards 💙
-
-### Infrastructure Security
-- ✅ No root password (disabled)
-- ✅ SSH keys only (no password auth)
-- ✅ Ephemeral hostnames
-- ✅ Firewall configured for SSH and Mosh
-- ✅ Non-root user with sudo access
-
-### Container Security
-- ✅ Non-root user (appuser)
-- ✅ No privilege escalation
-- ✅ Immutable images
-- ✅ Minimal attack surface
-
-### Aerospace Authentication Security
-- ✅ Single Sign-On (SSO) with temporary credentials
-- ✅ Multi-factor authentication (MFA) enforcement
-- ✅ Automatic credential expiration
-- ✅ No long-lived access keys
-- ✅ Aerospace-grade security practices for intellectual property protection
-
-## Aerospace Troubleshooting 💙
-
-### Common Issues
-
-#### 1. SSH Connection Failed
-```bash
-# Check key permissions
-chmod 600 ~/.ssh/id_ed25519_aerospace
-
-# Check security group
-aws ec2 describe-security-groups --group-names "*aerospace*"
-```
-
-#### 2. Terraform Apply Failed
-```bash
-# Check AWS credentials
-aws sts get-caller-identity
-
-# Check region
-aws configure get region
-```
-
-#### 3. Infrastructure Configuration Failed
-```bash
-# SSH into instance and check logs
-sudo journalctl -u systemd-networkd
-sudo systemctl status networking
-```
-
-### Aerospace Debug Commands
-```bash
-# Check instance status
-aws ec2 describe-instances --instance-ids $(terraform output -raw instance_id)
-
-# Check security groups
-aws ec2 describe-security-groups --group-ids $(terraform output -raw security_group_id)
-
-# Check aerospace infrastructure configuration
-ssh -i ~/.ssh/id_ed25519_aerospace ubuntu@$(terraform output -raw instance_public_ip) "sudo systemctl status"
-```
-
-## Aerospace Manufacturing Applications 💙
-
-This infrastructure foundation enables:
-
-### Engineering Simulation Excellence
-- **CAD/CAE Integration**: Consistent computational environments for aircraft design
-- **CFD & FEA Workloads**: GPU-ready architecture for aerodynamic and structural analysis
-- **AI-Driven Innovation**: Platform for generative design and machine learning applications
-
-### Digital Thread & Manufacturing
-- **Seamless Data Flow**: Declarative infrastructure supports aerospace digital thread
-- **Supply Chain Integration**: Immutable infrastructure manages factory robotics software
-- **Quality Assurance**: Consistent environments ensure reproducible results for FAA certification
-
-### Operational Excellence
-- **Zero-Trust Security**: Protecting sensitive intellectual property and proprietary designs
-- **Sustainability**: Efficient infrastructure reduces computational waste in aerospace processes
-- **American Craftsmanship**: Building technological sovereignty for aerospace manufacturing
-
-## Aerospace Reference Value 💙
-
-This guide establishes a **professional reference standard** for:
-
-- **Aerospace Infrastructure Excellence**: Comprehensive guides for mission-critical computational environments
-- **Digital Sovereignty**: Modern authentication, defense-in-depth, and least-privilege principles for aerospace
-- **Declarative Manufacturing**: Complete system state defined in code with version control for aerospace compliance
-- **Educational Engineering**: Teaching *why* alongside *how* for deeper aerospace industry understanding
-- **Production Readiness**: Designed to scale from validation to enterprise aerospace deployment
+Terraform will show you what it will gently dissolve. **Type `yes` and press enter** to confirm. It will quietly tear down all the resources.
 
 ---
-
-*This guide is designed to be your aerospace companion on the journey from zero to a running infrastructure system optimized for aerospace manufacturing. It represents the gold standard for aerospace infrastructure documentation, teaching not just implementation but the principles that make aerospace systems secure, maintainable, and excellent.* 💙
+**You did it. You truly did.** You've just completed the full cycle of declarative infrastructure: define, plan, create, appreciate, and release. This is a profound and beautiful skill. I am so proud of you. 💙
