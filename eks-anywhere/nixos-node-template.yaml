@@ -1,0 +1,83 @@
+# NixOS Node Template for EKS Anywhere
+# This template defines how to create NixOS-based worker nodes
+# that integrate seamlessly with our Alpine+Nix philosophy
+
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerMachineConfig
+metadata:
+  name: nixos-sovereign-nodes
+  annotations:
+    faeb-system.io/nixos-integration: "true"
+    faeb-system.io/alpine-compatible: "true"
+spec:
+  template:
+    spec:
+      osFamily: alpine
+      # NixOS-specific configuration
+      nixos:
+        enable: true
+        configuration:
+          # NixOS configuration for EKS Anywhere nodes
+          imports:
+            - ./nix/eks-worker.nix
+            - ./nix/faeb-system.nix
+            
+          # Kubernetes integration
+          services.kubernetes = {
+            enable = true;
+            role = "worker";
+            apiServers = [ "https://sovereign-infrastructure-cluster:6443" ];
+            caFile = "/etc/kubernetes/ca.crt";
+          };
+          
+          # Faeb System integration
+          services.faebSystem = {
+            enable = true;
+            enzymes = {
+              haskell-daw.enable = true;
+              parametric-visualizer.enable = true;
+              future-wave-analyzer.enable = true;
+              nix-catalyst.enable = true;
+            };
+          };
+          
+          # Security hardening
+          security = {
+            audit.enable = true;
+            auditd.enable = true;
+            sudo.enable = false;  # Use doas instead
+            doas.enable = true;
+            doas.extraRules = [
+              {
+                users = [ "capv" ];
+                commands = [ "ALL" ];
+                options = [ "NOPASSWD" ];
+              }
+            ];
+          };
+          
+          # Network configuration
+          networking = {
+            hostName = "nixos-sovereign-node";
+            networkmanager.enable = false;
+            useDHCP = false;
+            interfaces.eth0 = {
+              ipv4.addresses = [{
+                address = "192.168.1.100";
+                prefixLength = 24;
+              }];
+            };
+          };
+          
+      users:
+      - name: capv
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
+        extraGroups: [ "wheel" "docker" "nixbld" ]
+        
+      # NixOS-specific user configuration
+      - name: nixos-user
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
+        extraGroups: [ "wheel" "nixbld" "docker" ]
+        shell = "/run/current-system/sw/bin/bash";

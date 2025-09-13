@@ -1,0 +1,102 @@
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: Cluster
+metadata:
+  name: sovereign-infrastructure-cluster
+  annotations:
+    faeb-system.io/enzyme-catalyst: "catalyst"
+    faeb-system.io/three-breaths: "nix-reproducibility"
+spec:
+  clusterNetwork:
+    cni: cilium
+    pods:
+      cidrBlocks: ["192.168.0.0/16"]
+    services:
+      cidrBlocks: ["10.96.0.0/12"]
+  controlPlaneConfiguration:
+    count: 3
+    endpoint:
+      host: ""
+    machineGroupRef:
+      kind: DockerMachineConfig
+      name: sovereign-control-plane
+  datacenterRef:
+    kind: DockerDatacenterConfig
+    name: sovereign-datacenter
+  externalEtcdConfiguration:
+    count: 3
+    machineGroupRef:
+      kind: DockerMachineConfig
+      name: sovereign-etcd
+  kubernetesVersion: "1.28"
+  managementCluster:
+    name: sovereign-management-cluster
+  workerNodeGroupConfigurations:
+  - count: 3
+    machineGroupRef:
+      kind: DockerMachineConfig
+      name: sovereign-worker-nodes
+    name: sovereign-worker-group-1
+  - count: 2
+    machineGroupRef:
+      kind: DockerMachineConfig
+      name: sovereign-alpine-nix-nodes
+    name: alpine-nix-worker-group
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerDatacenterConfig
+metadata:
+  name: sovereign-datacenter
+spec:
+  osFamily: ubuntu
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerMachineConfig
+metadata:
+  name: sovereign-control-plane
+spec:
+  template:
+    spec:
+      osFamily: ubuntu
+      users:
+      - name: capv
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerMachineConfig
+metadata:
+  name: sovereign-etcd
+spec:
+  template:
+    spec:
+      osFamily: ubuntu
+      users:
+      - name: capv
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerMachineConfig
+metadata:
+  name: sovereign-worker-nodes
+spec:
+  template:
+    spec:
+      osFamily: ubuntu
+      users:
+      - name: capv
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
+---
+apiVersion: anywhere.eks.amazonaws.com/v1alpha1
+kind: DockerMachineConfig
+metadata:
+  name: sovereign-alpine-nix-nodes
+spec:
+  template:
+    spec:
+      osFamily: alpine
+      users:
+      - name: capv
+        sshAuthorizedKeys:
+        - "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC..."
