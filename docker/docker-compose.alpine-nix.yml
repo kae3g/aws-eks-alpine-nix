@@ -1,0 +1,132 @@
+# Alpine + Nix Development Environment 💙
+# This Docker Compose file sets up a complete development environment
+# using Alpine Linux with Nix package manager for declarative development
+
+version: '3.8'
+
+services:
+  # Alpine + Nix Base Development Container
+  alpine-nix-dev:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile.alpine-nix
+    container_name: alpine-nix-development
+    ports:
+      - "8080:8080"  # Application port
+      - "3000:3000"  # Development server port
+    volumes:
+      - ../:/workspace:cached
+      - nix-store:/nix
+      - nix-home:/home/nix
+    environment:
+      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz
+      - PORT=8080
+      - NODE_ENV=development
+    working_dir: /workspace
+    command: >
+      bash -c "
+        echo '💙 Starting Alpine + Nix Development Environment...' &&
+        . /home/nix/.nix-profile/etc/profile.d/nix.sh &&
+        echo 'Nix environment loaded successfully!' &&
+        echo 'Available packages:' &&
+        nix-env -q &&
+        echo 'Building Haskell application...' &&
+        nix-build -o result &&
+        echo 'Starting development server...' &&
+        tail -f /dev/null
+      "
+    networks:
+      - alpine-nix-network
+    restart: unless-stopped
+
+  # Nix Build Cache Server (Optional)
+  nix-cache:
+    image: nixos/nix:2.18.1
+    container_name: nix-cache-server
+    ports:
+      - "8081:8080"
+    volumes:
+      - nix-cache:/nix/store
+    command: >
+      bash -c "
+        echo 'Starting Nix cache server...' &&
+        nix-serve --port 8080 --listen 0.0.0.0
+      "
+    networks:
+      - alpine-nix-network
+    restart: unless-stopped
+
+  # Monitoring and Observability
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: alpine-nix-prometheus
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./monitoring/prometheus.yml:/etc/prometheus/prometheus.yml:ro
+      - prometheus-data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - alpine-nix-network
+    restart: unless-stopped
+
+  # Grafana for Visualization
+  grafana:
+    image: grafana/grafana:latest
+    container_name: alpine-nix-grafana
+    ports:
+      - "3000:3000"
+    volumes:
+      - grafana-data:/var/lib/grafana
+      - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
+      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=alpine-nix-admin
+      - GF_USERS_ALLOW_SIGN_UP=false
+    networks:
+      - alpine-nix-network
+    restart: unless-stopped
+
+  # Development Database
+  postgres:
+    image: postgres:15-alpine
+    container_name: alpine-nix-postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+      - ./database/init.sql:/docker-entrypoint-initdb.d/init.sql:ro
+    environment:
+      - POSTGRES_DB=alpine_nix_dev
+      - POSTGRES_USER=nix_user
+      - POSTGRES_PASSWORD=alpine-nix-secure
+    networks:
+      - alpine-nix-network
+    restart: unless-stopped
+
+volumes:
+  nix-store:
+    driver: local
+  nix-home:
+    driver: local
+  nix-cache:
+    driver: local
+  prometheus-data:
+    driver: local
+  grafana-data:
+    driver: local
+  postgres-data:
+    driver: local
+
+networks:
+  alpine-nix-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.20.0.0/16

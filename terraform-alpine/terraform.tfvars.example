@@ -1,0 +1,40 @@
+# Alpine + Nix EKS Configuration Example 💙
+# Copy this file to terraform.tfvars and customize the values
+
+# AWS Configuration
+aws_region = "us-east-1"
+owner      = "your-name-here"
+
+# Environment
+environment = "dev"
+
+# Cluster Configuration
+cluster_name    = "alpine-nix-eks"
+node_group_name = "alpine-nix-nodes"
+cluster_version = "1.28"
+
+# Node Group Configuration
+instance_types = ["t3.medium"]
+desired_size   = 2
+max_size       = 4
+min_size       = 1
+capacity_type  = "ON_DEMAND"
+
+# Network Configuration
+vpc_cidr              = "10.0.0.0/16"
+public_subnet_cidrs   = ["10.0.1.0/24", "10.0.2.0/24"]
+private_subnet_cidrs  = ["10.0.10.0/24", "10.0.11.0/24"]
+
+# Features
+enable_irsa = true
+
+# Additional Tags
+tags = {
+  Project     = "alpine-nix-eks"
+  Environment = "dev"
+  Owner       = "your-name-here"
+  Philosophy  = "Declarative Infrastructure"
+  BaseOS      = "Alpine Linux"
+  PackageManager = "Nix"
+  Purpose     = "EKS Worker Nodes"
+}

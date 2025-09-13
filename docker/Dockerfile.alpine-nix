@@ -1,0 +1,72 @@
+# Alpine Linux + Nix Package Manager: The Minimalist's Dream 💙
+# This Dockerfile demonstrates how to create ultra-minimal, secure containers
+# using Alpine Linux as the base OS with Nix for declarative package management
+
+# Stage 1: Build the software with Nix in a full Nix environment
+FROM nixos/nix:2.18.1 AS build
+
+# Copy our Nix expressions that define the build environment
+COPY nix/ ./nix/
+COPY default.nix .
+
+# Build our Haskell application (or any application) using Nix
+# This ensures reproducible builds with exact dependency versions
+RUN nix-build -o result
+
+# Stage 2: Create the minimal runtime image with Alpine
+FROM alpine:latest
+
+# Install only the absolutely essential packages for Nix
+RUN apk add --no-cache \
+    xz \
+    bash \
+    curl \
+    ca-certificates \
+    && rm -rf /var/cache/apk/*
+
+# Create the nix user and group for security isolation
+RUN addgroup -S nixbld && \
+    adduser -S nix -G nixbld -s /bin/bash && \
+    mkdir -m 0755 /nix && \
+    chown nix:nixbld /nix
+
+# Switch to the nix user for the installation
+USER nix
+WORKDIR /home/nix
+
+# Install Nix package manager in standalone mode
+# This gives us declarative package management without a full NixOS system
+RUN curl -L https://nixos.org/nix/install | sh
+
+# Add Nix to the PATH for this user
+RUN echo 'source /home/nix/.nix-profile/etc/profile.d/nix.sh' >> /home/nix/.bashrc
+
+# Copy the built application from the build stage
+COPY --from=build --chown=nix:nixbld /result /app
+
+# Create a simple nix expression for runtime dependencies
+RUN echo '{ pkgs ? import <nixpkgs> {} }:' > /home/nix/runtime.nix && \
+    echo 'pkgs.buildEnv {' >> /home/nix/runtime.nix && \
+    echo '  name = "runtime-env";' >> /home/nix/runtime.nix && \
+    echo '  paths = with pkgs; [ coreutils bash ];' >> /home/nix/runtime.nix && \
+    echo '}' >> /home/nix/runtime.nix
+
+# Install runtime dependencies declaratively
+RUN . /home/nix/.nix-profile/etc/profile.d/nix.sh && \
+    nix-env -if /home/nix/runtime.nix
+
+# Set up the application entrypoint
+RUN echo '#!/bin/bash' > /home/nix/entrypoint.sh && \
+    echo 'set -e' >> /home/nix/entrypoint.sh && \
+    echo '. /home/nix/.nix-profile/etc/profile.d/nix.sh' >> /home/nix/entrypoint.sh && \
+    echo 'exec "$@"' >> /home/nix/entrypoint.sh && \
+    chmod +x /home/nix/entrypoint.sh
+
+# Expose the port our application will run on
+EXPOSE 8080
+
+# Use our custom entrypoint that ensures Nix environment is loaded
+ENTRYPOINT ["/home/nix/entrypoint.sh"]
+
+# Default command - can be overridden
+CMD ["/app/bin/your-haskell-app"]
