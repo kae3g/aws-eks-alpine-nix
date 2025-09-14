@@ -106,7 +106,8 @@ create_cluster_config() {
     
     # Update cluster configuration with actual SSH key
     local ssh_key=$(cat ~/.ssh/id_rsa.pub)
-    sed -i.bak "s|ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC\.\.\.|${ssh_key}|g" eks-anywhere/eksa-cluster.yaml
+sed -i.bak "s|ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQC\.\.\.|${ssh_key}|g"
+eks-anywhere/eksa-cluster.yaml
     
     success "Cluster configuration created"
 }

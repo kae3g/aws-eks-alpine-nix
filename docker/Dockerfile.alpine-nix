@@ -39,7 +39,8 @@ WORKDIR /home/nix
 RUN curl -L https://nixos.org/nix/install | sh
 
 # Add Nix to the PATH for this user
-RUN echo 'source /home/nix/.nix-profile/etc/profile.d/nix.sh' >> /home/nix/.bashrc
+RUN echo 'source /home/nix/.nix-profile/etc/profile.d/nix.sh' >>
+/home/nix/.bashrc
 
 # Copy the built application from the build stage
 COPY --from=build --chown=nix:nixbld /result /app
@@ -48,7 +49,7 @@ COPY --from=build --chown=nix:nixbld /result /app
 RUN echo '{ pkgs ? import <nixpkgs> {} }:' > /home/nix/runtime.nix && \
     echo 'pkgs.buildEnv {' >> /home/nix/runtime.nix && \
     echo '  name = "runtime-env";' >> /home/nix/runtime.nix && \
-    echo '  paths = with pkgs; [ coreutils bash ];' >> /home/nix/runtime.nix && \
+echo ' paths = with pkgs; [ coreutils bash ];' >> /home/nix/runtime.nix && \
     echo '}' >> /home/nix/runtime.nix
 
 # Install runtime dependencies declaratively
@@ -58,7 +59,8 @@ RUN . /home/nix/.nix-profile/etc/profile.d/nix.sh && \
 # Set up the application entrypoint
 RUN echo '#!/bin/bash' > /home/nix/entrypoint.sh && \
     echo 'set -e' >> /home/nix/entrypoint.sh && \
-    echo '. /home/nix/.nix-profile/etc/profile.d/nix.sh' >> /home/nix/entrypoint.sh && \
+echo '. /home/nix/.nix-profile/etc/profile.d/nix.sh' >> /home/nix/entrypoint.sh
+&& \
     echo 'exec "$@"' >> /home/nix/entrypoint.sh && \
     chmod +x /home/nix/entrypoint.sh
 

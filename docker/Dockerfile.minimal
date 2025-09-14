@@ -5,7 +5,8 @@ FROM nixos/nix:2.18.1
 WORKDIR /app
 
 # Install essential packages
-RUN nix-env -iA nixpkgs.zsh nixpkgs.ghc nixpkgs.cabal-install nixpkgs.stack nixpkgs.git nixpkgs.curl
+RUN nix-env -iA nixpkgs.zsh nixpkgs.ghc nixpkgs.cabal-install nixpkgs.stack
+nixpkgs.git nixpkgs.curl
 
 # Create non-root user and group (industry standard)
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
