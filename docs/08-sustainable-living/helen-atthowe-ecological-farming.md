@@ -4,7 +4,7 @@
 *Once upon a time, in a land where the soil whispered secrets and the plants
 danced with the wind, there lived a wise gardener named Helen Atthowe...*
 
-## 🌸 **The Gentle Wisdom of Woodleaf Farm**
+## 💚 **The Gentle Wisdom of Woodleaf Farm**
 
 Dear gentle reader, allow me to share with you the beautiful story of Helen
 Atthowe's *The Ecological Farm* - a tale of harmony between human hands and the
@@ -24,7 +24,7 @@ rest. When we till the earth, we wake it from its peaceful slumber and scatter
 its precious dreams. Instead, she taught us to:
 
 - 🍃 **Layer with love:** Like spreading a soft blanket of compost and mulch
-- 🌸 **Plant with patience:** Allowing roots to find their own gentle path
+- 💚 **Plant with patience:** Allowing roots to find their own gentle path
 - 💙 **Trust the process:** Letting nature's own wisdom guide the way
 
 #### **🎵 Second Breath: Living Mulches and Plant Diversity**
@@ -101,7 +101,7 @@ soil into abundance
 - The garden becomes a living canvas of color, texture, and life
 - Every harvest is a celebration of beauty and nourishment
 
-## 🌸 **Practical Wisdom for Gentle Gardeners**
+## 💚 **Practical Wisdom for Gentle Gardeners**
 
 *Here, dear reader, are the gentle secrets Helen shared with the world...*
 
@@ -165,7 +165,7 @@ Like sand that patiently shapes itself to every wave, Helen's methods require:
 - **Patience** to observe and learn from nature's wisdom
 - **Trust** in the gentle power of life to find its own way
 
-## 🌸 **The Spring of New Beginnings**
+## 💚 **The Spring of New Beginnings**
 
 *Every garden, like every spring, offers the promise of new beginnings...*
 

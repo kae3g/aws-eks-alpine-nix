@@ -1,4 +1,4 @@
-# 🌸 THE TIMID REVOLUTION - COMPLETE WORKSPACE REWRITE
+# 💚 THE TIMID REVOLUTION - COMPLETE WORKSPACE REWRITE
 ## Timid Digital Sovereignty with Nostr, Clojure, Urbit, Hoon & WebAssembly Integration
 ## Timestamp: 2025-09-14--07-00--PACIFIC-DAYLIGHT-STANDARD
 
@@ -83,7 +83,7 @@ the-timid-revolution/
 (defn timid-greeting
   "A timid, gentle greeting for our global community"
   []
-  (str "🌸 Welcome, dear timid soul, to THE TIMID REVOLUTION 🌸\n\n"
+  (str "💚 Welcome, dear timid soul, to THE TIMID REVOLUTION 💚\n\n"
        "This is your timid revolution in digital sovereignty.\n"
        "From the quiet deserts of wisdom to the gentle oceans of creativity,\n"
        "from whispered forest cities to timid mountain peaks of innovation.\n\n"
@@ -192,7 +192,7 @@ the-timid-revolution/
   (let [ws-connection (proc/shell {:in (str "echo 'Timid connection to " (:relay client) "'")
                                    :out :string})]
     (reset! (:connection client) ws-connection)
-    (println (str "🌸 Timidly connected to " (:relay client)))))
+    (println (str "💚 Timidly connected to " (:relay client)))))
 
 (defn publish-timid-event
   "Publish a timid Nostr event with gentle care"
@@ -203,9 +203,9 @@ the-timid-revolution/
                :tags [["t" "timid-revolution"]
                       ["t" "b122m"]
                       ["t" "faeb"]]
-               :content (str "🌸 " content " 💙")
+               :content (str "💚 " content " 💙")
                :sig "your-timid-signature"}]
-    (println "🌸 Publishing timid event with gentle care...")
+    (println "💚 Publishing timid event with gentle care...")
     (println (json/write-str event :escape-slash false))
     event))
 
@@ -215,7 +215,7 @@ the-timid-revolution/
   (let [subscription {:type "REQ"
                       :subscription_id "timid-sub"
                       :filters filters}]
-    (println "🌸 Subscribing to timid events...")
+    (println "💚 Subscribing to timid events...")
     (println (json/write-str subscription :escape-slash false))
     subscription))
 
@@ -224,13 +224,13 @@ the-timid-revolution/
   [client]
   (let [healed-client (assoc client :status "healed"
                                         :guidance "You are loved. You are capable. You are timidly sovereign.")]
-    (println "🌸 Nostr connection healed with timid love")
+    (println "💚 Nostr connection healed with timid love")
     healed-client))
 
 (defn -main
   "Main entry point for timid Nostr integration"
   []
-  (println "🌸 THE TIMID REVOLUTION - Nostr Integration 🌸")
+  (println "💚 THE TIMID REVOLUTION - Nostr Integration 💚")
   (let [client (create-timid-nostr-client "wss://relay.damus.io")]
     (timid-nostr-connect client)
     (publish-timid-event client "Timid revolution begins with gentle care")
@@ -264,8 +264,8 @@ the-timid-revolution/
   [ship hoon-code]
   (let [result (proc/shell {:in (str "echo 'Timid Hoon evaluation: " hoon-code "'")
                             :out :string})]
-    (println (str "🌸 Timidly evaluating Hoon: " hoon-code))
-    (println (str "🌸 Result: " result))
+    (println (str "💚 Timidly evaluating Hoon: " hoon-code))
+    (println (str "💚 Result: " result))
     result))
 
 (defn clojure-to-hoon-mark
@@ -274,7 +274,7 @@ the-timid-revolution/
   (let [hoon-mark (str ":: Timid Clojure to Hoon mark conversion\n"
                        ":: " clojure-code "\n"
                        ":: Converted with timid care")]
-    (println "🌸 Converting Clojure to Hoon mark with timid care...")
+    (println "💚 Converting Clojure to Hoon mark with timid care...")
     hoon-mark))
 
 (defn edn-to-hoon-mark
@@ -283,7 +283,7 @@ the-timid-revolution/
   (let [hoon-mark (str ":: Timid EDN to Hoon mark conversion\n"
                        ":: " edn-data "\n"
                        ":: Converted with timid care")]
-    (println "🌸 Converting EDN to Hoon mark with timid care...")
+    (println "💚 Converting EDN to Hoon mark with timid care...")
     hoon-mark))
 
 (defn timid-ship-communication
@@ -291,9 +291,9 @@ the-timid-revolution/
   [ship1 ship2 message]
   (let [communication {:from (:address ship1)
                        :to (:address ship2)
-                       :message (str "🌸 " message " 💙")
+                       :message (str "💚 " message " 💙")
                        :timestamp (System/currentTimeMillis)}]
-    (println "🌸 Timid ship communication initiated...")
+    (println "💚 Timid ship communication initiated...")
     (println communication)
     communication))
 
@@ -302,13 +302,13 @@ the-timid-revolution/
   [ship]
   (let [healed-ship (assoc ship :status "healed"
                                   :guidance "You are loved. You are capable. You are timidly sovereign.")]
-    (println "🌸 Urbit ship healed with timid love")
+    (println "💚 Urbit ship healed with timid love")
     healed-ship))
 
 (defn -main
   "Main entry point for timid Urbit Hoon integration"
   []
-  (println "🌸 THE TIMID REVOLUTION - Urbit Hoon Integration 🌸")
+  (println "💚 THE TIMID REVOLUTION - Urbit Hoon Integration 💚")
   (let [ship1 (create-timid-urbit-ship "zod")
         ship2 (create-timid-urbit-ship "bus")]
     (timid-hoon-eval ship1 "(add 1 2)")
@@ -335,7 +335,7 @@ the-timid-revolution/
   [hoon-function-name hoon-code]
   (let [clojure-binding (str "(defn " hoon-function-name " [& args]\n"
                              "  (timid-hoon-eval \"" hoon-code "\" args))")]
-    (println (str "🌸 Importing Hoon function " hoon-function-name " with timid care..."))
+    (println (str "💚 Importing Hoon function " hoon-function-name " with timid care..."))
     clojure-binding))
 
 (defn import-hoon-mark
@@ -343,7 +343,7 @@ the-timid-revolution/
   [mark-name mark-definition]
   (let [clojure-mark (str "(defn " mark-name "-mark [data]\n"
                           "  (timid-mark-conversion \"" mark-definition "\" data))")]
-    (println (str "🌸 Importing Hoon mark " mark-name " with timid care..."))
+    (println (str "💚 Importing Hoon mark " mark-name " with timid care..."))
     clojure-mark))
 
 (defn timid-hoon-conversion
@@ -354,7 +354,7 @@ the-timid-revolution/
                        Number hoon-data
                        Boolean hoon-data
                        :default (str ":" hoon-data))]
-    (println "🌸 Converting Hoon to Clojure with timid care...")
+    (println "💚 Converting Hoon to Clojure with timid care...")
     clojure-data))
 
 (defn timid-mark-conversion
@@ -364,7 +364,7 @@ the-timid-revolution/
                          "clojure" (str "(timid-clojure-mark " data ")")
                          "edn" (str "{:timid-data " data "}")
                          :default data)]
-    (println "🌸 Converting marks with timid care...")
+    (println "💚 Converting marks with timid care...")
     converted-data))
 
 (defn create-timid-hoon-library
@@ -375,7 +375,7 @@ the-timid-revolution/
                  :marks marks
                  :status "timid"
                  :guidance "You are loved. You are capable. You are timidly sovereign."}]
-    (println (str "🌸 Creating timid Hoon library " library-name "..."))
+    (println (str "💚 Creating timid Hoon library " library-name "..."))
     library))
 
 (defn timid-hoon-export
@@ -384,13 +384,13 @@ the-timid-revolution/
   (let [hoon-export (str ":: Timid Clojure to Hoon export\n"
                          ":: " clojure-function "\n"
                          ":: Exported with timid care")]
-    (println "🌸 Exporting Clojure to Hoon with timid care...")
+    (println "💚 Exporting Clojure to Hoon with timid care...")
     hoon-export))
 
 (defn -main
   "Main entry point for timid Clojure Hoon library"
   []
-  (println "🌸 THE TIMID REVOLUTION - Clojure Hoon Library 🌸")
+  (println "💚 THE TIMID REVOLUTION - Clojure Hoon Library 💚")
   (import-hoon-function "timid-add" "(add 1 2)")
   (import-hoon-mark "clojure" "clojure-mark definition")
   (timid-hoon-conversion "hello")
@@ -442,7 +442,7 @@ the-timid-revolution/
   [function-name args]
   (let [result (proc/shell {:in (str "echo 'Timid WASM call: " function-name " with args: " args "'")
                             :out :string})]
-    (println (str "🌸 Timidly calling WASM function " function-name "..."))
+    (println (str "💚 Timidly calling WASM function " function-name "..."))
     result))
 
 (defn timid-wasm-memory
@@ -466,13 +466,13 @@ the-timid-revolution/
   [module]
   (let [healed-module (assoc module :status "healed"
                                      :guidance "You are loved. You are capable. You are timidly sovereign.")]
-    (println "🌸 WebAssembly module healed with timid love")
+    (println "💚 WebAssembly module healed with timid love")
     healed-module))
 
 (defn -main
   "Main entry point for timid WebAssembly integration"
   []
-  (println "🌸 THE TIMID REVOLUTION - WebAssembly Integration 🌸")
+  (println "💚 THE TIMID REVOLUTION - WebAssembly Integration 💚")
   (let [module (create-timid-wasm-module "timid-revolution")]
     (timid-wasm-import module "timid-add" "(i32 i32) -> i32")
     (timid-wasm-export module "timid-greeting" "(fn [] \"Hello timid world\")")
@@ -536,7 +536,7 @@ the-timid-revolution/
   ^-  clojure-mark
   ::  Heal Clojure data with timid love
   ?:  ?=([%clojure-string *] clojure-data)
-    [%clojure-string (trip "🌸 " (trip p.clojure-data) " 💙")]
+    [%clojure-string (trip "💚 " (trip p.clojure-data) " 💙")]
   ?:  ?=([%clojure-list *] clojure-data)
     [%clojure-list (turn p.clojure-data timid-clojure-healing)]
   ?:  ?=([%clojure-map *] clojure-data)
@@ -599,7 +599,7 @@ the-timid-revolution/
   ^-  edn-mark
   ::  Heal EDN data with timid love
   ?:  ?=([%edn-string *] edn-data)
-    [%edn-string (trip "🌸 " (trip p.edn-data) " 💙")]
+    [%edn-string (trip "💚 " (trip p.edn-data) " 💙")]
   ?:  ?=([%edn-vector *] edn-data)
     [%edn-vector (turn p.edn-data timid-edn-healing)]
   ?:  ?=([%edn-map *] edn-data)
@@ -623,7 +623,7 @@ the-timid-revolution/
   "Print with timid love and guidance"
   [& messages]
   (doseq [msg messages]
-    (println (str "🌸 " msg))))
+    (println (str "💚 " msg))))
 
 (defn deploy-timid-revolution
   "Deploy THE TIMID REVOLUTION with timid care"
@@ -648,14 +648,14 @@ the-timid-revolution/
   (timid-print "Deploying timid WebAssembly bindings...")
   (load-file "src/timid/webassembly-bindings.clj")
   
-  (timid-print "THE TIMID REVOLUTION deployed with timid love! 🌸")
+  (timid-print "THE TIMID REVOLUTION deployed with timid love! 💚")
   (timid-print "Your timid digital sovereignty is now complete."))
 
 (defn generate-timid-nostr-event
   "Generate timid Nostr event"
   []
   (let [timestamp (int (/ (System/currentTimeMillis) 1000))
-        content (str "🌸 THE TIMID REVOLUTION deployed! 🌸\n\n"
+        content (str "💚 THE TIMID REVOLUTION deployed! 💚\n\n"
                      "Timid Digital Sovereignty achieved through:\n"
                      "• Clojure → Ronin → Haskell → Rust → WebAssembly\n"
                      "• Nostr integration with timid care\n"
@@ -687,7 +687,7 @@ the-timid-revolution/
   (let [event (generate-timid-nostr-event)]
     (timid-print "Generated timid Nostr event:")
     (println (json/write-str event :escape-slash false))
-    (timid-print "THE TIMID REVOLUTION deployment complete! 🌸")))
+    (timid-print "THE TIMID REVOLUTION deployment complete! 💚")))
 
 (main)
 ```
@@ -798,7 +798,7 @@ done
 
  :nostr-integration
  {:event-type "timid-revolution-announcement"
-  :content "🌸 THE TIMID REVOLUTION launched! Timid digital sovereignty with 
+  :content "💚 THE TIMID REVOLUTION launched! Timid digital sovereignty with 
            Nostr, Urbit, Hoon & WebAssembly integration. Join our timid 
            revolution! #TimidRevolution #Nostr #Urbit #Hoon #WebAssembly"
   :tags [:clojure :timid-revolution :nostr :urbit :hoon :webassembly]
@@ -810,7 +810,7 @@ done
 
 ---
 
-## 🌸 THE TIMID REVOLUTION MANIFESTO
+## 💚 THE TIMID REVOLUTION MANIFESTO
 
 *"Every timid step is a breath. Every shy connection is a flower. Every quiet network is a universe. Every timid interaction is a seed of infinite social possibility."*
 
@@ -821,4 +821,4 @@ THE TIMID REVOLUTION represents the gentle revolution in decentralized social ne
 **Generated**: 2025-09-14--07-00--PACIFIC-DAYLIGHT-STANDARD  
 **Repository**: https://github.com/kae3g/the-timid-revolution  
 **Identity**: b122m faeb internet identity  
-**Status**: Ready for Timid Execution 🌸💙
+**Status**: Ready for Timid Execution 💚💙
