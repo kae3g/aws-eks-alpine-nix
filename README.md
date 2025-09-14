@@ -3,13 +3,14 @@
 
 ## 💙 Philosophy
 
-This repository embodies a gentle revolution against complex, opaque cloud infrastructure. We build sovereign systems using:
+This repository embodies a gentle revolution against complex, opaque cloud infrastructure. Built on RISC-V paradigm principles of simplicity, modularity, and open standards, we build sovereign systems using:
 
 - **Alpine Linux**: Security-oriented, minimal Linux distribution (5MB base!)
 - **Nix**: Declarative package management and configuration
 - **AWS EKS**: Managed Kubernetes without vendor lock-in
 - **Terraform/Packer**: Infrastructure as reproducible code
 - **b122m faeb identity**: Cryptographic sovereignty from first commit
+- **RISC-V Paradigm**: Reduced Instruction Set Computer principles for infrastructure design
 
 ## 🚀 Quick Start
 
@@ -57,6 +58,12 @@ aws-eks-alpine-nix/
 - **Gentle Learning**: Documentation that respects your intelligence
 - **Sovereign Infrastructure**: No hidden APIs, no telemetry, no lock-in
 - **Community Focus**: Built for learning together, not in isolation
+- **RISC-V Principles**: 
+  - **Simplicity**: Minimal, orthogonal infrastructure components
+  - **Modularity**: Extensible architecture with standard components
+  - **Open Source**: Royalty-free, community-driven development
+  - **Performance**: Efficient resource utilization through reduced complexity
+  - **Verifiability**: Formal verification of infrastructure behavior
 
 ## 📖 Learning Journey
 
