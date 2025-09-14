@@ -21,7 +21,8 @@ provider "aws" {
   # Use AWS CLI SSO configuration
   shared_config_files      = ["~/.aws/config"]
   shared_credentials_files = ["~/.aws/credentials"]
-  profile                  = "AdministratorAccess-059549154267" # Update with your SSO profile name
+profile                  = "AdministratorAccess-059549154267" # Update with your
+SSO profile name
   
   default_tags {
     tags = {
@@ -76,7 +77,8 @@ resource "aws_subnet" "public" {
 
   vpc_id                  = aws_vpc.main.id
   cidr_block              = "10.0.${count.index + 1}.0/24"
-  availability_zone       = data.aws_availability_zones.available.names[count.index]
+availability_zone       =
+data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = true
 
   tags = {
@@ -228,7 +230,8 @@ resource "aws_eks_node_group" "alpine_nix" {
     fi
     
     # Configure kubelet with our custom settings
-    echo "KUBELET_EXTRA_ARGS=--node-labels=alpine-nix=true" >> /etc/kubernetes/kubelet/kubelet-config.json
+echo "KUBELET_EXTRA_ARGS=--node-labels=alpine-nix=true" >>
+/etc/kubernetes/kubelet/kubelet-config.json
     
     # Start kubelet
     systemctl enable kubelet
@@ -269,7 +272,8 @@ output "cluster_iam_role_name" {
 }
 
 output "cluster_certificate_authority_data" {
-  description = "Base64 encoded certificate data required to communicate with the cluster"
+description = "Base64 encoded certificate data required to communicate with the
+cluster"
   value       = aws_eks_cluster.main.certificate_authority[0].data
 }
 

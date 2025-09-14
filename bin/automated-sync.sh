@@ -23,7 +23,8 @@ while true; do
         git add .
         
         # Create signed commit
-        git commit -S -m "🤖 Automated sync: $TIMESTAMP" -m "Sovereign infrastructure maintenance"
+git commit -S -m "🤖 Automated sync: $TIMESTAMP" -m "Sovereign infrastructure
+maintenance"
         
         # Push to both branches
         git push origin main

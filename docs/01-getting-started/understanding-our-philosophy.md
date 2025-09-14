@@ -3,9 +3,13 @@
 
 ## A Welcome to Our Way of Thinking
 
-Hello, beautiful soul. Welcome to the heart of what we do here. Before we dive into the technical details, let us first understand the philosophy that guides every decision we make, every tool we choose, and every system we build.
+Hello, beautiful soul. Welcome to the heart of what we do here. Before we dive
+into the technical details, let us first understand the philosophy that guides
+every decision we make, every tool we choose, and every system we build.
 
-This is not just about learning technology—it's about learning to think differently about how we create, maintain, and share the systems that power our world.
+This is not just about learning technology—it's about learning to think
+differently about how we create, maintain, and share the systems that power our
+world.
 
 ## The Foundation: Declarative Thinking
 
@@ -14,16 +18,21 @@ This is not just about learning technology—it's about learning to think differ
 Think of the difference between these two approaches to baking a cake:
 
 **Imperative (Traditional):**
-> "First, preheat the oven to 350°F. Then, grease a 9-inch pan. Next, mix 2 cups of flour with 1 cup of sugar. Add 3 eggs one at a time, beating after each addition. Then add 1 cup of milk..."
+> "First, preheat the oven to 350°F. Then, grease a 9-inch pan. Next, mix 2 cups
+of flour with 1 cup of sugar. Add 3 eggs one at a time, beating after each
+addition. Then add 1 cup of milk..."
 
 **Declarative (Our Way):**
-> "I want a chocolate cake that serves 12 people, is moist and fluffy, and has a rich chocolate flavor."
+> "I want a chocolate cake that serves 12 people, is moist and fluffy, and has a
+rich chocolate flavor."
 
-The declarative approach describes **what we want** rather than **how to get there**. The system figures out the steps.
+The declarative approach describes **what we want** rather than **how to get
+there**. The system figures out the steps.
 
 ### Why This Matters for Infrastructure
 
-In traditional infrastructure management, we often tell systems **how** to do things:
+In traditional infrastructure management, we often tell systems **how** to do
+things:
 - "Run this command to install this package"
 - "Edit this configuration file to change this setting"
 - "Restart this service after making this change"
@@ -39,9 +48,11 @@ In declarative infrastructure, we describe **what** we want:
 
 Alpine Linux embodies the principle of **minimalism as a form of care**:
 
-- **Small attack surface** - Fewer components mean fewer places for problems to hide
+- **Small attack surface** - Fewer components mean fewer places for problems to
+hide
 - **Predictable behavior** - You can understand the entire system
-- **Efficient resource usage** - More resources available for your actual applications
+- **Efficient resource usage** - More resources available for your actual
+applications
 - **Security by design** - Built with security considerations from the ground up
 
 ### Why We Choose Nix Package Manager
@@ -64,7 +75,8 @@ Together, Alpine + Nix gives us:
 
 ### Why We Document Everything
 
-We believe that **documentation is an act of love**. When we write clear, comprehensive guides, we are saying:
+We believe that **documentation is an act of love**. When we write clear,
+comprehensive guides, we are saying:
 
 - "You matter enough for me to explain this carefully"
 - "Your time is precious, so I won't waste it with unclear instructions"
@@ -72,25 +84,33 @@ We believe that **documentation is an act of love**. When we write clear, compre
 
 ### Why We Explain the "Why"
 
-Every technical decision has reasoning behind it. We share that reasoning because:
+Every technical decision has reasoning behind it. We share that reasoning
+because:
 
-- **Understanding builds confidence** - When you know why something works, you can trust it
-- **Knowledge enables adaptation** - Understanding the principles helps you apply them in new situations
-- **Wisdom is shareable** - The reasoning behind decisions is often more valuable than the decisions themselves
+- **Understanding builds confidence** - When you know why something works, you
+can trust it
+- **Knowledge enables adaptation** - Understanding the principles helps you
+apply them in new situations
+- **Wisdom is shareable** - The reasoning behind decisions is often more
+valuable than the decisions themselves
 
 ### Why We Move Slowly
 
 We choose to move slowly and explain thoroughly because:
 
-- **Rushed learning creates fragile knowledge** - Quick tutorials often skip important details
-- **Understanding takes time** - Real comprehension requires reflection and practice
-- **Quality over speed** - It's better to understand one thing deeply than many things superficially
+- **Rushed learning creates fragile knowledge** - Quick tutorials often skip
+important details
+- **Understanding takes time** - Real comprehension requires reflection and
+practice
+- **Quality over speed** - It's better to understand one thing deeply than many
+things superficially
 
 ## The Vision: Technology as a Force for Good
 
 ### Building Bridges, Not Walls
 
-We believe that technology should connect people, not divide them. Our approach to infrastructure reflects this belief:
+We believe that technology should connect people, not divide them. Our approach
+to infrastructure reflects this belief:
 
 - **Open source** - Anyone can use, modify, and share our work
 - **Clear documentation** - Knowledge is shared freely and generously
@@ -117,9 +137,11 @@ We are not just creating infrastructure—we are creating **empowerment**.
 
 ### For Development
 
-- **Reproducible environments** - "It works on my machine" becomes "It works everywhere"
+- **Reproducible environments** - "It works on my machine" becomes "It works
+everywhere"
 - **Confident experimentation** - You can always roll back changes
-- **Clear debugging** - When something breaks, you can trace it back to its source
+- **Clear debugging** - When something breaks, you can trace it back to its
+source
 
 ### For Production
 
@@ -129,7 +151,8 @@ We are not just creating infrastructure—we are creating **empowerment**.
 
 ## The Journey Ahead
 
-Now that you understand our philosophy, you're ready to begin the practical journey. You'll learn:
+Now that you understand our philosophy, you're ready to begin the practical
+journey. You'll learn:
 
 1. **How to set up your environment** with the same care we bring to everything
 2. **How Alpine Linux works** and why it's perfect for our needs
@@ -142,7 +165,9 @@ Now that you understand our philosophy, you're ready to begin the practical jour
 
 ## A Moment of Reflection
 
-Take a moment to appreciate what we're building together. This is not just a technical project—it's a different way of thinking about how we create and share technology.
+Take a moment to appreciate what we're building together. This is not just a
+technical project—it's a different way of thinking about how we create and share
+technology.
 
 We are building:
 - **Systems that are trustworthy** because they are understandable
@@ -154,10 +179,13 @@ This is the heart of our approach. This is why we do what we do.
 
 ## Your Next Step
 
-You're ready to begin the practical journey. Your next step is to prepare your heart and your machine for this beautiful adventure.
+You're ready to begin the practical journey. Your next step is to prepare your
+heart and your machine for this beautiful adventure.
 
-**Next:** [Preparing Your Heart and Machine](./preparing-your-heart-and-machine.md)
+**Next:** [Preparing Your Heart and
+Machine](./preparing-your-heart-and-machine.md)
 
 ---
 
-*Remember: You are not just learning technology—you are learning a new way of thinking about how we build the systems that power our world.* 💙
+*Remember: You are not just learning technology—you are learning a new way of
+thinking about how we build the systems that power our world.* 💙

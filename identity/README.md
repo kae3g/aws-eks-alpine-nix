@@ -3,7 +3,8 @@
 ## Repository: aws-eks-alpine-nix
 
 ## Public Keys
-- **GPG**: `$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print $NF}')`
+- **GPG**: `$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print
+$NF}')`
 - **SSH**: $(cat ssh-public-key.pub)
 
 ## Verification

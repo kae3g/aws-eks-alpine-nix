@@ -102,7 +102,8 @@ iam:
 
 # Security configuration
 secretsEncryption:
-  keyARN: arn:aws:kms:us-west-2:ACCOUNT_ID:key/KEY_ID  # You'll need to create this KMS key
+keyARN: arn:aws:kms:us-west-2:ACCOUNT_ID:key/KEY_ID  # You'll need to create
+this KMS key
 
 # Endpoint configuration
 privateCluster:

@@ -27,9 +27,9 @@ pkgs.haskellPackages.buildPackage {
 
     app :: Application
     app req respond = respond $ case pathInfo req of
-        [] -> responseLBS status200 [("Content-Type", "text/html; charset=utf-8")] $
+[] -> responseLBS status200 [("Content-Type", "text/html; charset=utf-8")] $
             mconcat
-                [ "<!DOCTYPE html><html><head><title>Alpine + Nix Demo</title></head><body>"
+[ "<!DOCTYPE html><html><head><title>Alpine + Nix Demo</title></head><body>"
                 , "<h1>💙 Hello from Alpine + Nix + Haskell!</h1>"
                 , "<p>This application was built using:</p>"
                 , "<ul>"
@@ -38,10 +38,12 @@ pkgs.haskellPackages.buildPackage {
                 , "<li>Haskell (functional programming)</li>"
                 , "<li>Warp (lightweight web server)</li>"
                 , "</ul>"
-                , "<p><strong>Mission:</strong> Sovereign, reproducible, and secure infrastructure</p>"
+, "<p><strong>Mission:</strong> Sovereign, reproducible, and secure
+infrastructure</p>"
                 , "</body></html>"
                 ]
-        ["health"] -> responseLBS status200 [("Content-Type", "application/json")] "{\"status\":\"healthy\"}"
+["health"] -> responseLBS status200 [("Content-Type", "application/json")]
+"{\"status\":\"healthy\"}"
         _ -> responseLBS status404 [("Content-Type", "text/plain")] "Not Found"
   '';
   
@@ -60,7 +62,8 @@ pkgs.haskellPackages.buildPackage {
   
   # Meta information
   meta = {
-    description = "A demonstration Haskell web application built with Alpine Linux and Nix";
+description = "A demonstration Haskell web application built with Alpine Linux
+and Nix";
     license = pkgs.lib.licenses.mit;
     maintainers = [ "alpine-nix-team" ];
   };

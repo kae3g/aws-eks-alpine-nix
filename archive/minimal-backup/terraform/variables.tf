@@ -116,7 +116,8 @@ variable "enable_cluster_logging" {
 variable "cluster_log_types" {
   description = "Types of logs to enable for EKS cluster"
   type        = list(string)
-  default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+default     = ["api", "audit", "authenticator", "controllerManager",
+"scheduler"]
 }
 
 variable "enable_encryption" {
@@ -245,7 +246,8 @@ variable "spot_instance_percentage" {
   default     = 0
   
   validation {
-    condition     = var.spot_instance_percentage >= 0 && var.spot_instance_percentage <= 100
+condition     = var.spot_instance_percentage >= 0 &&
+var.spot_instance_percentage <= 100
     error_message = "Spot instance percentage must be between 0 and 100."
   }
 }

@@ -2,7 +2,8 @@
   description = "Minimal NixOS configuration for development";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";  # Updated to latest stable as of 2025-09-11
+nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.11";  # Updated to latest stable as
+of 2025-09-11
   };
 
   outputs = { self, nixpkgs, ... }@inputs:

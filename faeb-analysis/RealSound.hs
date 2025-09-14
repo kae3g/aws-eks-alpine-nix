@@ -26,7 +26,8 @@ bFlatChord = [233.08, 293.66, 349.23] -- Bb, D, F (Bb major)
 -- Generate a simple sine wave as text (for now)
 generateSineWave :: Double -> Double -> String
 generateSineWave frequency amplitude = 
-  "🎵 Generating sine wave: " ++ show frequency ++ " Hz at " ++ show amplitude ++ " amplitude"
+"🎵 Generating sine wave: " ++ show frequency ++ " Hz at " ++ show amplitude ++ "
+amplitude"
 
 -- Generate a chord as text
 generateChord :: [Double] -> Double -> String

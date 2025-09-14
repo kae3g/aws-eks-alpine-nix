@@ -3,15 +3,21 @@
 
 ## A Gentle Introduction to Secure Connections
 
-Hello, beautiful soul. Today we will learn how to connect to your infrastructure securely and lovingly. This is about more than just typing commands—it's about building trust with your systems and understanding how to work with them safely.
+Hello, beautiful soul. Today we will learn how to connect to your infrastructure
+securely and lovingly. This is about more than just typing commands—it's about
+building trust with your systems and understanding how to work with them safely.
 
-We will explore SSH (Secure Shell), Mosh (Mobile Shell), and the principles of secure remote access. By the end of this guide, you'll be able to connect to your servers with confidence and care.
+We will explore SSH (Secure Shell), Mosh (Mobile Shell), and the principles of
+secure remote access. By the end of this guide, you'll be able to connect to
+your servers with confidence and care.
 
 ## Understanding Secure Connections
 
 ### Why Security Matters
 
-When you connect to a remote server, you're essentially opening a door to your system. Just as you wouldn't leave your house unlocked, you shouldn't leave your servers unprotected.
+When you connect to a remote server, you're essentially opening a door to your
+system. Just as you wouldn't leave your house unlocked, you shouldn't leave your
+servers unprotected.
 
 Security in remote access means:
 - **Authentication** - Proving you are who you say you are
@@ -23,7 +29,8 @@ Security in remote access means:
 
 SSH (Secure Shell) is the foundation of secure remote access. It provides:
 
-- **Encrypted communication** - All data is encrypted between your computer and the server
+- **Encrypted communication** - All data is encrypted between your computer and
+the server
 - **Authentication** - Multiple ways to prove your identity
 - **Port forwarding** - Secure tunneling for other services
 - **File transfer** - Secure copying of files between systems
@@ -45,7 +52,8 @@ Let's create a new SSH key specifically for your infrastructure:
 
 ```bash
 # Generate a new SSH key
-ssh-keygen -t ed25519 -a 100 -C "alpine-nix-infrastructure" -f ~/.ssh/id_ed25519_alpine_nix
+ssh-keygen -t ed25519 -a 100 -C "alpine-nix-infrastructure" -f
+~/.ssh/id_ed25519_alpine_nix
 
 # Set proper permissions
 chmod 600 ~/.ssh/id_ed25519_alpine_nix
@@ -54,7 +62,8 @@ chmod 644 ~/.ssh/id_ed25519_alpine_nix.pub
 
 This command creates:
 - **A private key** (`id_ed25519_alpine_nix`) - Keep this secret and secure
-- **A public key** (`id_ed25519_alpine_nix.pub`) - This can be shared with servers
+- **A public key** (`id_ed25519_alpine_nix.pub`) - This can be shared with
+servers
 
 ### Understanding the Parameters
 
@@ -67,7 +76,8 @@ Let's break down what each parameter does:
 
 ### Adding Your Key to AWS
 
-Now we need to import your public key into AWS so it can be used with your instances:
+Now we need to import your public key into AWS so it can be used with your
+instances:
 
 ```bash
 # Import your public key to AWS
@@ -94,7 +104,8 @@ ssh -i ~/.ssh/id_ed25519_alpine_nix alpine@YOUR_SERVER_IP
 
 This command:
 - **`-i ~/.ssh/id_ed25519_alpine_nix`** - Uses your specific private key
-- **`alpine@YOUR_SERVER_IP`** - Connects as the alpine user to your server's IP address
+- **`alpine@YOUR_SERVER_IP`** - Connects as the alpine user to your server's IP
+address
 
 ### Understanding the Connection Process
 
@@ -107,7 +118,8 @@ When you connect, SSH goes through several steps:
 
 ### First Connection Security
 
-The first time you connect to a server, SSH will ask you to verify the server's fingerprint:
+The first time you connect to a server, SSH will ask you to verify the server's
+fingerprint:
 
 ```
 The authenticity of host 'YOUR_SERVER_IP' can't be established.
@@ -115,7 +127,8 @@ ECDSA key fingerprint is SHA256:abc123...
 Are you sure you want to continue connecting (yes/no)?
 ```
 
-This is SSH's way of protecting you from "man-in-the-middle" attacks. Type `yes` and press Enter to continue.
+This is SSH's way of protecting you from "man-in-the-middle" attacks. Type `yes`
+and press Enter to continue.
 
 ## Configuring SSH for Convenience
 
@@ -149,7 +162,8 @@ Now you can connect simply with:
 ssh alpine-nix
 ```
 
-This is much more convenient and less error-prone than typing the full command every time.
+This is much more convenient and less error-prone than typing the full command
+every time.
 
 ## Using Mosh for Persistent Connections
 
@@ -216,13 +230,16 @@ SCP (Secure Copy) lets you transfer files securely:
 
 ```bash
 # Copy a file to the server
-scp -i ~/.ssh/id_ed25519_alpine_nix myfile.txt alpine@YOUR_SERVER_IP:/home/alpine/
+scp -i ~/.ssh/id_ed25519_alpine_nix myfile.txt
+alpine@YOUR_SERVER_IP:/home/alpine/
 
 # Copy a file from the server
-scp -i ~/.ssh/id_ed25519_alpine_nix alpine@YOUR_SERVER_IP:/home/alpine/myfile.txt ./
+scp -i ~/.ssh/id_ed25519_alpine_nix
+alpine@YOUR_SERVER_IP:/home/alpine/myfile.txt ./
 
 # Copy a directory recursively
-scp -r -i ~/.ssh/id_ed25519_alpine_nix mydir/ alpine@YOUR_SERVER_IP:/home/alpine/
+scp -r -i ~/.ssh/id_ed25519_alpine_nix mydir/
+alpine@YOUR_SERVER_IP:/home/alpine/
 ```
 
 ### Synchronizing with RSYNC
@@ -231,10 +248,12 @@ RSYNC is more efficient for synchronizing directories:
 
 ```bash
 # Synchronize a directory
-rsync -avz -e "ssh -i ~/.ssh/id_ed25519_alpine_nix" mydir/ alpine@YOUR_SERVER_IP:/home/alpine/mydir/
+rsync -avz -e "ssh -i ~/.ssh/id_ed25519_alpine_nix" mydir/
+alpine@YOUR_SERVER_IP:/home/alpine/mydir/
 
 # Synchronize with progress and delete
-rsync -avz --progress --delete -e "ssh -i ~/.ssh/id_ed25519_alpine_nix" mydir/ alpine@YOUR_SERVER_IP:/home/alpine/mydir/
+rsync -avz --progress --delete -e "ssh -i ~/.ssh/id_ed25519_alpine_nix" mydir/
+alpine@YOUR_SERVER_IP:/home/alpine/mydir/
 ```
 
 ## Security Best Practices
@@ -242,7 +261,8 @@ rsync -avz --progress --delete -e "ssh -i ~/.ssh/id_ed25519_alpine_nix" mydir/ a
 ### Key Management
 
 - **Never share your private key** - Keep it secure and private
-- **Use different keys for different purposes** - Don't reuse keys across systems
+- **Use different keys for different purposes** - Don't reuse keys across
+systems
 - **Regular key rotation** - Generate new keys periodically
 - **Backup your keys** - Store them securely in case you need to restore them
 
@@ -298,10 +318,13 @@ Congratulations! You now have:
 
 ## Your Next Step
 
-Now that you can connect to your infrastructure securely, you're ready to learn how to grow from a single server into a full Kubernetes cluster.
+Now that you can connect to your infrastructure securely, you're ready to learn
+how to grow from a single server into a full Kubernetes cluster.
 
-**Next:** [What is Kubernetes - Gentle Explanation](../04-growing-into-a-cluster/what-is-kubernetes-gentle-explanation.md)
+**Next:** [What is Kubernetes - Gentle
+Explanation](../04-growing-into-a-cluster/what-is-kubernetes-gentle-explanation.md)
 
 ---
 
-*Remember: Every secure connection is a bridge of trust between you and your infrastructure.* 💙
+*Remember: Every secure connection is a bridge of trust between you and your
+infrastructure.* 💙

@@ -9,21 +9,31 @@
 # HEAD: STRATEGIC GUIDANCE FOR SOVEREIGN IDENTITY + URSA + SIEGE
 ###############################################################################
 
-This repository embodies the `b122m faeb` philosophy enhanced with two revolutionary concepts:
+This repository embodies the `b122m faeb` philosophy enhanced with two
+revolutionary concepts:
 
-1. **URSA (Understandable Reproducible Assembly)**: Every component is transparent, verifiable, and reconstructible from first principles
-2. **SIEGE (Software for Integer Execution of Garden Expressions)**: Mathematical expressions that grow and evolve like gardens, executed with integer precision
+1. **URSA (Understandable Reproducible Assembly)**: Every component is
+transparent, verifiable, and reconstructible from first principles
+2. **SIEGE (Software for Integer Execution of Garden Expressions)**:
+Mathematical expressions that grow and evolve like gardens, executed with
+integer precision
 
 Our approach:
 1. **Sovereignty First**: GPG + SSH keys generated before any other work
-2. **Minimalism (faeb)**: Alpine Linux as our base, avoiding unnecessary complexity
-3. **Declarative Systems (b122m)**: Nix configurations that define our desired end state
-4. **URSA Compliance**: Every assembly step is documented, reproducible, and understandable
-5. **SIEGE Integration**: Garden expressions for mathematical infrastructure modeling
+2. **Minimalism (faeb)**: Alpine Linux as our base, avoiding unnecessary
+complexity
+3. **Declarative Systems (b122m)**: Nix configurations that define our desired
+end state
+4. **URSA Compliance**: Every assembly step is documented, reproducible, and
+understandable
+5. **SIEGE Integration**: Garden expressions for mathematical infrastructure
+modeling
 6. **Verifiability**: All commits signed, all artifacts reproducible
-7. **Security by Default**: Firewalls, non-standard ports, and key-based authentication
+7. **Security by Default**: Firewalls, non-standard ports, and key-based
+authentication
 
-The identity you create here will sign all future work in this repository. This is your digital self, portable and independent of any platform.
+The identity you create here will sign all future work in this repository. This
+is your digital self, portable and independent of any platform.
 
 ###############################################################################
 # TAIL: COMPLETE REPOSITORY REWRITE - aws-eks-alpine-nix
@@ -31,11 +41,13 @@ The identity you create here will sign all future work in this repository. This 
 
 ## File 1: README.md (Most Important)
 # Gentle Revolution: Sovereign AWS EKS with URSA + SIEGE
-> **b122m faeb internet identity** | **URSA Compliant** | **SIEGE Enabled** | **Verifiable, Reproducible, Minimal**
+> **b122m faeb internet identity** | **URSA Compliant** | **SIEGE Enabled** |
+**Verifiable, Reproducible, Minimal**
 
 ## Philosophy
 
-This repository is a gentle revolution against complex, opaque cloud infrastructure. We build sovereign systems using:
+This repository is a gentle revolution against complex, opaque cloud
+infrastructure. We build sovereign systems using:
 
 - **Alpine Linux**: A security-oriented, minimal Linux distribution
 - **Nix**: Declarative package management and configuration (URSA compliant)
@@ -44,7 +56,9 @@ This repository is a gentle revolution against complex, opaque cloud infrastruct
 - **URSA**: Understandable Reproducible Assembly principles
 - **SIEGE**: Software for Integer Execution of Garden Expressions
 
-Unlike traditional approaches, we begin with identity. Your `b122m faeb` cryptographic identity (GPG/SSH keys) signs all work here. This ensures verifiability and sovereignty from the first commit.
+Unlike traditional approaches, we begin with identity. Your `b122m faeb`
+cryptographic identity (GPG/SSH keys) signs all work here. This ensures
+verifiability and sovereignty from the first commit.
 
 ## Core Concepts
 
@@ -66,7 +80,8 @@ Mathematical expressions that model infrastructure growth:
    ```bash
    gpg --full-gen-key
    # Choose: (9) ECC and ECC, (1) Curve 25519, 0 = key does not expire
-   # Identity: "your-5-char-name (b122m faeb internet identity) <your-email@gmail.com>"
+# Identity: "your-5-char-name (b122m faeb internet identity)
+<your-email@gmail.com>"
    ```
 
 2. **Generate SSH key from GPG**:
@@ -79,7 +94,8 @@ Mathematical expressions that model infrastructure growth:
    ```bash
    git config --global user.name "your-5-char-name"
    git config --global user.email "your-email@gmail.com"
-   git config --global user.signingkey $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
+git config --global user.signingkey $(gpg --list-secret-keys --keyid-format LONG
+| grep sec | awk '{print $2}' | cut -d'/' -f2)
    git config --global commit.gpgsign true
    ```
 
@@ -144,7 +160,8 @@ All artifacts in this repository are signed and verifiable:
 Apache 2.0 - You have the freedom to use, modify, and distribute this work.
 
 ---
-*This is a gentle revolution. We build together with understanding and precision.*
+*This is a gentle revolution. We build together with understanding and
+precision.*
 
 ## File 2: ursa/README.md
 # URSA: Understandable Reproducible Assembly
@@ -152,7 +169,8 @@ Apache 2.0 - You have the freedom to use, modify, and distribute this work.
 
 ## What is URSA?
 
-URSA (Understandable Reproducible Assembly) is our methodology for building infrastructure components that are:
+URSA (Understandable Reproducible Assembly) is our methodology for building
+infrastructure components that are:
 
 - **Understandable**: Every step is documented and transparent
 - **Reproducible**: Identical results from identical inputs
@@ -209,7 +227,8 @@ For every component, verify:
 - [ ] Version control is maintained
 - [ ] Checksums are computed
 
-*URSA ensures our infrastructure is not just functional, but truly understandable.*
+*URSA ensures our infrastructure is not just functional, but truly
+understandable.*
 
 ## File 3: siege/README.md
 # SIEGE: Software for Integer Execution of Garden Expressions
@@ -217,7 +236,9 @@ For every component, verify:
 
 ## What is SIEGE?
 
-SIEGE (Software for Integer Execution of Garden Expressions) is our approach to modeling infrastructure as mathematical expressions that grow and evolve like gardens:
+SIEGE (Software for Integer Execution of Garden Expressions) is our approach to
+modeling infrastructure as mathematical expressions that grow and evolve like
+gardens:
 
 - **Software**: Executable code that embodies mathematical models
 - **Integer Execution**: Precise, deterministic computation
@@ -302,7 +323,8 @@ pkgs.haskellPackages.buildPackage {
 }
 ```
 
-*SIEGE transforms infrastructure from static configuration to living, breathing mathematical gardens.*
+*SIEGE transforms infrastructure from static configuration to living, breathing
+mathematical gardens.*
 
 ## File 4: bin/init-identity
 #!/bin/sh
@@ -317,7 +339,8 @@ if ! gpg --list-keys | grep -q "b122m faeb internet identity"; then
     echo "Please generate your identity first:"
     echo "  gpg --full-gen-key"
     echo "  Choose: (9) ECC, (1) Curve 25519, 0 = no expiration"
-    echo "  Identity: 'yourname (b122m faeb internet identity) <your-email@gmail.com>'"
+echo "  Identity: 'yourname (b122m faeb internet identity)
+<your-email@gmail.com>'"
     exit 1
 fi
 
@@ -346,7 +369,8 @@ cat > README.md << EOF
 ## Repository: $(basename $(git rev-parse --show-toplevel 2>/dev/null || pwd))
 
 ## Public Keys
-- **GPG**: \`$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print $NF}')\`
+- **GPG**: \`$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print
+$NF}')\`
 - **SSH**: \$(cat ssh-public-key.pub)
 
 ## Verification
@@ -616,7 +640,9 @@ pkgs.mkShell {
 
 ## Understanding URSA
 
-URSA (Understandable Reproducible Assembly) transforms how we build infrastructure. Instead of mysterious black boxes, we create transparent, verifiable components.
+URSA (Understandable Reproducible Assembly) transforms how we build
+infrastructure. Instead of mysterious black boxes, we create transparent,
+verifiable components.
 
 ## URSA Assembly Process
 
@@ -672,7 +698,8 @@ For each component:
 - [ ] Checksums computed
 - [ ] Version controlled
 
-*URSA ensures our infrastructure is not just functional, but truly understandable and reproducible.*
+*URSA ensures our infrastructure is not just functional, but truly
+understandable and reproducible.*
 
 ###############################################################################
 # END OF REPOSITORY REWRITE

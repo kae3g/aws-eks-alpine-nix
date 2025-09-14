@@ -90,8 +90,10 @@ resource "aws_iam_role" "aws_load_balancer_controller" {
         }
         Condition = {
           StringEquals = {
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub": "system:serviceaccount:kube-system:aws-load-balancer-controller"
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud": "sts.amazonaws.com"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub":
+"system:serviceaccount:kube-system:aws-load-balancer-controller"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud":
+"sts.amazonaws.com"
           }
         }
       }
@@ -309,8 +311,10 @@ resource "aws_iam_role" "cluster_autoscaler" {
         }
         Condition = {
           StringEquals = {
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub": "system:serviceaccount:kube-system:cluster-autoscaler"
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud": "sts.amazonaws.com"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub":
+"system:serviceaccount:kube-system:cluster-autoscaler"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud":
+"sts.amazonaws.com"
           }
         }
       }
@@ -379,8 +383,10 @@ resource "aws_iam_role" "cert_manager" {
         }
         Condition = {
           StringEquals = {
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub": "system:serviceaccount:cert-manager:cert-manager"
-            "${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud": "sts.amazonaws.com"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:sub":
+"system:serviceaccount:cert-manager:cert-manager"
+"${replace(aws_iam_openid_connect_provider.eks[0].url, "https://", "")}:aud":
+"sts.amazonaws.com"
           }
         }
       }

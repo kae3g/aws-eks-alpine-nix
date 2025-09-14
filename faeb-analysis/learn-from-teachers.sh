@@ -4,7 +4,8 @@
 echo "🦉 Welcome to the Wise Owl - Learning from Teachers 💙"
 echo "=================================================="
 echo ""
-echo "We are about to listen to other creators talk about how they make beautiful things."
+echo "We are about to listen to other creators talk about how they make
+beautiful things."
 echo "We are not copying - we are learning how others breathe."
 echo ""
 

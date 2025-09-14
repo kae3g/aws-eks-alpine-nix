@@ -3,14 +3,17 @@
 
 ## 💙 Philosophy
 
-This repository embodies a gentle revolution against complex, opaque cloud infrastructure. Built on RISC-V paradigm principles of simplicity, modularity, and open standards, we build sovereign systems using:
+This repository embodies a gentle revolution against complex, opaque cloud
+infrastructure. Built on RISC-V paradigm principles of simplicity, modularity,
+and open standards, we build sovereign systems using:
 
 - **Alpine Linux**: Security-oriented, minimal Linux distribution (5MB base!)
 - **Nix**: Declarative package management and configuration
 - **AWS EKS**: Managed Kubernetes without vendor lock-in
 - **Terraform/Packer**: Infrastructure as reproducible code
 - **b122m faeb identity**: Cryptographic sovereignty from first commit
-- **RISC-V Paradigm**: Reduced Instruction Set Computer principles for infrastructure design
+- **RISC-V Paradigm**: Reduced Instruction Set Computer principles for
+infrastructure design
 
 ## 🚀 Quick Start
 
@@ -27,7 +30,8 @@ gpg --export-ssh-key your-email@gmail.com > ~/.ssh/id_ed25519.pub
 ```bash
 git config --global user.name "yourname"
 git config --global user.email "your-email@gmail.com"
-git config --global user.signingkey $(gpg --list-secret-keys --keyid-format LONG | grep sec | awk '{print $2}' | cut -d'/' -f2)
+git config --global user.signingkey $(gpg --list-secret-keys --keyid-format LONG
+| grep sec | awk '{print $2}' | cut -d'/' -f2)
 git config --global commit.gpgsign true
 ```
 

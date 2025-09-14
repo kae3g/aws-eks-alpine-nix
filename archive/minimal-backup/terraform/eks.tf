@@ -25,7 +25,7 @@ resource "aws_iam_openid_connect_provider" "eks" {
   count = var.enable_irsa ? 1 : 0
   
   client_id_list  = ["sts.amazonaws.com"]
-  thumbprint_list = [data.tls_certificate.eks[0].certificates[0].sha1_fingerprint]
+thumbprint_list = [data.tls_certificate.eks[0].certificates[0].sha1_fingerprint]
   url             = aws_eks_cluster.main.identity[0].oidc[0].issuer
   
   tags = merge(local.common_tags, {
@@ -48,7 +48,8 @@ resource "aws_eks_cluster" "main" {
   version  = var.eks_cluster_version
   
   vpc_config {
-    subnet_ids              = concat(aws_subnet.private[*].id, aws_subnet.public[*].id)
+subnet_ids              = concat(aws_subnet.private[*].id,
+aws_subnet.public[*].id)
     endpoint_private_access = var.enable_private_access
     endpoint_public_access  = var.enable_public_access
     security_group_ids      = [aws_security_group.eks_cluster.id]
@@ -129,8 +130,10 @@ resource "aws_eks_node_group" "main" {
     max_unavailable_percentage = 25
   }
   
-  # Ensure that IAM Role permissions are created before and deleted after EKS Node Group handling.
-  # Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic Network Interfaces.
+# Ensure that IAM Role permissions are created before and deleted after EKS Node
+Group handling.
+# Otherwise, EKS will not be able to properly delete EC2 Instances and Elastic
+Network Interfaces.
   depends_on = [
     aws_iam_role_policy_attachment.eks_worker_node_policy,
     aws_iam_role_policy_attachment.eks_cni_policy,

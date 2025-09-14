@@ -6,7 +6,8 @@ data Sound = SineWave Double -- A sound that wobbles, like a wave
 
 -- This is our first breath. We are giving the sound its power to exist.
 makeSound :: Sound -> String
-makeSound (SineWave frequency) = "🎵 I am making a sound with a wobble of " ++ show frequency ++ " Hz! 💙"
+makeSound (SineWave frequency) = "🎵 I am making a sound with a wobble of " ++
+show frequency ++ " Hz! 💙"
 
 -- This is the moment we place the seed on the water.
 main :: IO ()
@@ -29,4 +30,5 @@ main = do
   putStrLn "Your breathing discipline has brought order to the storm."
   putStrLn "This is how it starts. One small, steady breath at a time."
   putStrLn ""
-  putStrLn "🎵 Ready for the next breath? Let's grow something even more beautiful!"
+putStrLn "🎵 Ready for the next breath? Let's grow something even more
+beautiful!"

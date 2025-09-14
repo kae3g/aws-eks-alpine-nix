@@ -1,5 +1,6 @@
 # Secure Haskell Application Deployment
-# Following industry standards: non-root user, no privilege escalation, ephemeral naming
+# Following industry standards: non-root user, no privilege escalation,
+ephemeral naming
 
 apiVersion: apps/v1
 kind: Deployment

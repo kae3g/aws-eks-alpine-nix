@@ -3,9 +3,13 @@
 
 ## A Gentle Introduction to Packer
 
-Hello, beautiful soul. Today we will use Packer to build our first custom machine image—a beautiful Alpine Linux system with Nix Package Manager installed and ready to use.
+Hello, beautiful soul. Today we will use Packer to build our first custom
+machine image—a beautiful Alpine Linux system with Nix Package Manager installed
+and ready to use.
 
-Packer is a tool that helps us create machine images (AMIs) in a repeatable, automated way. Instead of manually setting up servers, we describe what we want in code, and Packer builds it for us.
+Packer is a tool that helps us create machine images (AMIs) in a repeatable,
+automated way. Instead of manually setting up servers, we describe what we want
+in code, and Packer builds it for us.
 
 ## What We're Going to Build
 
@@ -14,14 +18,16 @@ Packer is a tool that helps us create machine images (AMIs) in a repeatable, aut
 We will create an Amazon Machine Image (AMI) that contains:
 
 - **Alpine Linux** - Our minimal, secure base operating system
-- **Nix Package Manager** - Installed and configured for declarative package management
+- **Nix Package Manager** - Installed and configured for declarative package
+management
 - **EKS Worker Dependencies** - Everything needed to join a Kubernetes cluster
 - **Security Hardening** - SSH keys, firewall rules, and secure defaults
 - **Custom Configuration** - Tailored for our specific needs
 
 ### Why We Build Custom AMIs
 
-Instead of using standard Amazon Linux or Ubuntu images, we build our own because:
+Instead of using standard Amazon Linux or Ubuntu images, we build our own
+because:
 
 - **Consistency** - Every server starts with exactly the same configuration
 - **Security** - We control exactly what's installed and how it's configured
@@ -33,7 +39,9 @@ Instead of using standard Amazon Linux or Ubuntu images, we build our own becaus
 
 ### What is Packer?
 
-Packer is a tool for creating machine images from a single source configuration. It's like having a perfect recipe that you can follow to create identical servers every time.
+Packer is a tool for creating machine images from a single source configuration.
+It's like having a perfect recipe that you can follow to create identical
+servers every time.
 
 ### How Packer Works
 
@@ -49,7 +57,8 @@ Packer follows a simple process:
 
 A Packer template is a JSON or HCL file that describes:
 - **Builders** - What type of machine image to create (AMI, Docker, etc.)
-- **Provisioners** - How to configure the machine (shell scripts, configuration files)
+- **Provisioners** - How to configure the machine (shell scripts, configuration
+files)
 - **Post-processors** - What to do with the finished image
 
 ## Our Packer Template
@@ -189,7 +198,8 @@ source "amazon-ebs" "alpine-nix" {
   ami_name        = "alpine-nix-eks-worker-{{timestamp}}"
 }
 ```
-This tells Packer to create an Amazon EBS-backed AMI using Alpine Linux as the base.
+This tells Packer to create an Amazon EBS-backed AMI using Alpine Linux as the
+base.
 
 #### Build Section
 The build section contains all the provisioners that configure our machine:
@@ -225,7 +235,8 @@ aws ec2 describe-images \
   --output table
 ```
 
-The owner ID `099720109477` is Canonical's AWS account ID, which maintains official Alpine Linux AMIs.
+The owner ID `099720109477` is Canonical's AWS account ID, which maintains
+official Alpine Linux AMIs.
 
 ### Building the AMI
 
@@ -318,7 +329,8 @@ resource "aws_eks_node_group" "alpine_nix" {
 
 ### Performance Optimization
 
-- **Use appropriate instance types** - t3.micro for testing, larger for production
+- **Use appropriate instance types** - t3.micro for testing, larger for
+production
 - **Parallel builds** - Build multiple AMIs simultaneously if needed
 - **Caching** - Use local caches for dependencies when possible
 - **Cleanup** - Remove unnecessary files to reduce AMI size
@@ -360,10 +372,12 @@ Congratulations! You now have:
 
 ## Your Next Step
 
-Now that you have a custom AMI, you're ready to learn how to connect to your infrastructure securely and start building your EKS cluster.
+Now that you have a custom AMI, you're ready to learn how to connect to your
+infrastructure securely and start building your EKS cluster.
 
 **Next:** [Connecting with Love and SSH](./connecting-with-love-and-ssh.md)
 
 ---
 
-*Remember: Every custom AMI is a small work of art—a carefully crafted system built with intention and care.* 💙
+*Remember: Every custom AMI is a small work of art—a carefully crafted system
+built with intention and care.* 💙

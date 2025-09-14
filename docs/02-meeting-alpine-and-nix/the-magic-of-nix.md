@@ -3,17 +3,25 @@
 
 ## A Gentle Introduction to Nix
 
-Hello, beautiful soul. Today we meet Nix, a remarkable package manager that will change the way you think about software installation and management forever.
+Hello, beautiful soul. Today we meet Nix, a remarkable package manager that will
+change the way you think about software installation and management forever.
 
-Nix is not just another package manager—it is a revolutionary approach to managing software that solves problems you didn't even know you had. It brings the power of functional programming to package management, creating a system that is both incredibly powerful and beautifully predictable.
+Nix is not just another package manager—it is a revolutionary approach to
+managing software that solves problems you didn't even know you had. It brings
+the power of functional programming to package management, creating a system
+that is both incredibly powerful and beautifully predictable.
 
 ## What Makes Nix Special?
 
 ### The Philosophy of Reproducibility
 
-Nix is built around a simple, powerful idea: **the same inputs should always produce the same outputs.**
+Nix is built around a simple, powerful idea: **the same inputs should always
+produce the same outputs.**
 
-Think of it like a perfect recipe. If you follow the exact same recipe with the exact same ingredients, you will always get the exact same result. Nix applies this principle to software packages, ensuring that your development environment today will be identical to your production environment tomorrow.
+Think of it like a perfect recipe. If you follow the exact same recipe with the
+exact same ingredients, you will always get the exact same result. Nix applies
+this principle to software packages, ensuring that your development environment
+today will be identical to your production environment tomorrow.
 
 ### Functional Package Management
 
@@ -23,13 +31,16 @@ Nix treats package management like a mathematical function:
 - **Output:** A perfectly reproducible environment
 - **Side effects:** None (pure functions)
 
-This means that installing, updating, or removing packages never breaks your system. Each package lives in its own isolated environment, and changes are atomic—they either succeed completely or fail completely.
+This means that installing, updating, or removing packages never breaks your
+system. Each package lives in its own isolated environment, and changes are
+atomic—they either succeed completely or fail completely.
 
 ## The Nix Store: A Library of Perfect Packages
 
 ### How Nix Stores Packages
 
-Nix stores all packages in a special directory called the Nix store (usually `/nix/store/`). Each package gets a unique name based on its contents:
+Nix stores all packages in a special directory called the Nix store (usually
+`/nix/store/`). Each package gets a unique name based on its contents:
 
 ```
 /nix/store/abc123-def456-ghc-9.2.7/
@@ -43,13 +54,15 @@ The long hash (`abc123-def456`) is calculated from:
 - All dependencies
 - Build-time variables
 
-This means that if any of these change, you get a completely different package with a different hash.
+This means that if any of these change, you get a completely different package
+with a different hash.
 
 ### Why This Matters
 
 This approach gives us incredible benefits:
 
-- **No dependency hell** - Different packages can use different versions of the same library
+- **No dependency hell** - Different packages can use different versions of the
+same library
 - **Perfect reproducibility** - Same inputs always produce same outputs
 - **Atomic operations** - Changes happen all at once or not at all
 - **Easy rollbacks** - You can always return to any previous state
@@ -58,7 +71,8 @@ This approach gives us incredible benefits:
 
 ### Writing Nix Expressions
 
-Nix uses its own programming language for describing packages and environments. Here's a simple example:
+Nix uses its own programming language for describing packages and environments.
+Here's a simple example:
 
 ```nix
 { pkgs ? import <nixpkgs> {} }:
@@ -78,18 +92,21 @@ pkgs.mkShell {
 }
 ```
 
-This expression creates a development environment with Python, Node.js, and Git. When you enter this environment, it will:
+This expression creates a development environment with Python, Node.js, and Git.
+When you enter this environment, it will:
 - Make these tools available
 - Run the shell hook to welcome you
 - Ensure everything is exactly the version you specified
 
 ### The Power of Declarative Configuration
 
-Instead of saying "install Python, then install Node.js, then configure Git," you simply declare what you want:
+Instead of saying "install Python, then install Node.js, then configure Git,"
+you simply declare what you want:
 
 > "I want an environment with Python 3.11, Node.js 18, and Git."
 
-Nix figures out how to make that happen, handles all the dependencies, and ensures everything works together perfectly.
+Nix figures out how to make that happen, handles all the dependencies, and
+ensures everything works together perfectly.
 
 ## Real-World Benefits
 
@@ -97,7 +114,8 @@ Nix figures out how to make that happen, handles all the dependencies, and ensur
 
 When you use Nix for development:
 
-- **Reproducible environments** - "It works on my machine" becomes "It works everywhere"
+- **Reproducible environments** - "It works on my machine" becomes "It works
+everywhere"
 - **Easy collaboration** - Share your exact environment with team members
 - **Confident experimentation** - You can always roll back to a working state
 - **No more "works on my machine"** - Everyone has the exact same environment
@@ -127,13 +145,15 @@ When you use Nix for learning:
 Nixpkgs is a massive collection of software packages for Nix. It includes:
 
 - **Thousands of packages** - From simple utilities to complex applications
-- **Cross-platform support** - Works on Linux, macOS, and other Unix-like systems
+- **Cross-platform support** - Works on Linux, macOS, and other Unix-like
+systems
 - **Consistent quality** - All packages follow the same high standards
 - **Regular updates** - New packages and updates are added frequently
 
 ### NixOS: The Declarative Operating System
 
-NixOS takes Nix to the next level by making the entire operating system declarative:
+NixOS takes Nix to the next level by making the entire operating system
+declarative:
 
 - **System configuration** - Everything from bootloader to desktop environment
 - **Service management** - Database servers, web servers, and more
@@ -197,10 +217,12 @@ As you learn and grow with Nix, you can contribute by:
 
 ## Your Next Step
 
-Now that you understand the magic of Nix, you're ready to learn how to install it on Alpine Linux and start using it in your own projects.
+Now that you understand the magic of Nix, you're ready to learn how to install
+it on Alpine Linux and start using it in your own projects.
 
 **Next:** [Installing Nix Gently](./installing-nix-gently.md)
 
 ---
 
-*Remember: Nix teaches us that software management can be as predictable and reliable as mathematics.* 💙
+*Remember: Nix teaches us that software management can be as predictable and
+reliable as mathematics.* 💙

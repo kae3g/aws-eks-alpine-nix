@@ -3,7 +3,9 @@
 
 ## Why Identity Comes First
 
-In traditional infrastructure, identity is often an afterthought. In our gentle revolution, identity is the foundation. We begin with cryptographic proof of who we are before we build anything.
+In traditional infrastructure, identity is often an afterthought. In our gentle
+revolution, identity is the foundation. We begin with cryptographic proof of who
+we are before we build anything.
 
 This approach ensures:
 1. **Sovereignty**: You control your identity, not a platform

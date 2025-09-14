@@ -1,7 +1,8 @@
 # AWS Setup Guide for NixOS EKS Cluster
 ![Parametric Flower](parametric-flower-compressed.png)
 
-This guide walks you through setting up the required AWS resources for your NixOS EKS cluster.
+This guide walks you through setting up the required AWS resources for your
+NixOS EKS cluster.
 
 ## Prerequisites
 
@@ -277,7 +278,8 @@ Error: The specified AMI does not exist
 ```
 Error: User is not authorized to perform eks:CreateCluster
 ```
-**Solution**: Check your IAM permissions and ensure you have the required policies.
+**Solution**: Check your IAM permissions and ensure you have the required
+policies.
 
 #### 3. Key Pair Not Found
 ```

@@ -4,32 +4,44 @@
 
 ## Welcome, Beautiful Soul
 
-Hello, wonderful contributor. Thank you for being here, for caring enough to help make this project better, and for sharing your gifts with our community.
+Hello, wonderful contributor. Thank you for being here, for caring enough to
+help make this project better, and for sharing your gifts with our community.
 
-This guide is written with the same gentle, nurturing spirit that we bring to all our documentation. We believe that how we collaborate is as important as what we build together.
+This guide is written with the same gentle, nurturing spirit that we bring to
+all our documentation. We believe that how we collaborate is as important as
+what we build together.
 
 ## Our Values
 
 ### Kindness First
 
-Every interaction should be rooted in kindness. We assume positive intent in all contributions and communications. When we disagree, we do so with respect and curiosity about different perspectives.
+Every interaction should be rooted in kindness. We assume positive intent in all
+contributions and communications. When we disagree, we do so with respect and
+curiosity about different perspectives.
 
 ### Learning Together
 
-We are all students and teachers in this space. Questions are welcomed and encouraged. No one is expected to know everything, and everyone's journey is valid and valuable.
+We are all students and teachers in this space. Questions are welcomed and
+encouraged. No one is expected to know everything, and everyone's journey is
+valid and valuable.
 
 ### Gentle Excellence
 
-We strive for high quality in our work, but we pursue excellence through encouragement and support rather than criticism and pressure. We help each other grow.
+We strive for high quality in our work, but we pursue excellence through
+encouragement and support rather than criticism and pressure. We help each other
+grow.
 
 ## 🤝 **Join Our Community**
 
-We believe that learning is better together! Our community is built on the foundation of gentle collaboration and mutual support.
+We believe that learning is better together! Our community is built on the
+foundation of gentle collaboration and mutual support.
 
 ### **Connect With Us:**
 
-- **Follow [@kae3g_](https://instagram.com/kae3g_) on Instagram** for project updates, community highlights, and behind-the-scenes content
-- **Join our Discord development group** run by [@kae3g](https://github.com/kae3g) - a welcoming space for:
+- **Follow [@kae3g_](https://instagram.com/kae3g_) on Instagram** for project
+updates, community highlights, and behind-the-scenes content
+- **Join our Discord development group** run by
+[@kae3g](https://github.com/kae3g) - a welcoming space for:
   - Gentle collaboration on infrastructure projects
   - Learning together with Alpine+Nix technologies
   - Sharing your own Cursor and Deepseek prompting sessions
@@ -48,14 +60,20 @@ We believe that learning is better together! Our community is built on the found
 
 ### Current Project Status 🚀
 
-We are currently at a beautiful milestone: **ready to build our custom Alpine+Nix AMI and deploy our first EKS cluster!** 
+We are currently at a beautiful milestone: **ready to build our custom
+Alpine+Nix AMI and deploy our first EKS cluster!** 
 
 **What we've accomplished:**
-- ✅ **Environment Setup Complete:** AWS SSO configured, SSH keys created and imported
-- ✅ **Infrastructure Code Ready:** Terraform configurations for EKS cluster with custom Alpine+Nix worker nodes
-- ✅ **AMI Builder Prepared:** Packer template ready to create our custom machine image
-- ✅ **Documentation Complete:** Gentle, step-by-step guides for every aspect of the journey
-- ✅ **Repository Organization:** Complete restructure with clean, logical organization
+- ✅ **Environment Setup Complete:** AWS SSO configured, SSH keys created and
+imported
+- ✅ **Infrastructure Code Ready:** Terraform configurations for EKS cluster with
+custom Alpine+Nix worker nodes
+- ✅ **AMI Builder Prepared:** Packer template ready to create our custom machine
+image
+- ✅ **Documentation Complete:** Gentle, step-by-step guides for every aspect of
+the journey
+- ✅ **Repository Organization:** Complete restructure with clean, logical
+organization
 
 **What's currently in progress:**
 - 🚧 **Packer Installation:** Installing Packer with the gentle, manual approach
@@ -66,7 +84,8 @@ We are currently at a beautiful milestone: **ready to build our custom Alpine+Ni
 
 1. **Fork the repository** to your own GitHub account
 2. **Clone your fork** to your local machine
-3. **Explore our documentation series** - Start with [Understanding Our Philosophy](../01-getting-started/understanding-our-philosophy.md)
+3. **Explore our documentation series** - Start with [Understanding Our
+Philosophy](../01-getting-started/understanding-our-philosophy.md)
 4. **Create a new branch** for your contribution with a descriptive name
 5. **Make your changes** with care and attention to detail
 6. **Test your changes** to ensure they work as intended
@@ -76,7 +95,8 @@ We are currently at a beautiful milestone: **ready to build our custom Alpine+Ni
 
 ### Writing Style Guidelines
 
-When contributing to our documentation, please maintain our gentle, maternal guidance style:
+When contributing to our documentation, please maintain our gentle, maternal
+guidance style:
 
 *   **Use blue heart emojis (💙)** to convey warmth and care
 *   **Write in a nurturing, encouraging tone** that builds confidence
@@ -97,35 +117,46 @@ For our infrastructure code:
 
 ### Types of Contributions We Welcome
 
-*   **Documentation improvements** - Making our guides clearer, more gentle, or more comprehensive
-*   **Code enhancements** - Improving our Terraform, Packer, or Nix configurations
-*   **Tutorial additions** - Creating new learning paths or expanding existing ones
+*   **Documentation improvements** - Making our guides clearer, more gentle, or
+more comprehensive
+*   **Code enhancements** - Improving our Terraform, Packer, or Nix
+configurations
+*   **Tutorial additions** - Creating new learning paths or expanding existing
+ones
 *   **Bug fixes** - Helping us resolve issues and improve reliability
-*   **Feature requests** - Suggesting new capabilities that align with our philosophy
+*   **Feature requests** - Suggesting new capabilities that align with our
+philosophy
 *   **Community building** - Helping others learn and grow in our space
-*   **Your own learning journey** - Share your PROGRESS.md and Cursor/Deepseek sessions
+*   **Your own learning journey** - Share your PROGRESS.md and Cursor/Deepseek
+sessions
 
 ### Contributing with Cursor and Deepseek
 
-We encourage contributors to use AI assistants like Cursor and Deepseek in their development process. Here's how:
+We encourage contributors to use AI assistants like Cursor and Deepseek in their
+development process. Here's how:
 
 **Using Cursor:**
 - **Code completion and suggestions** - Let Cursor help you write better code
-- **Documentation generation** - Use Cursor to help write clear, gentle explanations
+- **Documentation generation** - Use Cursor to help write clear, gentle
+explanations
 - **Refactoring assistance** - Improve existing code with Cursor's suggestions
 - **Learning support** - Ask Cursor to explain complex concepts in simple terms
 
 **Using Deepseek:**
 - **Architecture discussions** - Deepseek excels at high-level system design
-- **Philosophy and approach** - Get guidance on our gentle, maternal documentation style
+- **Philosophy and approach** - Get guidance on our gentle, maternal
+documentation style
 - **Learning path creation** - Develop new tutorials and educational content
 - **Community building** - Get suggestions for fostering collaborative learning
 
 **Sharing Your AI Sessions:**
 - **Document your prompts** - Share effective prompts that helped you learn
-- **Include AI responses** - Show how AI assistants helped you understand concepts
-- **Create learning materials** - Turn your AI conversations into educational content
-- **Build community knowledge** - Help others learn from your AI collaboration experience
+- **Include AI responses** - Show how AI assistants helped you understand
+concepts
+- **Create learning materials** - Turn your AI conversations into educational
+content
+- **Build community knowledge** - Help others learn from your AI collaboration
+experience
 
 **Example Contribution:**
 ```
@@ -162,7 +193,8 @@ When reviewing pull requests, we:
 
 ### Personal Review Process
 
-All pull requests are personally reviewed by [@kae3g](https://github.com/kae3g) with:
+All pull requests are personally reviewed by [@kae3g](https://github.com/kae3g)
+with:
 
 *   **Gentle, constructive feedback** that helps you grow
 *   **Questions that deepen understanding** rather than criticize
@@ -181,19 +213,28 @@ All pull requests are personally reviewed by [@kae3g](https://github.com/kae3g) 
 
 This project is released under [The Unlicense](./LICENSE), which means:
 
-*   **You can use this work for any purpose** - personal, commercial, educational, or creative
-*   **You can modify it however you like** - adapt it to your needs and preferences
+*   **You can use this work for any purpose** - personal, commercial,
+educational, or creative
+*   **You can modify it however you like** - adapt it to your needs and
+preferences
 *   **You can share it freely** - help others learn and grow
-*   **No attribution required** - though we always appreciate knowing how it's being used
+*   **No attribution required** - though we always appreciate knowing how it's
+being used
 *   **No restrictions** - truly free and open for everyone
 
-We choose The Unlicense because we believe that knowledge grows best when it is shared without restrictions. It encourages play, experimentation, and collaboration. It is, in its own small way, an act of peace—a deliberate choice to build bridges instead of walls.
+We choose The Unlicense because we believe that knowledge grows best when it is
+shared without restrictions. It encourages play, experimentation, and
+collaboration. It is, in its own small way, an act of peace—a deliberate choice
+to build bridges instead of walls.
 
 ## Code of Conduct
 
 ### Our Commitment
 
-We are committed to providing a welcoming, inclusive, and harassment-free experience for everyone, regardless of age, body size, disability, ethnicity, gender identity and expression, level of experience, nationality, personal appearance, race, religion, or sexual identity and orientation.
+We are committed to providing a welcoming, inclusive, and harassment-free
+experience for everyone, regardless of age, body size, disability, ethnicity,
+gender identity and expression, level of experience, nationality, personal
+appearance, race, religion, or sexual identity and orientation.
 
 ### Expected Behavior
 
@@ -224,7 +265,8 @@ We are here to help. You are not alone in this journey.
 
 ## Recognition and Appreciation
 
-Every contribution, no matter how small, makes our project better. We deeply appreciate:
+Every contribution, no matter how small, makes our project better. We deeply
+appreciate:
 
 *   **Your time and effort** in making improvements
 *   **Your patience** as we work through changes together
@@ -234,12 +276,16 @@ Every contribution, no matter how small, makes our project better. We deeply app
 
 ## Thank You
 
-Thank you for being part of this gentle revolution. Thank you for believing that technology can be built with care, shared with generosity, and used to create a more peaceful world.
+Thank you for being part of this gentle revolution. Thank you for believing that
+technology can be built with care, shared with generosity, and used to create a
+more peaceful world.
 
 Together, we are building something beautiful. 💙
 
 ---
 
-**Questions?** Feel free to open an issue, join our Discord, or follow us on Instagram. We're here to help and learn together.
+**Questions?** Feel free to open an issue, join our Discord, or follow us on
+Instagram. We're here to help and learn together.
 
-**Ready to contribute?** Start by forking the repository and exploring our documentation series. We can't wait to see what you'll build! 💙
+**Ready to contribute?** Start by forking the repository and exploring our
+documentation series. We can't wait to see what you'll build! 💙
