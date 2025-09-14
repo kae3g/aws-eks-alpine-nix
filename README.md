@@ -1,4 +1,4 @@
-# 🌸 Gentle Revolution: Sovereign AWS EKS with Alpine Linux and Nix
+# 💚 Gentle Revolution: Sovereign AWS EKS with Alpine Linux and Nix
 > **b122m faeb internet identity** | **Verifiable, Reproducible, Minimal**
 
 ## 💙 Philosophy
@@ -110,4 +110,4 @@ Join our gentle revolution community:
 Apache 2.0 - You have the freedom to use, modify, and distribute this work.
 
 ---
-*This is a gentle revolution. We build together with care and intention.* 🌸💙
+*This is a gentle revolution. We build together with care and intention.* 💚💙

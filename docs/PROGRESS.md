@@ -1,4 +1,4 @@
-# 🌸 Gentle Revolution Progress Tracker
+# 💚 Gentle Revolution Progress Tracker
 ## Sovereign AWS EKS with Alpine Linux and Nix
 
 ## Current Status: Phase 1 Complete ✅

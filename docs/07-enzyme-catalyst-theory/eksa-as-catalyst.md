@@ -14,7 +14,7 @@ consistent Kubernetes substrate that enables all our applications to run, scale,
 and collaborate without being fundamentally altered by the applications
 themselves.
 
-## 🌸 **The Beautiful Stability of EKS Anywhere**
+## 💚 **The Beautiful Stability of EKS Anywhere**
 
 ### **Unchanging Foundation**
 EKS Anywhere provides the same Kubernetes substrate whether you're running in:
@@ -271,7 +271,7 @@ kubectl get nodes
 kubectl get pods --all-namespaces
 ```
 
-## 🌸 **Next Steps: Adding Your First Enzymes**
+## 💚 **Next Steps: Adding Your First Enzymes**
 
 Once your EKS Anywhere catalyst is running, you're ready to add your first
 enzymes (applications):

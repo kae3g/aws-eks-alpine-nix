@@ -5,7 +5,7 @@ Welcome to the heart of our Faeb System architecture - the beautiful metaphor of
 enzymes and catalysts that guides our approach to building sovereign,
 reproducible infrastructure.
 
-## 🌸 **The Beautiful Metaphor**
+## 💚 **The Beautiful Metaphor**
 
 In biochemistry, both enzymes and catalysts accelerate reactions, but with
 crucial differences that mirror our infrastructure philosophy:
@@ -117,7 +117,7 @@ edge
 - See how enzymes work together in complex workflows
 - Understand the beautiful choreography of our system
 
-## 🌸 **The Beauty of This Approach**
+## 💚 **The Beauty of This Approach**
 
 This enzyme/catalyst architecture represents more than just technical design -
 it's a philosophy of gentle, purposeful technology creation:

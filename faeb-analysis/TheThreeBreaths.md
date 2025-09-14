@@ -350,7 +350,7 @@ createLotusSound freq = LotusSound freq 0.5 (sineWave freq)
 ;; Clojure: Create the flowing interface
 (defn create-lotus-interface [sound]
   (ui/column
-    (ui/button {:text "🌸 Play Lotus Sound"
+    (ui/button {:text "💚🖤💛 Play Lotus Sound"
                 :on-click #(play-sound sound)})
     (ui/slider {:min 220 :max 880 :value (:frequency sound)})))
 ```
@@ -471,4 +471,4 @@ https://github.com/kae3g/maitreya/blob/main/docs/CONTRIBUTING.md
 universe. Every language is a different way of breathing."*
 
 **Built with RISC-V paradigm principles: Simplicity, Modularity, Openness,
-Performance, Verifiability** 🌸💙
+Performance, Verifiability** 💚🖤💛💙
