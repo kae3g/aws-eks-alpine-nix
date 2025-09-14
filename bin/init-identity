@@ -11,7 +11,8 @@ if ! gpg --list-keys | grep -q "b122m faeb internet identity"; then
     echo "Please generate your identity first:"
     echo "  gpg --full-gen-key"
     echo "  Choose: (9) ECC, (1) Curve 25519, 0 = no expiration"
-    echo "  Identity: 'yourname (b122m faeb internet identity) <your-email@gmail.com>'"
+echo " Identity: 'yourname (b122m faeb internet identity)
+<your-email@gmail.com>'"
     exit 1
 fi
 
@@ -40,7 +41,8 @@ cat > README.md << EOF
 ## Repository: $(basename $(git rev-parse --show-toplevel 2>/dev/null || pwd))
 
 ## Public Keys
-- **GPG**: \`$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print $NF}')\`
+- **GPG**: \`$(gpg --fingerprint | grep fingerprint | head -n1 | awk '{print
+$NF}')\`
 - **SSH**: \$(cat ssh-public-key.pub)
 
 ## Verification

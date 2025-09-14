@@ -153,13 +153,21 @@ copy_binaries() {
     mkdir -p bin
     
     # Copy EKS Anywhere type checker
-    cp haskell/dist-newstyle/build/aarch64-osx/ghc-*/eksa-enzymes-*/x/eksa-type-checker/build/eksa-type-checker/eksa-type-checker bin/ 2>/dev/null || \
-    cp haskell/dist-newstyle/build/x86_64-linux/ghc-*/eksa-enzymes-*/x/eksa-type-checker/build/eksa-type-checker/eksa-type-checker bin/ 2>/dev/null || \
+cp
+haskell/dist-newstyle/build/aarch64-osx/ghc-*/eksa-enzymes-*/x/eksa-type-checker/build/eksa-type-checker/eksa-type-checker
+bin/ 2>/dev/null || \
+cp
+haskell/dist-newstyle/build/x86_64-linux/ghc-*/eksa-enzymes-*/x/eksa-type-checker/build/eksa-type-checker/eksa-type-checker
+bin/ 2>/dev/null || \
     echo "Warning: Could not find eksa-type-checker binary"
     
     # Copy Cursor parser
-    cp haskell/dist-newstyle/build/aarch64-osx/ghc-*/eksa-enzymes-*/x/cursor-parser/build/cursor-parser/cursor-parser bin/ 2>/dev/null || \
-    cp haskell/dist-newstyle/build/x86_64-linux/ghc-*/eksa-enzymes-*/x/cursor-parser/build/cursor-parser/cursor-parser bin/ 2>/dev/null || \
+cp
+haskell/dist-newstyle/build/aarch64-osx/ghc-*/eksa-enzymes-*/x/cursor-parser/build/cursor-parser/cursor-parser
+bin/ 2>/dev/null || \
+cp
+haskell/dist-newstyle/build/x86_64-linux/ghc-*/eksa-enzymes-*/x/cursor-parser/build/cursor-parser/cursor-parser
+bin/ 2>/dev/null || \
     echo "Warning: Could not find cursor-parser binary"
     
     # Make binaries executable
