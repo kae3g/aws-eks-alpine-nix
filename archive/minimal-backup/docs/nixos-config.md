@@ -1,13 +1,17 @@
 # NixOS Configuration for AWS EKS Worker Nodes
 ![Parametric Flower](parametric-flower-compressed.png)
 
-This document describes the NixOS configuration for AWS EKS worker nodes, including security hardening, container runtime setup, and Kubernetes integration.
+This document describes the NixOS configuration for AWS EKS worker nodes,
+including security hardening, container runtime setup, and Kubernetes
+integration.
 
 ## Overview
 
-Our NixOS configuration is designed to create a secure, optimized AMI for AWS EKS worker nodes. The configuration includes:
+Our NixOS configuration is designed to create a secure, optimized AMI for AWS
+EKS worker nodes. The configuration includes:
 
-- **Security Hardening**: Comprehensive security measures including AppArmor, auditd, firewall rules, and system hardening
+- **Security Hardening**: Comprehensive security measures including AppArmor,
+auditd, firewall rules, and system hardening
 - **Container Runtime**: Containerd with proper CRI configuration for Kubernetes
 - **Kubernetes Integration**: Kubelet service with EKS-optimized settings
 - **AWS Integration**: AWS SSM Agent and CLI tools
@@ -201,7 +205,8 @@ lsmod | grep -E "(br_netfilter|ip_vs|nf_conntrack)"
 
 ### Adding Packages
 
-To add additional packages, modify the `environment.systemPackages` section in `configs/eks-worker.nix`:
+To add additional packages, modify the `environment.systemPackages` section in
+`configs/eks-worker.nix`:
 
 ```nix
 environment.systemPackages = with pkgs; [
@@ -212,11 +217,13 @@ environment.systemPackages = with pkgs; [
 
 ### Modifying Security Settings
 
-Security settings can be customized in `modules/eks-security.nix`. Be careful when modifying security settings as they can impact system security.
+Security settings can be customized in `modules/eks-security.nix`. Be careful
+when modifying security settings as they can impact system security.
 
 ### Network Configuration
 
-Network settings can be modified in the `networking` section of the security module. Ensure that any changes maintain the security posture of the system.
+Network settings can be modified in the `networking` section of the security
+module. Ensure that any changes maintain the security posture of the system.
 
 ## Best Practices
 

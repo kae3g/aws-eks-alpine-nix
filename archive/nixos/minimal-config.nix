@@ -84,7 +84,8 @@
   };
   
   # Ephemeral hostname (industry standard)
-  networking.hostName = "nixos-${builtins.substring 0 8 (builtins.readFile /etc/machine-id)}";
+networking.hostName = "nixos-${builtins.substring 0 8 (builtins.readFile
+/etc/machine-id)}";
   
   # Industry-standard SSH configuration
   services.openssh = {

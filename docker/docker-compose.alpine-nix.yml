@@ -19,7 +19,7 @@ services:
       - nix-store:/nix
       - nix-home:/home/nix
     environment:
-      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz
+- NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-23.11.tar.gz
       - PORT=8080
       - NODE_ENV=development
     working_dir: /workspace
@@ -85,7 +85,7 @@ services:
     volumes:
       - grafana-data:/var/lib/grafana
       - ./monitoring/grafana/dashboards:/etc/grafana/provisioning/dashboards:ro
-      - ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
+- ./monitoring/grafana/datasources:/etc/grafana/provisioning/datasources:ro
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=alpine-nix-admin
       - GF_USERS_ALLOW_SIGN_UP=false

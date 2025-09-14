@@ -63,7 +63,9 @@ install_eksctl() {
         brew install weaveworks/tap/eksctl
     elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
         # Linux
-        curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+curl --silent --location
+"https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname
+-s)_amd64.tar.gz" | tar xz -C /tmp
         sudo mv /tmp/eksctl /usr/local/bin
     else
         error "Unsupported operating system: $OSTYPE"
@@ -78,7 +80,9 @@ download_eks_anywhere() {
     log "Downloading EKS Anywhere..."
     
     local eksa_version="v0.18.0"
-    local download_url="https://github.com/aws/eks-anywhere/releases/download/${eksa_version}/eksctl-anywhere-${eksa_version}-$(uname -s | tr '[:upper:]' '[:lower:]')-amd64.tar.gz"
+local
+download_url="https://github.com/aws/eks-anywhere/releases/download/${eksa_version}/eksctl-anywhere-${eksa_version}-$(uname
+-s | tr '[:upper:]' '[:lower:]')-amd64.tar.gz"
     
     mkdir -p bin
     cd bin
@@ -129,7 +133,7 @@ deploy_faeb_enzymes() {
     kubectl apply -f eks-anywhere/custom-components.yaml
     
     # Wait for enzymes to be ready
-    kubectl wait --for=condition=ready pod -l app=faeb-system-enzymes --timeout=300s
+kubectl wait --for=condition=ready pod -l app=faeb-system-enzymes --timeout=300s
     
     success "Faeb System enzymes deployed successfully"
 }
@@ -141,10 +145,12 @@ setup_monitoring() {
     export KUBECONFIG=./kubeconfig
     
     # Install Prometheus
-    kubectl apply -f https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml
+kubectl apply -f
+https://raw.githubusercontent.com/prometheus-operator/prometheus-operator/main/bundle.yaml
     
     # Install Grafana
-    kubectl apply -f https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml
+kubectl apply -f
+https://raw.githubusercontent.com/grafana/helm-charts/main/charts/grafana/values.yaml
     
     # Install Loki for logging
     helm repo add grafana https://grafana.github.io/helm-charts
@@ -156,7 +162,8 @@ setup_monitoring() {
 # Main installation function
 main() {
     log "Starting EKS Anywhere installation for Faeb System..."
-    log "This will create a sovereign infrastructure cluster with enzyme/catalyst architecture"
+log "This will create a sovereign infrastructure cluster with enzyme/catalyst
+architecture"
     
     check_prerequisites
     download_eks_anywhere
@@ -168,7 +175,8 @@ main() {
     success "EKS Anywhere installation completed successfully!"
     log "Your sovereign infrastructure cluster is ready!"
     log "Kubeconfig saved to: ./kubeconfig"
-    log "Access your cluster with: export KUBECONFIG=./kubeconfig && kubectl get nodes"
+log "Access your cluster with: export KUBECONFIG=./kubeconfig && kubectl get
+nodes"
     
     echo ""
     echo "🌸 The Three Breaths System is now active:"

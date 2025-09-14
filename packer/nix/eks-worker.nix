@@ -1,5 +1,6 @@
 # EKS Worker Node Configuration with Nix 💙
-# This Nix expression defines the declarative environment for our Alpine+Nix EKS worker nodes
+# This Nix expression defines the declarative environment for our Alpine+Nix EKS
+worker nodes
 # It ensures that every worker node has exactly the same software environment
 
 { pkgs ? import <nixpkgs> {} }:

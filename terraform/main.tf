@@ -29,7 +29,7 @@ locals {
 provider "aws" {
   region = "us-west-2"
   assume_role {
-    role_arn = "arn:aws:iam::${local.account_id}:role/SovereignInfrastructureRole"
+role_arn = "arn:aws:iam::${local.account_id}:role/SovereignInfrastructureRole"
   }
 
   default_tags {

@@ -47,7 +47,8 @@ check_prerequisites() {
     
     # Check if AWS credentials are configured
     if ! aws sts get-caller-identity &> /dev/null; then
-        log_error "AWS credentials are not configured. Please run 'aws configure' first."
+log_error "AWS credentials are not configured. Please run 'aws configure'
+first."
         exit 1
     fi
     

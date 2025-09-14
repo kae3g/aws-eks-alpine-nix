@@ -12,7 +12,7 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
+- NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
     stdin_open: true
     tty: true
     command: zsh
@@ -28,7 +28,7 @@ services:
     ports:
       - "3001:3000"
     environment:
-      - NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
+- NIX_PATH=nixpkgs=https://github.com/NixOS/nixpkgs/archive/nixos-24.05.tar.gz
     stdin_open: true
     tty: true
     command: zsh

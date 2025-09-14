@@ -1,11 +1,18 @@
 # EKS Anywhere as Catalyst: The Stable Foundation 💙
 ![Parametric Flower](parametric-flower-compressed.png)
 
-Welcome to the heart of our sovereign infrastructure - EKS Anywhere as the catalyst that enables all our beautiful transformations while remaining stable and unchanging.
+Welcome to the heart of our sovereign infrastructure - EKS Anywhere as the
+catalyst that enables all our beautiful transformations while remaining stable
+and unchanging.
 
 ## 🏗️ **What is a Catalyst in Our Architecture?**
 
-In biochemistry, a catalyst is a substance that accelerates a chemical reaction without being consumed or changed by the reaction itself. In our Faeb System architecture, **EKS Anywhere serves as our catalyst** - it provides the stable, consistent Kubernetes substrate that enables all our applications to run, scale, and collaborate without being fundamentally altered by the applications themselves.
+In biochemistry, a catalyst is a substance that accelerates a chemical reaction
+without being consumed or changed by the reaction itself. In our Faeb System
+architecture, **EKS Anywhere serves as our catalyst** - it provides the stable,
+consistent Kubernetes substrate that enables all our applications to run, scale,
+and collaborate without being fundamentally altered by the applications
+themselves.
 
 ## 🌸 **The Beautiful Stability of EKS Anywhere**
 
@@ -16,7 +23,8 @@ EKS Anywhere provides the same Kubernetes substrate whether you're running in:
 - 🌊 **Edge Locations** (Remote sites, IoT devices)
 - 💻 **Development Environment** (Your laptop)
 
-The catalyst remains the same, enabling consistent behavior across all environments.
+The catalyst remains the same, enabling consistent behavior across all
+environments.
 
 ### **Enabling Without Interfering**
 Like a good catalyst, EKS Anywhere:
@@ -95,7 +103,8 @@ workerNodeGroupConfigurations:
 
 ## 🧬 **How Our Enzymes Interact with the Catalyst**
 
-Our applications (enzymes) interact with the EKS Anywhere catalyst in beautiful, predictable ways:
+Our applications (enzymes) interact with the EKS Anywhere catalyst in beautiful,
+predictable ways:
 
 ### **1. Resource Requests**
 ```yaml
@@ -130,7 +139,8 @@ configMap:
 
 ## 🎨 **The Alpine+Nix Integration: Catalyst Enhancement**
 
-Our catalyst is enhanced with Alpine Linux and Nix to provide additional capabilities:
+Our catalyst is enhanced with Alpine Linux and Nix to provide additional
+capabilities:
 
 ### **Alpine Linux: Minimal Attack Surface**
 ```yaml
@@ -192,13 +202,19 @@ kubectl scale nodegroup/worker-nodes --desired-size=10
 
 ## 🎭 **The Beautiful Dance: Catalyst and Enzymes**
 
-The relationship between our EKS Anywhere catalyst and our applications (enzymes) is like a beautiful dance:
+The relationship between our EKS Anywhere catalyst and our applications
+(enzymes) is like a beautiful dance:
 
-1. **The Catalyst Sets the Stage:** EKS Anywhere provides the stable, consistent environment
-2. **Enzymes Enter and Perform:** Applications come in and do their specialized work
-3. **The Catalyst Enables the Performance:** Kubernetes orchestrates resources and communication
-4. **Enzymes Transform and Create:** Applications process data and generate beautiful outputs
-5. **The Catalyst Maintains Harmony:** The system ensures everything works together smoothly
+1. **The Catalyst Sets the Stage:** EKS Anywhere provides the stable, consistent
+environment
+2. **Enzymes Enter and Perform:** Applications come in and do their specialized
+work
+3. **The Catalyst Enables the Performance:** Kubernetes orchestrates resources
+and communication
+4. **Enzymes Transform and Create:** Applications process data and generate
+beautiful outputs
+5. **The Catalyst Maintains Harmony:** The system ensures everything works
+together smoothly
 
 ## 💙 **Why This Catalyst Approach Matters**
 
@@ -232,7 +248,8 @@ kubectl version --server
 ### **2. Download and Configure**
 ```bash
 # Download EKS Anywhere
-wget https://github.com/aws/eks-anywhere/releases/latest/download/eksctl-anywhere-linux-amd64.tar.gz
+wget
+https://github.com/aws/eks-anywhere/releases/latest/download/eksctl-anywhere-linux-amd64.tar.gz
 tar -xzf eksctl-anywhere-linux-amd64.tar.gz
 chmod +x eksctl-anywhere
 
@@ -256,7 +273,8 @@ kubectl get pods --all-namespaces
 
 ## 🌸 **Next Steps: Adding Your First Enzymes**
 
-Once your EKS Anywhere catalyst is running, you're ready to add your first enzymes (applications):
+Once your EKS Anywhere catalyst is running, you're ready to add your first
+enzymes (applications):
 
 1. **📚 [Read about Applications as Enzymes](./applications-as-enzymes.md)**
 2. **🎭 [Explore Workflow Examples](./workflow-examples.md)**
@@ -264,4 +282,7 @@ Once your EKS Anywhere catalyst is running, you're ready to add your first enzym
 
 ---
 
-*Remember: Your EKS Anywhere catalyst is the stable foundation that enables all the beautiful transformations your applications will perform. Like a good catalyst, it works quietly in the background, making everything possible while remaining unchanged itself.* 💙
+*Remember: Your EKS Anywhere catalyst is the stable foundation that enables all
+the beautiful transformations your applications will perform. Like a good
+catalyst, it works quietly in the background, making everything possible while
+remaining unchanged itself.* 💙

@@ -45,7 +45,8 @@ check_aws_cli() {
     fi
     
     if ! aws sts get-caller-identity &> /dev/null; then
-        log_error "AWS credentials are not configured. Please run 'aws configure' first."
+log_error "AWS credentials are not configured. Please run 'aws configure'
+first."
         exit 1
     fi
     
@@ -57,7 +58,8 @@ create_key_pair() {
     log_info "Creating EC2 Key Pair: $KEY_PAIR_NAME"
     
     # Check if key pair already exists
-    if aws ec2 describe-key-pairs --key-names "$KEY_PAIR_NAME" --region "$REGION" &> /dev/null; then
+if aws ec2 describe-key-pairs --key-names "$KEY_PAIR_NAME" --region "$REGION" &>
+/dev/null; then
         log_warning "Key pair $KEY_PAIR_NAME already exists. Skipping creation."
         return
     fi
@@ -73,7 +75,8 @@ create_key_pair() {
     chmod 400 "${KEY_PAIR_NAME}.pem"
     
     log_success "Key pair created: ${KEY_PAIR_NAME}.pem"
-    log_warning "IMPORTANT: Keep this key file secure! You'll need it to SSH into your nodes."
+log_warning "IMPORTANT: Keep this key file secure! You'll need it to SSH into
+your nodes."
 }
 
 # Create KMS Key for EKS encryption
@@ -81,10 +84,12 @@ create_kms_key() {
     log_info "Creating KMS key for EKS encryption..."
     
     # Check if key already exists
-    KEY_ID=$(aws kms describe-key --key-id "alias/$KMS_KEY_ALIAS" --region "$REGION" --query 'KeyMetadata.KeyId' --output text 2>/dev/null || echo "")
+KEY_ID=$(aws kms describe-key --key-id "alias/$KMS_KEY_ALIAS" --region "$REGION"
+--query 'KeyMetadata.KeyId' --output text 2>/dev/null || echo "")
     
     if [ -n "$KEY_ID" ] && [ "$KEY_ID" != "None" ]; then
-        log_warning "KMS key with alias $KMS_KEY_ALIAS already exists. Skipping creation."
+log_warning "KMS key with alias $KMS_KEY_ALIAS already exists. Skipping
+creation."
         echo "$KEY_ID"
         return
     fi
@@ -147,7 +152,7 @@ EOF
         
         log_success "EKS cluster service role created!"
     else
-        log_warning "EKS cluster service role already exists. Skipping creation."
+log_warning "EKS cluster service role already exists. Skipping creation."
     fi
 }
 
@@ -163,7 +168,9 @@ install_eksctl() {
     log_info "Installing eksctl..."
     
     # Download and install eksctl
-    curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+curl --silent --location
+"https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname
+-s)_amd64.tar.gz" | tar xz -C /tmp
     sudo mv /tmp/eksctl /usr/local/bin
     
     log_success "eksctl installed successfully!"
@@ -203,8 +210,9 @@ main() {
     log_info "Next steps:"
     log_info "1. Build your NixOS AMI using: ./scripts/build-ami.sh"
     log_info "2. Update the AMI ID in kubernetes/eks-cluster.yaml"
-    log_info "3. Create the EKS cluster using: eksctl create cluster -f kubernetes/eks-cluster.yaml"
-    log_info "4. Don't forget to keep your key file secure: ${KEY_PAIR_NAME}.pem"
+log_info "3. Create the EKS cluster using: eksctl create cluster -f
+kubernetes/eks-cluster.yaml"
+log_info "4. Don't forget to keep your key file secure: ${KEY_PAIR_NAME}.pem"
 }
 
 # Run main function

@@ -117,7 +117,8 @@ main = do
   putStrLn ""
   
   -- Example validation
-  let exampleConfig = generateConfigTemplate "sovereign-infrastructure-cluster" "1.28"
+let exampleConfig = generateConfigTemplate "sovereign-infrastructure-cluster"
+"1.28"
   
   putStrLn "🔍 Validating example cluster configuration..."
   case validateClusterConfig exampleConfig of
@@ -131,7 +132,7 @@ main = do
       putStrLn $ "   Name: " ++ unpack (clusterName config)
       putStrLn $ "   Kubernetes Version: " ++ unpack (kubernetesVersion config)
       putStrLn $ "   Control Plane Nodes: " ++ show (controlPlaneCount config)
-      putStrLn $ "   Worker Node Groups: " ++ show (length $ workerNodeGroups config)
+putStrLn $ "   Worker Node Groups: " ++ show (length $ workerNodeGroups config)
       putStrLn $ "   CNI: " ++ unpack (cni $ clusterNetwork config)
       putStrLn ""
       putStrLn "💙 Your catalyst configuration is ready!"

@@ -227,10 +227,12 @@ output "instance_public_dns" {
 
 output "ssh_command" {
   description = "SSH command to connect to the instance"
-  value       = "ssh -i ${var.private_key_path} nixos@${aws_instance.nixos_host.public_ip}"
+value       = "ssh -i ${var.private_key_path}
+nixos@${aws_instance.nixos_host.public_ip}"
 }
 
 output "mosh_command" {
   description = "Mosh command to connect to the instance"
-  value       = "mosh -ssh=\"ssh -i ${var.private_key_path}\" nixos@${aws_instance.nixos_host.public_ip}"
+value       = "mosh -ssh=\"ssh -i ${var.private_key_path}\"
+nixos@${aws_instance.nixos_host.public_ip}"
 }

@@ -38,7 +38,8 @@ parseInstructionLine line
   | "touch" `isPrefixOf` unpack line = 
     CursorInstruction (CreateFile (extractPath line) "") [] "Create file"
   | "cat >" `isPrefixOf` unpack line = 
-    CursorInstruction (CreateFile (extractPath line) (extractContent line)) [] "Create file with content"
+CursorInstruction (CreateFile (extractPath line) (extractContent line)) []
+"Create file with content"
   | "chmod" `isPrefixOf` unpack line = 
     CursorInstruction (RunCommand line) [] "Change file permissions"
   | "cd" `isPrefixOf` unpack line = 

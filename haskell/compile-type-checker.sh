@@ -63,7 +63,7 @@ check_cabal() {
             if command -v brew &> /dev/null; then
                 brew install cabal-install
             else
-                echo "Please install Homebrew first, then run: brew install cabal-install"
+echo "Please install Homebrew first, then run: brew install cabal-install"
                 exit 1
             fi
         elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
@@ -83,7 +83,8 @@ create_cabal_config() {
 cabal-version:      3.0
 name:               eksa-enzymes
 version:            1.0.0
-description:        EKS Anywhere Enzyme System - Haskell modules for catalyst validation and instruction parsing
+description:        EKS Anywhere Enzyme System - Haskell modules for catalyst
+validation and instruction parsing
                     
 author:             Faeb System Community
 maintainer:         community@faeb-system.io
@@ -95,13 +96,21 @@ executable eksa-type-checker
     main-is:         EksaTypeChecker.hs
     build-depends:   base >= 4.14 && < 5.0, yaml, text
     default-language: Haskell2010
-    ghc-options:     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wincomplete-record-updates -Wmissing-deriving-strategies -Wmissing-exported-symbols -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -Wunused-packages -Wunused-type-patterns
+ghc-options:     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns
+-Wincomplete-record-updates -Wmissing-deriving-strategies
+-Wmissing-exported-symbols -Wmissing-export-lists -Wmissing-home-modules
+-Wpartial-fields -Wredundant-constraints -Wunused-packages
+-Wunused-type-patterns
 
 executable cursor-parser
     main-is:         CursorParser.hs
     build-depends:   base >= 4.14 && < 5.0, text, process
     default-language: Haskell2010
-    ghc-options:     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns -Wincomplete-record-updates -Wmissing-deriving-strategies -Wmissing-exported-symbols -Wmissing-export-lists -Wmissing-home-modules -Wpartial-fields -Wredundant-constraints -Wunused-packages -Wunused-type-patterns
+ghc-options:     -Wall -Wcompat -Widentities -Wincomplete-uni-patterns
+-Wincomplete-record-updates -Wmissing-deriving-strategies
+-Wmissing-exported-symbols -Wmissing-export-lists -Wmissing-home-modules
+-Wpartial-fields -Wredundant-constraints -Wunused-packages
+-Wunused-type-patterns
 EOF
 
     success "Cabal configuration created"
@@ -180,7 +189,8 @@ main() {
     log "=================================================================="
     log ""
     log "This script compiles our Haskell enzymes for EKS Anywhere integration."
-    log "These enzymes will validate our catalyst configurations and parse instructions."
+log "These enzymes will validate our catalyst configurations and parse
+instructions."
     log ""
     
     check_ghc
@@ -197,7 +207,7 @@ main() {
     log "   🧬 EKS Anywhere Type Checker: bin/eksa-type-checker"
     log "   🔄 Cursor Parser: bin/cursor-parser"
     log ""
-    log "💙 These enzymes will help validate and execute your EKS Anywhere setup!"
+log "💙 These enzymes will help validate and execute your EKS Anywhere setup!"
     log "Ready to create beautiful, reproducible infrastructure! 🌸"
 }
 

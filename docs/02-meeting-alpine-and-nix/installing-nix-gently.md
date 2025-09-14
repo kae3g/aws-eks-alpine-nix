@@ -3,9 +3,13 @@
 
 ## A Gentle Beginning
 
-Hello, beautiful soul. Today we will install Nix on Alpine Linux with the same care and attention we bring to everything we do. This installation process is designed to be gentle, clear, and educational.
+Hello, beautiful soul. Today we will install Nix on Alpine Linux with the same
+care and attention we bring to everything we do. This installation process is
+designed to be gentle, clear, and educational.
 
-We will walk through each step together, explaining not just what we're doing, but why we're doing it. By the end of this guide, you'll have Nix installed and ready to use, and you'll understand how it works.
+We will walk through each step together, explaining not just what we're doing,
+but why we're doing it. By the end of this guide, you'll have Nix installed and
+ready to use, and you'll understand how it works.
 
 ## Before We Begin
 
@@ -70,7 +74,8 @@ sudo addgroup -S nixbld
 sudo adduser -S nix -G nixbld
 ```
 
-The `nixbld` group is used for building packages, and the `nix` user is used for running the Nix daemon. This separation helps keep your system secure.
+The `nixbld` group is used for building packages, and the `nix` user is used for
+running the Nix daemon. This separation helps keep your system secure.
 
 ### Setting Up the Nix Store
 
@@ -84,7 +89,8 @@ sudo mkdir -m 0755 /nix
 sudo chown nix /nix
 ```
 
-The `/nix` directory is where Nix will store all its packages. We give it to the `nix` user so it can manage the contents.
+The `/nix` directory is where Nix will store all its packages. We give it to the
+`nix` user so it can manage the contents.
 
 ## Step 3: Installing Nix
 
@@ -249,7 +255,8 @@ If downloads fail:
 ping -c 3 nixos.org
 
 # Try using a different mirror
-export NIX_INSTALLER_BINARY_URL="https://releases.nixos.org/nix/nix-2.11.1/nix-2.11.1-x86_64-linux.tar.xz"
+export
+NIX_INSTALLER_BINARY_URL="https://releases.nixos.org/nix/nix-2.11.1/nix-2.11.1-x86_64-linux.tar.xz"
 ```
 
 ## What You've Accomplished
@@ -263,10 +270,13 @@ Congratulations! You now have:
 
 ## Your Next Step
 
-Now that you have Nix installed, you're ready to learn how to use it to build custom machine images with Packer.
+Now that you have Nix installed, you're ready to learn how to use it to build
+custom machine images with Packer.
 
-**Next:** [Building Our AMI with Packer](../03-our-first-sovereign-node/building-our-ami-with-packer.md)
+**Next:** [Building Our AMI with
+Packer](../03-our-first-sovereign-node/building-our-ami-with-packer.md)
 
 ---
 
-*Remember: Every expert was once a beginner. You've just taken a significant step in your journey.* 💙
+*Remember: Every expert was once a beginner. You've just taken a significant
+step in your journey.* 💙

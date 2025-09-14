@@ -1,17 +1,21 @@
 # Terraform Configuration for NixOS EKS Infrastructure
 ![Parametric Flower](parametric-flower-compressed.png)
 
-This directory contains the complete Terraform configuration for provisioning AWS infrastructure to support a NixOS-based EKS cluster.
+This directory contains the complete Terraform configuration for provisioning
+AWS infrastructure to support a NixOS-based EKS cluster.
 
 ## Overview
 
 This Terraform configuration creates:
 
-- **VPC and Networking**: Multi-AZ VPC with public/private subnets, NAT gateways, and security groups
-- **EKS Cluster**: Managed Kubernetes control plane with custom NixOS worker nodes
+- **VPC and Networking**: Multi-AZ VPC with public/private subnets, NAT
+gateways, and security groups
+- **EKS Cluster**: Managed Kubernetes control plane with custom NixOS worker
+nodes
 - **IAM Roles**: Proper IAM roles and policies for EKS and node groups
 - **Security**: KMS encryption, security groups, and network policies
-- **Add-ons**: VPC CNI, CoreDNS, kube-proxy, EBS CSI driver, and optional add-ons
+- **Add-ons**: VPC CNI, CoreDNS, kube-proxy, EBS CSI driver, and optional
+add-ons
 - **Monitoring**: CloudWatch logging and optional Container Insights
 
 ## Prerequisites
@@ -78,8 +82,10 @@ This Terraform configuration creates:
 ## Key Features
 
 ### Security
-- **KMS Encryption**: EKS cluster secrets encrypted with customer-managed KMS key
-- **Network Security**: Private subnets for worker nodes, public subnets for load balancers
+- **KMS Encryption**: EKS cluster secrets encrypted with customer-managed KMS
+key
+- **Network Security**: Private subnets for worker nodes, public subnets for
+load balancers
 - **IAM Security**: Least-privilege IAM roles and policies
 - **Security Groups**: Restrictive security group rules
 
@@ -180,7 +186,8 @@ Error: The specified AMI does not exist
 ```
 Error: User is not authorized to perform eks:CreateCluster
 ```
-**Solution**: Check your IAM permissions and ensure you have the required policies.
+**Solution**: Check your IAM permissions and ensure you have the required
+policies.
 
 #### 3. VPC CIDR Conflicts
 ```
@@ -192,7 +199,8 @@ Error: The specified CIDR block conflicts with an existing CIDR block
 ```
 Error: Node group failed to launch instances
 ```
-**Solution**: Check the user data script and ensure the NixOS AMI is properly configured.
+**Solution**: Check the user data script and ensure the NixOS AMI is properly
+configured.
 
 ### Debugging Commands
 
@@ -242,7 +250,8 @@ For issues and questions:
 
 ## References
 
-- [Terraform AWS Provider](https://registry.terraform.io/providers/hashicorp/aws/latest)
+- [Terraform AWS
+Provider](https://registry.terraform.io/providers/hashicorp/aws/latest)
 - [AWS EKS Documentation](https://docs.aws.amazon.com/eks/)
 - [EKS Best Practices](https://aws.github.io/aws-eks-best-practices/)
 - [NixOS Documentation](https://nixos.org/manual/nixos/stable/)

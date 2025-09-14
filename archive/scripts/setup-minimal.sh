@@ -35,7 +35,7 @@ check_nixos() {
         log_success "Running on NixOS!"
         return 0
     else
-        log_warning "Not running on NixOS. This script is designed for NixOS systems."
+log_warning "Not running on NixOS. This script is designed for NixOS systems."
         return 1
     fi
 }
@@ -65,7 +65,8 @@ setup_nixos_config() {
     # Create backup of existing config
     if [ -f /etc/nixos/configuration.nix ]; then
         log_info "Backing up existing configuration..."
-        sudo cp /etc/nixos/configuration.nix /etc/nixos/configuration.nix.backup.$(date +%Y%m%d_%H%M%S)
+sudo cp /etc/nixos/configuration.nix /etc/nixos/configuration.nix.backup.$(date
++%Y%m%d_%H%M%S)
     fi
     
     # Copy our minimal config
@@ -111,7 +112,8 @@ setup_docker() {
     sudo systemctl start docker
     
     log_success "Docker setup complete!"
-    log_warning "You may need to log out and back in for Docker group changes to take effect."
+log_warning "You may need to log out and back in for Docker group changes to
+take effect."
 }
 
 # Build the minimal container
@@ -196,7 +198,8 @@ main() {
     
     log_success "🎉 Minimal NixOS development environment is ready!"
     log_info "Next steps:"
-    log_info "1. Run 'docker-compose -f docker/docker-compose.minimal.yml up' to start containers"
+log_info "1. Run 'docker-compose -f docker/docker-compose.minimal.yml up' to
+start containers"
     log_info "2. Run 'ghc hello.hs && ./hello' to test Haskell"
     log_info "3. Run 'zsh' to use the enhanced shell"
 }

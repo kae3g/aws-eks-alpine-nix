@@ -21,7 +21,8 @@ sync_branches() {
         
         # Update PROGRESS.md with current timestamp
         echo "" >> docs/PROGRESS.md
-        echo "**Automated Sync**: $timestamp - Repository synchronized across branches" >> docs/PROGRESS.md
+echo "**Automated Sync**: $timestamp - Repository synchronized across branches"
+>> docs/PROGRESS.md
         
         git add docs/PROGRESS.md
         git commit -m "Cursor: Automated sync - $timestamp

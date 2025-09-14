@@ -74,7 +74,8 @@ test_docker_setup() {
     log_info "Testing Docker setup..."
     
     run_test "Dockerfile exists" "test -f docker/Dockerfile.minimal"
-    run_test "Docker compose file exists" "test -f docker/docker-compose.minimal.yml"
+run_test "Docker compose file exists" "test -f
+docker/docker-compose.minimal.yml"
     
     if command -v docker &> /dev/null; then
         run_test "Docker is installed" "command -v docker"
@@ -100,12 +101,12 @@ test_container_build() {
         log_info "Testing container build..."
         
         cd docker/
-        if docker build -f Dockerfile.minimal -t nixos-minimal-test . &> /dev/null; then
+if docker build -f Dockerfile.minimal -t nixos-minimal-test . &> /dev/null; then
             log_success "Container builds successfully"
             ((TESTS_PASSED++))
             
             # Test container runs
-            if docker run --rm nixos-minimal-test ghc --version &> /dev/null; then
+if docker run --rm nixos-minimal-test ghc --version &> /dev/null; then
                 log_success "Container runs and GHC works"
                 ((TESTS_PASSED++))
             else
